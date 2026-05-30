@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, HeartPulse, Activity, Plus } from "lucide-react";
 import { heroContent, statistics } from "@/lib/constants";
+import { siteConfig } from "@/lib/site-config";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { MouseGlow } from "@/components/effects/MouseGlow";
 import { FloatingIcons } from "@/components/effects/FloatingIcons";
@@ -143,7 +144,7 @@ export function Hero() {
           >
             <span className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-text-soft">
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent-green" />
-              2023-yildan beri tibbiyot ta&apos;limi
+              {siteConfig.admissionStatus}
             </span>
 
             <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl xl:text-7xl">

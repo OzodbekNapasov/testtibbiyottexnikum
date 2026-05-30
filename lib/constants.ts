@@ -15,6 +15,7 @@ import {
 export const navLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "Litsenziya", href: "#litsenziya" },
   { label: "Galereya", href: "#galereya" },
   { label: "Qabul", href: "#qabul" },
   { label: "Aloqa", href: "#aloqa" },
@@ -43,8 +44,12 @@ export const statistics = [
 
 export type Program = {
   title: string;
-  duration?: string;
+  duration: string;
+  subtitle: string;
   description: string;
+  professionCode: string;
+  qualifications: string[];
+  admissionRequirements: string;
   icon: LucideIcon;
   accent: string;
 };
@@ -52,31 +57,57 @@ export type Program = {
 export const programs: Program[] = [
   {
     title: "Hamshiralik ishi",
-    duration: "2 yillik",
-    description:
-      "Qisqa muddatda amaliy bilim va ko'nikmalarni egallash imkonini beruvchi zamonaviy ta'lim dasturi.",
-    icon: HeartPulse,
-    accent: "from-blue-500/20 to-emerald-500/20",
-  },
-  {
-    title: "Hamshiralik ishi",
     duration: "3 yillik",
+    subtitle: "Umumiy amaliyot hamshirasi",
     description:
-      "Nazariy va amaliy bilimlarni chuqur o'rganishga yo'naltirilgan ta'lim.",
+      "Kamida umumiy o'rta ma'lumotga ega bo'lgan shaxslar hisobidan shakllantirilgan guruhlarda, tanlangan kvalifikatsiyalar sonidan kelib chiqib o'qish muddati 3 yil etib belgilanadi. Bu guruhlarda kasb doirasida tanlangan kvalifikatsiyalarni muvaffaqiyatli o'zlashtirgan shaxslarga belgilangan namunadagi diplom beriladi va mazkur diplom bilan shu kasb bo'yicha mehnat bozorida ishlash huquqiga ega bo'ladi. Egallanmagan kvalifikatsiyalarni qayta o'zlashtirishga ruxsat beriladi va mazkur kvalifikatsiyani muvaffaqiyatli o'zlashtirganlarga belgilangan tartibda diplom beriladi.",
+    professionCode: "50910203 — Hamshiralik ishi",
+    qualifications: ["Umumiy amaliyot hamshirasi"],
+    admissionRequirements:
+      "Abituriyentlarni o'qishga qabul qilish suhbat asosida amalga oshiriladi.",
     icon: Stethoscope,
     accent: "from-indigo-500/20 to-blue-500/20",
   },
   {
-    title: "Farmatsiya ishi",
+    title: "Hamshiralik ishi",
+    duration: "2 yillik",
+    subtitle: "Tibbiyot, maktab va maktabgacha ta'lim tashkiloti hamda fizioterapevtik xonalar hamshirasi",
     description:
-      "Dorivor vositalar va farmatsevtika texnologiyalari bo'yicha zamonaviy ta'lim.",
+      "Kamida umumiy o'rta ma'lumotga ega bo'lgan shaxslar hisobidan shakllantirilgan guruhlarda, tanlangan kvalifikatsiyalar sonidan kelib chiqib o'qish muddati 2 yil etib belgilanadi. Bu guruhlarda kasb doirasida tanlangan kvalifikatsiyalarni muvaffaqiyatli o'zlashtirgan shaxslarga belgilangan namunadagi diplom beriladi va mazkur diplom bilan shu kasb hamda tegishli kvalifikatsiyalar bo'yicha mehnat bozorida ishlash huquqiga ega bo'ladi. Egallanmagan kvalifikatsiyalarni qayta o'zlashtirishga ruxsat beriladi va mazkur kvalifikatsiyani muvaffaqiyatli o'zlashtirganlarga belgilangan tartibda diplom beriladi.",
+    professionCode: "40910203 — Hamshiralik ishi",
+    qualifications: [
+      "Tibbiyot hamshirasi",
+      "Maktab va maktabgacha ta'lim tashkiloti hamshirasi",
+      "Fizioterapevtik (massaj) xonasi hamshirasi",
+    ],
+    admissionRequirements:
+      "Abituriyentlarni o'qishga qabul qilish suhbat asosida amalga oshiriladi.",
+    icon: HeartPulse,
+    accent: "from-blue-500/20 to-emerald-500/20",
+  },
+  {
+    title: "Farmatsiya ishi",
+    duration: "3 yillik",
+    subtitle: "Farmatsevt",
+    description:
+      "Kamida umumiy o'rta ma'lumotga ega bo'lgan shaxslar hisobidan shakllantirilgan guruhlarda, tanlangan kvalifikatsiyalar sonidan kelib chiqib o'qish muddati 3 yil etib belgilanadi. Bu guruhlarda kasb doirasida tanlangan kvalifikatsiyalarni muvaffaqiyatli o'zlashtirgan shaxslarga belgilangan namunadagi diplom beriladi va mazkur diplom bilan shu kasb bo'yicha mehnat bozorida farmatsevtika sohasida ishlash huquqiga ega bo'ladi. Egallanmagan kvalifikatsiyalarni qayta o'zlashtirishga ruxsat beriladi va mazkur kvalifikatsiyani muvaffaqiyatli o'zlashtirganlarga belgilangan tartibda diplom beriladi.",
+    professionCode: "50910401 — Farmatsiya",
+    qualifications: ["Farmatsevt assistenti"],
+    admissionRequirements:
+      "Abituriyentlarni o'qishga qabul qilish suhbat asosida amalga oshiriladi.",
     icon: Pill,
     accent: "from-emerald-500/20 to-teal-500/20",
   },
   {
-    title: "Feldsherlik ishi",
+    title: "Davolash ishi / Feldsher",
+    duration: "3 yillik",
+    subtitle: "Feldsher",
     description:
-      "Birlamchi tibbiy yordam va diagnostika bo'yicha mutaxassislar tayyorlash.",
+      "Kamida umumiy o'rta ma'lumotga ega bo'lgan shaxslar hisobidan shakllantirilgan guruhlarda, tanlangan kvalifikatsiyalar sonidan kelib chiqib o'qish muddati 3 yil etib belgilanadi. Bu guruhlarda kasb doirasida tanlangan kvalifikatsiyalarni muvaffaqiyatli o'zlashtirgan shaxslarga belgilangan namunadagi diplom beriladi va mazkur diplom bilan shu kasb bo'yicha mehnat bozorida (birlamchi tibbiyot-sanitariya yordami va shoshilinch tibbiy yordam tizimida) ishlash huquqiga ega bo'ladi. Egallanmagan kvalifikatsiyalarni qayta o'zlashtirishga ruxsat beriladi va mazkur kvalifikatsiyani muvaffaqiyatli o'zlashtirganlarga belgilangan tartibda diplom beriladi.",
+    professionCode: "50910204 — Davolash ishi",
+    qualifications: ["Feldsher"],
+    admissionRequirements:
+      "Abituriyentlarni o'qishga qabul qilish suhbat asosida amalga oshiriladi.",
     icon: Syringe,
     accent: "from-red-500/20 to-orange-500/20",
   },
@@ -128,6 +159,7 @@ export type GalleryItem = {
   category: string;
   width: number;
   height: number;
+  variant?: "photo" | "graphic";
 };
 
 export const galleryItems: GalleryItem[] = [
@@ -137,48 +169,7 @@ export const galleryItems: GalleryItem[] = [
     category: "Texnikum",
     width: 1200,
     height: 800,
-  },
-  {
-    src: "/images/navruz.png",
-    alt: "Navro'z bayrami",
-    category: "Tadbirlar",
-    width: 800,
-    height: 1200,
-  },
-  {
-    src: "/images/students-oath.png",
-    alt: "Talabalar kasbiy qasamyod",
-    category: "Talabalar",
-    width: 800,
-    height: 1200,
-  },
-  {
-    src: "/images/student-practice.png",
-    alt: "Amaliyot mashg'uloti",
-    category: "Amaliyot",
-    width: 800,
-    height: 1200,
-  },
-  {
-    src: "/images/teacher-day.png",
-    alt: "Bir kunga ustoz bo'lib qolganimda",
-    category: "Darslar",
-    width: 800,
-    height: 1200,
-  },
-  {
-    src: "/images/students-class.png",
-    alt: "Dars jarayonida",
-    category: "Talabalar",
-    width: 800,
-    height: 1200,
-  },
-  {
-    src: "/images/students-lesson.png",
-    alt: "Amaliy mashg'ulot",
-    category: "Darslar",
-    width: 800,
-    height: 1200,
+    variant: "photo",
   },
 ];
 
@@ -226,13 +217,36 @@ export const floatingIcons = [Stethoscope, HeartPulse, Syringe, Activity, Pill] 
 export const footerLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "Litsenziya", href: "#litsenziya" },
   { label: "Galereya", href: "#galereya" },
   { label: "Qabul", href: "#qabul" },
   { label: "Aloqa", href: "#aloqa" },
 ] as const;
 
+export type LicenseItem = {
+  src: string;
+  alt: string;
+  title: string;
+  caption: string;
+};
+
+export const licenseItems: LicenseItem[] = [
+  {
+    src: "/images/license/license-1.png",
+    alt: "Litsenziya — asosiy sahifa",
+    title: "Litsenziya",
+    caption: "Nodavlat ta'lim xizmatlarini ko'rsatish faoliyati uchun rasmiy litsenziya",
+  },
+  {
+    src: "/images/license/license-2.png",
+    alt: "Litsenziya — ta'lim yo'nalishlari",
+    title: "Ta'lim yo'nalishlari",
+    caption: "Litsenziyada ko'rsatilgan kasb va mutaxassislik yo'nalishlari",
+  },
+];
+
 export const admissionContent = {
-  title: "Qabul davom etmoqda",
+  title: "Qabul ochiq",
   description:
     "Kelajak kasbingizni tanlang va zamonaviy tibbiyot ta'limiga birinchi qadamni qo'ying.",
   cta: "Qabulga ariza topshirish",

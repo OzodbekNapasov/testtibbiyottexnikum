@@ -8,6 +8,7 @@ import { ZoomIn } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { galleryItems } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -29,12 +30,14 @@ export function Gallery() {
           />
         </ScrollReveal>
 
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 lg:gap-6">
-          {galleryItems.map((item, index) => (
+        <div className="mx-auto max-w-4xl">
+          {galleryItems.map((item, index) => {
+            const isPhoto = item.variant === "photo";
+            return (
             <ScrollReveal key={item.src} delay={index * 0.05}>
               <button
                 type="button"
-                className="group relative mb-4 block w-full overflow-hidden rounded-2xl break-inside-avoid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="group relative block w-full overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 onClick={() => {
                   setLightboxIndex(index);
                   setLightboxOpen(true);
@@ -46,9 +49,14 @@ export function Gallery() {
                   alt={item.alt}
                   width={item.width}
                   height={item.height}
-                  className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className={cn(
+                    "w-full transition-transform duration-700 group-hover:scale-[1.02]",
+                    isPhoto
+                      ? "aspect-[4/3] object-cover"
+                      : "aspect-square bg-bg-deep object-contain p-4",
+                  )}
                   loading="lazy"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/90 via-bg-deep/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-90" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -69,7 +77,8 @@ export function Gallery() {
                 </div>
               </button>
             </ScrollReveal>
-          ))}
+            );
+          })}
         </div>
       </div>
 

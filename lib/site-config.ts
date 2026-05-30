@@ -10,9 +10,10 @@ export const siteConfig = {
   telegramHref: "https://t.me/shahrisabz_ilmu_ziyo",
   instagram: "@shahrisabz_t_t_uz",
   instagramHref: "https://instagram.com/shahrisabz_t_t_uz",
-  address: "Shahrisabz shahri",
+  address: "Shahrisabz shahri, Ipak Yuli ko'chasi, 36A-uy",
   mapsUrl: "https://maps.app.goo.gl/UzvQDQf1e9fVqMHbA",
-  workingHours: "Dushanba – Shanba, 09:00 – 18:00",
+  workingHours: "Dushanba-Juma 09:00-17:00",
+  admissionStatus: "2026/2027 o'quv yili qabuli ochiq",
   map: {
     lat: 39.08578,
     lng: 66.839256,

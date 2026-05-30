@@ -50,7 +50,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Asosiy navigatsiya">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Asosiy navigatsiya">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -62,10 +62,15 @@ export function Header() {
           ))}
         </nav>
 
+        <span className="hidden items-center gap-2 rounded-full border border-accent-green/30 bg-accent-green/10 px-3 py-1.5 text-xs font-medium text-accent-green lg:inline-flex">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-green" />
+          {siteConfig.admissionStatus}
+        </span>
+
         <a
           href="#qabul"
           data-cursor="button"
-          className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-blue-500 lg:inline-flex"
+          className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-blue-500 md:inline-flex"
         >
           Qabul
         </a>
@@ -90,6 +95,9 @@ export function Header() {
             className="glass-strong absolute inset-x-0 top-full border-t border-white/10 lg:hidden"
           >
             <nav className="flex flex-col gap-1 px-5 py-4" aria-label="Mobil navigatsiya">
+              <p className="mb-2 rounded-xl bg-accent-green/10 px-4 py-2 text-xs font-medium text-accent-green">
+                {siteConfig.admissionStatus}
+              </p>
               {navLinks.map((link) => (
                 <a
                   key={link.href}

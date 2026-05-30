@@ -22,42 +22,82 @@ export function Programs() {
           />
         </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:gap-8">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
           {programs.map((program, index) => {
             const Icon = program.icon;
             return (
-              <ScrollReveal key={`${program.title}-${program.duration ?? index}`} delay={index * 0.1}>
+              <ScrollReveal key={`${program.title}-${program.duration}`} delay={index * 0.1}>
                 <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.3 }}>
                   <GlassCard gradientBorder className="group h-full">
-                    <div
-                      className={cn(
-                        "mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br",
-                        program.accent,
-                      )}
-                    >
-                      <Icon
-                        className="h-7 w-7 text-white transition-transform duration-300 group-hover:scale-110"
-                        strokeWidth={1.5}
-                      />
+                    <div className="mb-5 flex items-start justify-between gap-4">
+                      <div
+                        className={cn(
+                          "inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br",
+                          program.accent,
+                        )}
+                      >
+                        <Icon
+                          className="h-7 w-7 text-white transition-transform duration-300 group-hover:scale-110"
+                          strokeWidth={1.5}
+                        />
+                      </div>
+                      <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-blue-300">
+                        {program.duration}
+                      </span>
                     </div>
 
-                    <div className="mb-2 flex flex-wrap items-center gap-3">
+                    <div className="mb-3">
                       <h3
                         id={index === 0 ? "programs-heading" : undefined}
                         className="font-[family-name:var(--font-heading)] text-xl font-bold text-white"
                       >
                         {program.title}
                       </h3>
-                      {program.duration && (
-                        <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-blue-300">
-                          {program.duration}
-                        </span>
-                      )}
+                      <p className="mt-1 text-sm font-medium text-accent-green">
+                        {program.subtitle}
+                      </p>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-text-muted md:text-base">
+                    <p className="text-sm leading-relaxed text-text-muted">
                       {program.description}
                     </p>
+
+                    <div className="mt-5 space-y-4 border-t border-white/10 pt-5">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                          Kasb (mutaxassislik) kodi va nomi
+                        </p>
+                        <p className="mt-1 text-sm font-medium text-white">
+                          {program.professionCode}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                          Kvalifikatsiya(lar) nomi
+                        </p>
+                        <ul className="mt-2 space-y-1">
+                          {program.qualifications.map((qualification) => (
+                            <li
+                              key={qualification}
+                              className="flex items-start gap-2 text-sm text-text-soft"
+                            >
+                              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                              {qualification}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                          O&apos;qishga qabul shartlari
+                        </p>
+                        <p className="mt-1 text-sm text-text-soft">
+                          {program.admissionRequirements}
+                        </p>
+                      </div>
+                    </div>
                   </GlassCard>
                 </motion.div>
               </ScrollReveal>

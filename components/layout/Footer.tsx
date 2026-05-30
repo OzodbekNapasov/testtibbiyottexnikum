@@ -25,6 +25,11 @@ export function Footer() {
                   {siteConfig.name}
                 </p>
                 <p className="mt-1 text-sm text-text-muted">{siteConfig.description}</p>
+                <p className="mt-3 text-sm font-medium text-accent-green">
+                  {siteConfig.admissionStatus}
+                </p>
+                <p className="mt-2 text-sm text-text-muted">{siteConfig.address}</p>
+                <p className="text-sm text-text-muted">{siteConfig.workingHours}</p>
               </div>
             </Link>
           </div>
@@ -78,7 +83,9 @@ export function Footer() {
           <p className="text-sm text-text-muted">
             © {year} {siteConfig.name}. Barcha huquqlar himoyalangan.
           </p>
-          <p className="text-sm text-text-muted">{siteConfig.address}</p>
+          <p className="text-center text-sm text-text-muted md:text-right">
+            {siteConfig.address} · {siteConfig.workingHours}
+          </p>
         </div>
       </div>
     </footer>

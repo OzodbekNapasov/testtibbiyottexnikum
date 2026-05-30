@@ -59,6 +59,7 @@ const jsonLd = {
   url: siteConfig.url,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Ipak Yuli ko'chasi, 36A-uy",
     addressLocality: "Shahrisabz",
     addressCountry: "UZ",
   },

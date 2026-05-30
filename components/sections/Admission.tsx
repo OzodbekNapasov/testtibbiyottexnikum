@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { admissionContent } from "@/lib/constants";
+import { siteConfig } from "@/lib/site-config";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function Admission() {
@@ -43,6 +44,10 @@ export function Admission() {
         <ScrollReveal>
           <div className="gradient-border rounded-3xl p-px">
             <div className="rounded-3xl bg-bg-deep/40 p-10 backdrop-blur-xl md:p-16">
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/15 px-4 py-2 text-sm font-semibold text-accent-green">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-accent-green" />
+                {siteConfig.admissionStatus}
+              </p>
               <h2
                 id="admission-heading"
                 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-white md:text-5xl lg:text-6xl"
