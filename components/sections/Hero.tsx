@@ -160,10 +160,18 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <MagneticButton href="#qabul" variant="primary">
-                {heroContent.primaryCta}
-                <ArrowRight className="h-4 w-4" />
-              </MagneticButton>
+              <motion.button
+                onClick={() => (window as any).openModal?.()}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/50"
+              >
+                <span className="absolute inset-0 bg-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="relative flex items-center gap-2">
+                  {heroContent.primaryCta}
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </motion.button>
               <MagneticButton href="#yonalishlar" variant="secondary">
                 {heroContent.secondaryCta}
               </MagneticButton>

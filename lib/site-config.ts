@@ -6,8 +6,8 @@ export const siteConfig = {
   url: "https://shahrisabz-tibbiyot.uz",
   phone: "+998 97 587 46 57",
   phoneHref: "tel:+998975874657",
-  telegram: "@shahrisabz_ilmu_ziyo",
-  telegramHref: "https://t.me/shahrisabz_ilmu_ziyo",
+  telegram: "@shahrisabz_t_t_uz",
+  telegramHref: "https://t.me/shahrisabz_t_t_uz",
   instagram: "@shahrisabz_t_t_uz",
   instagramHref: "https://instagram.com/shahrisabz_t_t_uz",
   address: "Shahrisabz shahri, Ipak Yuli ko'chasi, 36A-uy",
@@ -20,7 +20,7 @@ export const siteConfig = {
     zoom: 16,
   },
   social: {
-    telegram: "https://t.me/shahrisabz_ilmu_ziyo",
+    telegram: "https://t.me/shahrisabz_t_t_uz",
     instagram: "https://instagram.com/shahrisabz_t_t_uz",
   },
 } as const;

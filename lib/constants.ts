@@ -15,6 +15,7 @@ import {
 export const navLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "O'qituvchilarimiz", href: "/teachers" },
   { label: "Litsenziya", href: "#litsenziya" },
   { label: "Galereya", href: "#galereya" },
   { label: "Qabul", href: "#qabul" },
@@ -217,6 +218,7 @@ export const floatingIcons = [Stethoscope, HeartPulse, Syringe, Activity, Pill] 
 export const footerLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "O'qituvchilarimiz", href: "/teachers" },
   { label: "Litsenziya", href: "#litsenziya" },
   { label: "Galereya", href: "#galereya" },
   { label: "Qabul", href: "#qabul" },
@@ -256,3 +258,19 @@ export const contactContent = {
   title: "Biz bilan bog'laning",
   cta: "Biz bilan bog'laning",
 } as const;
+
+export type Teacher = {
+  name: string;
+  position: string;
+  photo: string;
+  specialty?: string;
+};
+
+export const teachers: Teacher[] = [
+  {
+    name: "Shaxboz Raxmonov",
+    position: "CEO",
+    photo: "/images/teachers/shaxboz-raxmonov.jpg",
+    specialty: "Marketolog",
+  },
+];

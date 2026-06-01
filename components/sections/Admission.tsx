@@ -58,10 +58,18 @@ export function Admission() {
                 {admissionContent.description}
               </p>
               <div className="mt-10">
-                <MagneticButton href="#aloqa" variant="primary">
-                  {admissionContent.cta}
-                  <ArrowRight className="h-4 w-4" />
-                </MagneticButton>
+                <motion.button
+                  onClick={() => (window as any).openModal?.()}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/50"
+                >
+                  <span className="absolute inset-0 bg-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="relative flex items-center gap-2">
+                    {admissionContent.cta}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </motion.button>
               </div>
             </div>
           </div>

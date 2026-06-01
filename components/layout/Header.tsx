@@ -43,7 +43,7 @@ export function Header() {
             className="h-11 w-11 rounded-full object-cover"
             priority
           />
-          <span className="hidden font-[family-name:var(--font-heading)] text-sm font-bold leading-tight text-white sm:block">
+          <span className="font-[family-name:var(--font-heading)] text-sm font-bold leading-tight text-white">
             Shahrisabz
             <br />
             <span className="text-xs font-medium text-text-muted">Tibbiyot Texnikumi</span>
@@ -108,13 +108,15 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#qabul"
-                onClick={() => setMobileOpen(false)}
-                className="mt-2 rounded-full bg-primary px-4 py-3 text-center text-sm font-semibold text-white"
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  (window as any).openModal?.();
+                }}
+                className="mt-2 w-full rounded-full bg-primary px-4 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Qabulga ariza
-              </a>
+              </button>
             </nav>
           </motion.div>
         )}

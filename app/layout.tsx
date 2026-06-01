@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ClientEffects } from "@/components/layout/ClientEffects";
+import { ApplicationModal } from "@/components/application/ApplicationModal";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -78,6 +79,7 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} ${spaceGrotesk.variable}`}
     >
       <head>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -94,6 +96,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ApplicationModal />
       </body>
     </html>
   );

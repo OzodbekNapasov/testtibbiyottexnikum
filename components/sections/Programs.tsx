@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -104,6 +105,23 @@ export function Programs() {
             );
           })}
         </div>
+
+        <ScrollReveal delay={0.3}>
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <motion.button
+              onClick={() => (window as any).openModal?.()}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-shadow duration-300 hover:shadow-xl hover:shadow-blue-500/50"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="relative flex items-center gap-2">
+                Shartnoma qilish
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </motion.button>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
