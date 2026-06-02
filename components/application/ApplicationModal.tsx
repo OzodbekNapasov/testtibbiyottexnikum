@@ -1,12 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRhArUo_ouPq5hHJf_TuBe8SiMid9LkYsQQBo4_iqf0ab-UGiBm4S32tFO3UdrZt6e/exec';
 
-export function ApplicationModal() {
-  const overlayRef = useRef<HTMLDivElement>(null);
+// Extend Window interface for modal functions
+declare global {
+  interface Window {
+    openModal?: () => void;
+    closeModal?: () => void;
+    overlayClick?: (e: MouseEvent) => void;
+    fileChosen?: (input: HTMLInputElement, nameId: string, boxId: string) => void;
+    setStatus?: (type: string, msg: string) => void;
+    setProgress?: (pct: number | null) => void;
+    fileToBase64?: (file: File) => Promise<{ data: string; type: string; name: string }>;
+    submitForm?: () => Promise<void>;
+  }
+}
 
+export function ApplicationModal() {
   useEffect(() => {
     // Define resetForm first since it's used by closeModal
     const resetForm = () => {
@@ -46,7 +58,7 @@ export function ApplicationModal() {
     };
 
     // Declare functions on window object for onclick handlers
-    (window as any).openModal = () => {
+    window.openModal = () => {
       const overlay = document.getElementById('overlay');
       if (overlay) {
         overlay.classList.add('show');
@@ -54,7 +66,7 @@ export function ApplicationModal() {
       }
     };
 
-    (window as any).closeModal = () => {
+    window.closeModal = () => {
       const overlay = document.getElementById('overlay');
       if (overlay) {
         overlay.classList.remove('show');
@@ -63,13 +75,13 @@ export function ApplicationModal() {
       }
     };
 
-    (window as any).overlayClick = (e: React.MouseEvent) => {
+    window.overlayClick = (e: MouseEvent) => {
       if (e.target === document.getElementById('overlay')) {
-        (window as any).closeModal();
+        window.closeModal?.();
       }
     };
 
-    (window as any).fileChosen = (input: HTMLInputElement, nameId: string, boxId: string) => {
+    window.fileChosen = (input: HTMLInputElement, nameId: string, boxId: string) => {
       const file = input.files?.[0];
       const nameEl = document.getElementById(nameId);
       const boxEl = document.getElementById(boxId);
@@ -81,7 +93,7 @@ export function ApplicationModal() {
       }
     };
 
-    (window as any).setStatus = (type: string, msg: string) => {
+    window.setStatus = (type: string, msg: string) => {
       const el = document.getElementById('status');
       if (el) {
         el.className = 'status ' + type;
@@ -89,7 +101,7 @@ export function ApplicationModal() {
       }
     };
 
-    (window as any).setProgress = (pct: number | null) => {
+    window.setProgress = (pct: number | null) => {
       const bar = document.getElementById('progressBar');
       if (pct === null) {
         if (bar) bar.style.display = 'none';
@@ -102,7 +114,7 @@ export function ApplicationModal() {
       }
     };
 
-    (window as any).fileToBase64 = (file: File): Promise<{ data: string; type: string; name: string }> => {
+    window.fileToBase64 = (file: File): Promise<{ data: string; type: string; name: string }> => {
       return new Promise((res, rej) => {
         const r = new FileReader();
         r.onload = () => res({ data: (r.result as string).split(',')[1], type: file.type, name: file.name });
@@ -111,7 +123,7 @@ export function ApplicationModal() {
       });
     };
 
-    (window as any).submitForm = async () => {
+    window.submitForm = async () => {
       const fish = (document.getElementById('fish') as HTMLInputElement)?.value.trim();
       const yosh = (document.getElementById('yosh') as HTMLInputElement)?.value.trim();
       const yonalish = (document.getElementById('yonalish') as HTMLSelectElement)?.value;
@@ -123,15 +135,15 @@ export function ApplicationModal() {
       const roziman = (document.getElementById('roziman') as HTMLInputElement)?.checked;
 
       if (!fish || !yosh || !yonalish || !tel1 || !jshshir || !attFile || !idFile) {
-        (window as any).setStatus('err', '⚠️ Barcha majburiy (*) maydonlarni to\'ldiring!');
+        window.setStatus?.('err', '⚠️ Barcha majburiy (*) maydonlarni to\'ldiring!');
         return;
       }
       if (jshshir.length !== 14) {
-        (window as any).setStatus('err', '⚠️ JSHSHIR 14 ta raqamdan iborat bo\'lishi kerak!');
+        window.setStatus?.('err', '⚠️ JSHSHIR 14 ta raqamdan iborat bo\'lishi kerak!');
         return;
       }
       if (!roziman) {
-        (window as any).setStatus('err', '⚠️ Rozilik checkboxini belgilang!');
+        window.setStatus?.('err', '⚠️ Rozilik checkboxini belgilang!');
         return;
       }
 
@@ -140,13 +152,13 @@ export function ApplicationModal() {
         btn.disabled = true;
         btn.textContent = '⏳ Yuborilmoqda...';
       }
-      (window as any).setStatus('load', '📤 Ma\'lumotlar va fayllar yuborilmoqda...');
-      (window as any).setProgress(20);
+      window.setStatus?.('load', '📤 Ma\'lumotlar va fayllar yuborilmoqda...');
+      window.setProgress?.(20);
 
       try {
-        const attestat = await (window as any).fileToBase64(attFile);
-        const idKarta = await (window as any).fileToBase64(idFile);
-        (window as any).setProgress(60);
+        const attestat = await window.fileToBase64?.(attFile);
+        const idKarta = await window.fileToBase64?.(idFile);
+        window.setProgress?.(60);
 
         await fetch(SCRIPT_URL, {
           method: 'POST',
@@ -154,17 +166,18 @@ export function ApplicationModal() {
           body: JSON.stringify({ fish, yosh, yonalish, tel1, tel2, jshshir, attestat, idKarta })
         });
 
-        (window as any).setProgress(100);
+        window.setProgress?.(100);
         setTimeout(() => {
-          (window as any).setProgress(null);
+          window.setProgress?.(null);
           const formBody = document.getElementById('formBody');
           const successScreen = document.getElementById('successScreen');
           if (formBody) formBody.style.display = 'none';
           if (successScreen) successScreen.style.display = 'flex';
         }, 400);
-      } catch (err: any) {
-        (window as any).setStatus('err', '❌ Xatolik: ' + err.message);
-        (window as any).setProgress(null);
+      } catch (err: unknown) {
+        const error = err as Error;
+        window.setStatus?.('err', '❌ Xatolik: ' + error.message);
+        window.setProgress?.(null);
         if (btn) {
           btn.disabled = false;
           btn.textContent = '✅ Ariza yuborish';
@@ -174,30 +187,30 @@ export function ApplicationModal() {
 
     return () => {
       // Cleanup functions from window object
-      delete (window as any).openModal;
-      delete (window as any).closeModal;
-      delete (window as any).overlayClick;
-      delete (window as any).fileChosen;
-      delete (window as any).setStatus;
-      delete (window as any).setProgress;
-      delete (window as any).fileToBase64;
-      delete (window as any).submitForm;
+      delete window.openModal;
+      delete window.closeModal;
+      delete window.overlayClick;
+      delete window.fileChosen;
+      delete window.setStatus;
+      delete window.setProgress;
+      delete window.fileToBase64;
+      delete window.submitForm;
     };
   }, []);
 
   return (
     <div className="application-modal">
-      <div className="overlay" id="overlay" onClick={(e) => (window as any).overlayClick(e)}>
+      <div className="overlay" id="overlay" onClick={(e) => window.overlayClick?.(e.nativeEvent)}>
         <div className="modal">
           <div className="modal-head">
             <div>
               <h2>Ariza Topshirish</h2>
-              <p>Barcha majburiy maydonlarni to'ldiring</p>
+              <p>Barcha majburiy maydonlarni to&apos;ldiring</p>
             </div>
-            <button className="close-btn" onClick={() => (window as any).closeModal()}>✕</button>
+            <button className="close-btn" onClick={() => window.closeModal?.()}>✕</button>
           </div>
           <div className="modal-body" id="formBody">
-            <div className="divider">Shaxsiy ma'lumotlar</div>
+            <div className="divider">Shaxsiy ma&apos;lumotlar</div>
             <div className="field">
               <label>F.I.Sh <span className="req">*</span></label>
               <input type="text" id="fish" placeholder="Familiya Ism Sharif" />
@@ -212,9 +225,9 @@ export function ApplicationModal() {
                 <input type="text" id="jshshir" placeholder="14 ta raqam" maxLength={14} />
               </div>
             </div>
-            <div className="divider">Yo'nalish</div>
+            <div className="divider">Yo&apos;nalish</div>
             <div className="field">
-              <label>Yo'nalishni tanlang <span className="req">*</span></label>
+              <label>Yo&apos;nalishni tanlang <span className="req">*</span></label>
               <select id="yonalish">
                 <option value="">— Tanlang —</option>
                 <option>Hamshiralik ishi (2 yillik)</option>
@@ -230,7 +243,7 @@ export function ApplicationModal() {
                 <input type="tel" id="tel1" placeholder="+998 90 000 00 00" />
               </div>
               <div className="field">
-                <label>Qo'shimcha telefon</label>
+                <label>Qo&apos;shimcha telefon</label>
                 <input type="tel" id="tel2" placeholder="+998 90 000 00 00" />
               </div>
             </div>
@@ -244,7 +257,7 @@ export function ApplicationModal() {
                   <div className="upload-name" id="attName">Fayl tanlanmagan</div>
                 </div>
               </label>
-              <input type="file" id="attestat" accept="image/*,.pdf" onChange={(e) => (window as any).fileChosen(e.target, 'attName', 'attBox')} />
+              <input type="file" id="attestat" accept="image/*,.pdf" onChange={(e) => window.fileChosen?.(e.target as HTMLInputElement, 'attName', 'attBox')} />
             </div>
             <div className="field">
               <label>ID karta <span className="req">*</span></label>
@@ -255,13 +268,13 @@ export function ApplicationModal() {
                   <div className="upload-name" id="idName">Fayl tanlanmagan</div>
                 </div>
               </label>
-              <input type="file" id="idkarta" accept="image/*,.pdf" onChange={(e) => (window as any).fileChosen(e.target, 'idName', 'idBox')} />
+              <input type="file" id="idkarta" accept="image/*,.pdf" onChange={(e) => window.fileChosen?.(e.target as HTMLInputElement, 'idName', 'idBox')} />
             </div>
             <label className="check-row">
               <input type="checkbox" id="roziman" />
-              <span>Shaxsiy ma'lumotlarim qabul komissiyasi tomonidan ko'rib chiqilishiga roziman.</span>
+              <span>Shaxsiy ma&apos;lumotlarim qabul komissiyasi tomonidan ko&apos;rib chiqilishiga roziman.</span>
             </label>
-            <button className="submit-btn" id="submitBtn" onClick={() => (window as any).submitForm()}>✅ Ariza yuborish</button>
+            <button className="submit-btn" id="submitBtn" onClick={() => window.submitForm?.()}>✅ Ariza yuborish</button>
             <div className="progress-bar" id="progressBar">
               <div className="progress-fill" id="progressFill"></div>
             </div>
@@ -270,8 +283,8 @@ export function ApplicationModal() {
           <div className="success-screen" id="successScreen">
             <div className="big">🎉</div>
             <h3>Ariza muvaffaqiyatli yuborildi!</h3>
-            <p>Qabul komissiyasi siz bilan tez orada bog'lanadi.</p>
-            <button onClick={() => (window as any).closeModal()}>Yopish</button>
+            <p>Qabul komissiyasi siz bilan tez orada bog&apos;lanadi.</p>
+            <button onClick={() => window.closeModal?.()}>Yopish</button>
           </div>
         </div>
       </div>

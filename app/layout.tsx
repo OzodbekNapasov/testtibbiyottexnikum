@@ -79,7 +79,6 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} ${spaceGrotesk.variable}`}
     >
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

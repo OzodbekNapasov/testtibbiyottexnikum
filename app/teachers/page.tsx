@@ -78,6 +78,12 @@ export default function TeachersPage() {
                         {teacher.specialty}
                       </p>
                     )}
+                    {/* Fallback placeholder icon */}
+                    {!teacher.photo && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <User className="h-16 w-16 text-white/50" />
+                      </div>
+                    )}
                   </div>
                 </GlassCard>
               </motion.div>
@@ -91,11 +97,11 @@ export default function TeachersPage() {
             <GlassCard gradientBorder className="text-center">
               <div className="p-8 md:p-12">
                 <h3 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white md:text-3xl">
-                  Bizning jamoamizga qo'shiling
+                  Bizning jamoamizga qo&apos;shiling
                 </h3>
                 <p className="mx-auto mt-4 max-w-2xl text-base text-text-soft md:text-lg">
-                  Zamonaviy tibbiyot ta'limi sohasida faoliyat yuritishni xohlaysizmi? 
-                  Biz bilan bog'laning va imkoniyatlarni kashf eting.
+                  Zamonaviy tibbiyot ta&apos;limi sohasida faoliyat yuritishni xohlaysizmi? 
+                  Biz bilan bog&apos;laning va imkoniyatlarni kashf eting.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
@@ -108,7 +114,7 @@ export default function TeachersPage() {
                     href="/#aloqa"
                     className="inline-flex items-center justify-center gap-2 rounded-full glass border border-white/10 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/10"
                   >
-                    Biz bilan bog'laning
+                    Biz bilan bog&apos;laning
                   </Link>
                 </div>
               </div>

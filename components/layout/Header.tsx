@@ -186,7 +186,7 @@ export function Header() {
                 <motion.button
                   onClick={() => {
                     setMobileOpen(false);
-                    (window as any).openModal?.();
+                    window.openModal?.();
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { admissionContent } from "@/lib/constants";
 import { siteConfig } from "@/lib/site-config";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -59,7 +58,7 @@ export function Admission() {
               </p>
               <div className="mt-10">
                 <motion.button
-                  onClick={() => (window as any).openModal?.()}
+                  onClick={() => window.openModal?.()}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/50"
