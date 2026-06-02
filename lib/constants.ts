@@ -20,15 +20,18 @@ export const navLinks = [
   { label: "Galereya", href: "#galereya" },
   { label: "Qabul", href: "#qabul" },
   { label: "Aloqa", href: "#aloqa" },
+  { label: "Onlayn ariza topshirish", href: "/ariza" },
 ] as const;
+
 
 export const heroContent = {
   title: "Kelajagingizni tibbiyot bilan bog'lang",
   subtitle:
     "Zamonaviy bilim va amaliy ko'nikmalarni uyg'unlashtirgan xususiy tibbiyot ta'lim muassasasi.",
-  primaryCta: "Qabulga ariza topshirish",
+  primaryCta: "Aloqa",
   secondaryCta: "Yo'nalishlarni ko'rish",
 } as const;
+
 
 export const aboutContent = {
   title: "Biz haqimizda",

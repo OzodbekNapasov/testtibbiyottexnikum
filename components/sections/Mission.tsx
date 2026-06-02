@@ -40,7 +40,7 @@ export function Mission() {
 
       <div className="relative mx-auto max-w-5xl text-center">
         <ScrollReveal>
-          <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent-green shadow-xl shadow-primary/30">
+          <div className="mx-auto mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent-green shadow-xl shadow-primary/30">
             <Target className="h-8 w-8 text-white" strokeWidth={1.5} />
           </div>
 
@@ -54,6 +54,7 @@ export function Mission() {
           <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-text-soft md:text-xl lg:text-2xl">
             {missionContent.description}
           </p>
+
         </ScrollReveal>
       </div>
     </section>

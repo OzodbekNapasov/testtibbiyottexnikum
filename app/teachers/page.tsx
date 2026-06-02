@@ -24,6 +24,7 @@ export default function TeachersPage() {
           </Link>
         </ScrollReveal>
 
+
         {/* Header */}
         <ScrollReveal>
           <SectionHeading

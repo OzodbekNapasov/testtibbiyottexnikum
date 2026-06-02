@@ -2,7 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { ArrowRight, HeartPulse, Activity, Plus } from "lucide-react";
+
 import { heroContent, statistics } from "@/lib/constants";
 import { siteConfig } from "@/lib/site-config";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -118,19 +120,44 @@ export function Hero() {
       className="relative flex min-h-dvh items-center overflow-hidden pt-20"
       aria-label="Asosiy bo'lim"
     >
-      <div className="absolute inset-0 mesh-bg" />
-      <div className="noise-overlay absolute inset-0" />
+      {/* Full-width hero background with dark gradient overlay for readability */}
+      <div className="pointer-events-none absolute inset-0">
+          <div className="relative h-full w-full max-w-none overflow-hidden">
+          <motion.div
+            className="absolute inset-0"
+            style={reducedMotion ? undefined : { y }}
+            initial={reducedMotion ? undefined : { scale: 1.02, filter: "blur(10px)" }}
+            animate={reducedMotion ? undefined : { scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="/images/building.png"
+              alt="Shahrisabz Tibbiyot Texnikumi"
+              fill
+              priority
+              sizes="100vw"
+              className="h-full w-full object-cover object-center"
+            />
+          </motion.div>
+
+          {/* Dark gradient overlay (below content) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/30" />
+        </div>
+      </div>
+
       <MouseGlow />
 
       <motion.div
-        className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
+        className="hidden"
         animate={reducedMotion ? undefined : { x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
+      {/* Floating accents: keep subtle */}
       <motion.div
-        className="absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-accent-green/15 blur-3xl"
-        animate={reducedMotion ? undefined : { x: [0, -20, 0], y: [0, 30, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
+        className="pointer-events-none absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-accent-green/5 blur-2xl"
+        animate={reducedMotion ? undefined : { x: [0, -12, 0], y: [0, 18, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <FloatingIcons />
@@ -141,40 +168,86 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full"
           >
-            <span className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-text-soft">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-accent-green" />
-              {siteConfig.admissionStatus}
-            </span>
-
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl xl:text-7xl">
-              <span className="text-gradient">{heroContent.title.split(" ").slice(0, 2).join(" ")}</span>
-              <br />
-              <span className="text-white">
-                {heroContent.title.split(" ").slice(2).join(" ")}
+            {/* Dedicated readability layer for text */}
+            <div className="mx-auto w-full max-w-xl rounded-3xl bg-black/35 px-6 py-6 backdrop-blur-md ring-1 ring-white/10">
+              <span className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-text-soft">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-accent-green" />
+                {siteConfig.admissionStatus}
               </span>
-            </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted md:text-lg">
-              {heroContent.subtitle}
-            </p>
+              <motion.h1
+                initial={{ opacity: 0, filter: "blur(12px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full text-center font-[family-name:var(--font-heading)] text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-5xl lg:text-6xl xl:text-7xl"
+              >
+                Shahrisabz Tibbiyot Texnikumi
+              </motion.h1>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <motion.p
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-6 max-w-xl text-base leading-relaxed text-text-muted drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)] md:text-lg"
+              >
+                {heroContent.subtitle}
+              </motion.p>
+
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <motion.button
-                onClick={() => window.openModal?.()}
+                onClick={() => {
+                  const el = document.getElementById("aloqa");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  } else {
+                    window.location.assign("/");
+                  }
+                }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/50"
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 bg-gradient-to-r from-[#071a4d] via-[#1d4ed8] to-[#10b981] transition-all duration-300 hover:scale-[1.05] hover:shadow-xl"
               >
-                <span className="absolute inset-0 bg-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.65),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.55),transparent_55%)]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-r from-[#081f5c] via-[#14b8a6] to-[#10b981] opacity-0 transition-opacity duration-300 group-hover:opacity-20"
+                />
                 <span className="relative flex items-center gap-2">
                   {heroContent.primaryCta}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </motion.button>
+
+
+              <motion.button
+                onClick={() => window.location.assign("/ariza")}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 bg-gradient-to-r from-[#071a4d] via-[#1d4ed8] to-[#10b981] transition-all duration-300 hover:scale-[1.05] hover:shadow-xl"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.65),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.55),transparent_55%)]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-r from-[#081f5c] via-[#14b8a6] to-[#10b981] opacity-0 transition-opacity duration-300 group-hover:opacity-20"
+                />
+                <span className="relative flex items-center gap-2">
+                  Online ariza topshirish
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </motion.button>
+
               <MagneticButton href="#yonalishlar" variant="secondary">
                 {heroContent.secondaryCta}
               </MagneticButton>
+              </div>
             </div>
           </motion.div>
 

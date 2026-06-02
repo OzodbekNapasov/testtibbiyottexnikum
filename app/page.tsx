@@ -12,6 +12,7 @@ import { Contact } from "@/components/sections/Contact";
 export default function Home() {
   return (
     <main id="main-content">
+      {/* Hero (saytning birinchi ko‘rinadigan blok) */}
       <Hero />
       <About />
       <Statistics />
@@ -25,3 +26,4 @@ export default function Home() {
     </main>
   );
 }
+

@@ -22,8 +22,9 @@ export function MagneticButton({
 
   const variants = {
     primary:
-      "bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-primary/50",
-    secondary: "glass border border-white/10 text-white hover:bg-white/10",
+      "text-white shadow-lg shadow-blue-500/25 bg-gradient-to-r from-[#071a4d] via-[#1d4ed8] to-[#10b981] hover:shadow-xl",
+    secondary:
+      "glass border border-white/10 text-white hover:bg-white/10",
   };
 
   return (

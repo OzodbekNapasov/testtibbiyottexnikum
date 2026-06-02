@@ -68,12 +68,25 @@ export function Header() {
         </span>
 
         <a
-          href="#qabul"
+          href="#aloqa"
           data-cursor="button"
-          className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-blue-500 md:inline-flex"
+          className="hidden group relative rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 bg-gradient-to-r from-[#071a4d] via-[#1d4ed8] to-[#10b981] transition-all duration-300 hover:scale-[1.05] hover:shadow-xl md:inline-flex"
         >
-          Qabul
+          <span className="relative inline-flex items-center gap-2">
+            Aloqa
+            <span
+              aria-hidden="true"
+              className="text-white transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(ellipse_at_top_left,rgba(37,99,235,0.65),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.55),transparent_55%)]"
+          />
         </a>
+
 
         <button
           type="button"

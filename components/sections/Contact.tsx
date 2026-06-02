@@ -56,7 +56,8 @@ export function Contact() {
       className="section-anchor section-padding relative bg-bg-mid"
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="absolute inset-0 mesh-bg opacity-30" aria-hidden="true" />
+      <div className="relative mx-auto max-w-7xl">
         <ScrollReveal>
           <SectionHeading title="Aloqa" subtitle="Savollaringiz bormi? Biz bilan bog'laning" />
         </ScrollReveal>
@@ -67,14 +68,14 @@ export function Contact() {
               {contactItems.map((item, index) => {
                 const Icon = item.icon;
                 const content = (
-                  <div className="glass group h-full rounded-2xl p-6 transition-colors hover:bg-white/5">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
+                  <div className="glass group h-full rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:bg-white/5 hover:shadow-xl hover:shadow-black/20">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20 ring-1 ring-white/10">
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <p className="text-sm text-text-muted">{item.label}</p>
                     <p
                       id={index === 0 ? "contact-heading" : undefined}
-                      className="mt-1 font-medium text-white"
+                      className="mt-1 font-medium text-white drop-shadow-sm"
                     >
                       {item.value}
                     </p>
@@ -96,14 +97,17 @@ export function Contact() {
             <div className="mt-8">
               <MagneticButton href={siteConfig.telegramHref} variant="primary">
                 {contactContent.cta}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </MagneticButton>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
             <div className="space-y-3">
-              <ContactMap />
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-sm">
+                <ContactMap />
+              </div>
+
               <a
                 href={siteConfig.mapsUrl}
                 target="_blank"
