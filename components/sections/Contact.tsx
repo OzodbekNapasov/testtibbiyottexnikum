@@ -104,7 +104,7 @@ export function Contact() {
 
           <ScrollReveal delay={0.2}>
             <div className="space-y-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-sm">
+              <div className="overflow-hidden rounded-2xl border border-white/10 shadow-lg shadow-black/20">
                 <ContactMap />
               </div>
 

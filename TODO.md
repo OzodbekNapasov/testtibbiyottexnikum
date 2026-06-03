@@ -1,0 +1,5 @@
+- [x] Redesign map section UI in components/sections/Contact.tsx with modern card layout
+- [x] Keep existing ContactMap functionality/source unchanged
+- [x] Add responsive info panel (address, phone, working hours, CTA)
+- [x] Ensure mobile stacked and desktop polished layout
+- [ ] Summarize modified files

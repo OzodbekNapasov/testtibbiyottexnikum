@@ -28,7 +28,7 @@ export default function TeachersPage() {
         {/* Header */}
         <ScrollReveal>
           <SectionHeading
-            title="O'qituvchilarimiz"
+            title="Bizning jamoa"
             subtitle="Tajribali va malakali pedagoglar jamoasi bilan tanishing"
           />
         </ScrollReveal>
@@ -77,6 +77,16 @@ export default function TeachersPage() {
                     {teacher.specialty && (
                       <p className="mt-1 text-xs text-text-muted">
                         {teacher.specialty}
+                      </p>
+                    )}
+                    {teacher.experience && (
+                      <p className="mt-1 text-xs text-text-muted">
+                        {teacher.experience}
+                      </p>
+                    )}
+                    {teacher.description && (
+                      <p className="mt-2 text-sm text-text-soft line-clamp-2">
+                        {teacher.description}
                       </p>
                     )}
                     {/* Fallback placeholder icon */}
