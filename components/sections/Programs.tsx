@@ -30,7 +30,6 @@ export function Programs() {
               Feldsher: "feldshelik isi.png",
               "Hamshiralik ishi": "hamshiralik ishi.png",
               "Davolash ishi": "feldshelik isi.png",
-              "Farmatsiya ishi": "hamshiralik ishi.png",
               "Davolash ishi / Feldsher": "feldshelik isi.png",
               "Farmatsiya ishi": "farmatsiya ishi.png",
             };

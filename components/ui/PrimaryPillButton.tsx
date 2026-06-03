@@ -42,6 +42,7 @@ export function PrimaryPillButton({
             variant === "primary" ? primary : glass,
             // hover glow + gradient shift
             "hover:scale-[1.05] hover:shadow-xl",
+            className,
           )}
           data-cursor="button"
           onClick={onClick}
@@ -85,7 +86,12 @@ export function PrimaryPillButton({
       ) : (
         <button
           type="button"
-          className={cn(shared, variant === "primary" ? primary : glass, "hover:scale-[1.05] hover:shadow-xl")}
+          className={cn(
+            shared,
+            variant === "primary" ? primary : glass,
+            "hover:scale-[1.05] hover:shadow-xl",
+            className
+          )}
           onClick={onClick}
           data-cursor="button"
         >

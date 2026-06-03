@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { aboutContent, statistics } from "@/lib/constants";
 
 export function About() {
