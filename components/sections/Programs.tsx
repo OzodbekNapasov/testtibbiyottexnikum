@@ -32,7 +32,7 @@ export function Programs() {
               "Davolash ishi": "feldshelik isi.png",
               "Farmatsiya ishi": "hamshiralik ishi.png",
               "Davolash ishi / Feldsher": "feldshelik isi.png",
-              "Farmatsiya ishi": "hamshiralik ishi.png",
+              "Farmatsiya ishi": "farmatsiya ishi.png",
             };
 
             const imgFile = titleToImage[program.title] ?? `${program.title}.png`;
@@ -79,17 +79,17 @@ export function Programs() {
                     </div>
 
                     {/* Text below image */}
-                    <div className="px-7 pb-6 pt-10">
-                      <div className="flex items-start justify-between gap-4">
+                    <div className="px-3 pb-7 pt-5">
+                      <div className="flex items-start justify-between gap-6">
                         <h3
                           id={index === 0 ? "programs-heading" : undefined}
-                          className="w-full text-center font-[family-name:var(--font-heading)] text-[26px] leading-[1.05] font-black tracking-tight text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-all duration-300 ease-out group-hover:scale-[1.04] group-hover:drop-shadow-[0_16px_36px_rgba(16,185,129,0.18)] sm:text-[30px] lg:text-[34px]"
+                          className="w-full text-left font-[family-name:var(--font-heading)] text-[20px] leading-[1.05] font-black tracking-tight text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-all duration-300 ease-out group-hover:scale-[1.04] group-hover:drop-shadow-[0_16px_36px_rgba(16,185,129,0.18)] sm:text-[30px] lg:text-[34px]"
                         >
                           {program.title}
                         </h3>
 
                         {/* Duration chip near title (does not overlap image) */}
-                        <div className="shrink-0 rounded-full border border-white/15 bg-blue/50 px-10 py-2 shadow-lg shadow-black/10 backdrop-blur-sm">
+                        <div className="shrink-0 rounded-full border border-white/65 bg-blue/100 px-4 py-2 shadow-lg shadow-black/10 backdrop-blur-sm">
                           <div className="text-center text-base font-extrabold leading-none text-white">
                             {program.duration}
                           </div>
