@@ -1,10 +1,6 @@
- "use client";
+"use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
 import { ZoomIn } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -12,11 +8,6 @@ import { galleryItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function Gallery() {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-
-  const slides = galleryItems.map((item) => ({ src: item.src, alt: item.alt }));
-
   return (
     <section
       id="galereya"
@@ -37,15 +28,7 @@ export function Gallery() {
             const isPhoto = item.variant === "photo";
             return (
               <ScrollReveal key={item.src} delay={index * 0.05}>
-                <button
-                  type="button"
-                  className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                  onClick={() => {
-                    setLightboxIndex(index);
-                    setLightboxOpen(true);
-                  }}
-                  aria-label={`${item.alt} — kattalashtirish`}
-                >
+                <div className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10">
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -83,31 +66,12 @@ export function Gallery() {
                       {item.alt}
                     </p>
                   </div>
-                </button>
+                </div>
               </ScrollReveal>
             );
           })}
         </div>
       </div>
-
-      <Lightbox
-        open={lightboxOpen}
-        close={() => setLightboxOpen(false)}
-        index={lightboxIndex}
-        slides={slides}
-        plugins={[Zoom]}
-        zoom={{
-          maxZoomPixelRatio: 3,
-          zoomInMultiplier: 2,
-          doubleTapDelay: 300,
-          doubleClickDelay: 300,
-          doubleClickMaxStops: 2,
-          keyboardMoveDistance: 50,
-          wheelZoomDistanceFactor: 100,
-          pinchZoomDistanceFactor: 100,
-          scrollToZoom: true,
-        }}
-      />
     </section>
   );
 }

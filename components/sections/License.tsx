@@ -1,20 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import Lightbox from "yet-another-react-lightbox";
+import Lightbox, { type RenderSlideProps } from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
-import { ZoomIn, FileCheck } from "lucide-react";
+import { ZoomIn, FileCheck, X } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { licenseItems } from "@/lib/constants";
 
+const DRAG_CLOSE_THRESHOLD = 120;
+
 export function License() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [dragY, setDragY] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const startYRef = useRef<number | null>(null);
 
   const slides = licenseItems.map((item) => ({ src: item.src, alt: item.alt }));
+
+  const dragProgress = useMemo(
+    () => Math.min(Math.max(dragY / DRAG_CLOSE_THRESHOLD, 0), 1),
+    [dragY],
+  );
+  const slideScale = 1 - dragProgress * 0.06;
+  const slideOpacity = 1 - dragProgress * 0.18;
+
+  const resetDrag = () => {
+    setIsDragging(false);
+    setDragY(0);
+    startYRef.current = null;
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    startYRef.current = event.clientY;
+    setIsDragging(true);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || startYRef.current === null) return;
+    const delta = event.clientY - startYRef.current;
+    setDragY(delta > 0 ? delta : 0);
+  };
+
+  const handlePointerUp = () => {
+    if (!isDragging) return;
+    if (dragY >= DRAG_CLOSE_THRESHOLD) {
+      setLightboxOpen(false);
+    }
+    resetDrag();
+  };
+
+  const renderSlide = ({ slide }: RenderSlideProps) => (
+    <div
+      className="flex h-full w-full items-center justify-center p-4 md:p-8"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={resetDrag}
+      onPointerLeave={handlePointerUp}
+    >
+      <div
+        className="relative max-h-full max-w-full touch-pan-y"
+        style={{
+          transform: `translateY(${dragY}px) scale(${slideScale})`,
+          opacity: slideOpacity,
+          transition: isDragging ? "none" : "transform 220ms ease, opacity 220ms ease",
+          willChange: "transform, opacity",
+        }}
+      >
+        <img
+          src={slide.src}
+          alt={slide.alt ?? "License preview"}
+          className="max-h-[88vh] w-auto max-w-[92vw] rounded-2xl object-contain shadow-2xl"
+          draggable={false}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <section
@@ -88,10 +154,38 @@ export function License() {
 
       <Lightbox
         open={lightboxOpen}
-        close={() => setLightboxOpen(false)}
+        close={() => {
+          setLightboxOpen(false);
+          resetDrag();
+        }}
         index={lightboxIndex}
         slides={slides}
         plugins={[Zoom]}
+        render={{
+          slide: renderSlide,
+          buttonClose: () => (
+            <button
+              type="button"
+              aria-label="Yopish"
+              onClick={() => {
+                setLightboxOpen(false);
+                resetDrag();
+              }}
+              className="absolute right-4 top-4 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md ring-1 ring-white/30 transition hover:bg-white/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          ),
+        }}
+        carousel={{ finite: true }}
+        controller={{ closeOnBackdropClick: true, closeOnPullDown: true }}
+        styles={{
+          container: {
+            backgroundColor: "rgba(15, 23, 42, 0.28)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          },
+        }}
         zoom={{
           maxZoomPixelRatio: 3,
           zoomInMultiplier: 2,
