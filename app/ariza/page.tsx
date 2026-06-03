@@ -10,7 +10,7 @@ export default function OnlineApplicationPage() {
         {/* Back button */}
         <button
           type="button"
-          onClick={() => window.location.assign('/')}
+          onClick={() => window.location.assign(&apos;/&apos;)}
           className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:text-white hover:bg-white/5"
         >
           <span aria-hidden>←</span>
@@ -33,10 +33,10 @@ export default function OnlineApplicationPage() {
             </h1>
 
             <p className="mt-4 max-w-2xl text-base text-text-soft md:text-lg">
-              Ariza shakli rasmiy hujjatlar bilan ishlash uchun mo'ljallangan.
+              Ariza shakli rasmiy hujjatlar bilan ishlash uchun mo&apos;ljallangan.
             </p>
             <p className="mt-3 max-w-2xl text-base text-text-soft md:text-lg">
-              Barcha maydonlarni aniq va ishonchli ma'lumotlar bilan to'ldiring.
+              Barcha maydonlarni aniq va ishonchli ma&apos;lumotlar bilan to&apos;ldiring.
             </p>
 
             <div className="mt-8 rounded-2xl border border-blue-200/30 bg-blue-950/20 px-5 py-4 md:px-6">
@@ -49,7 +49,7 @@ export default function OnlineApplicationPage() {
                     Hujjatlar xavfsizligi
                   </p>
                   <p className="mt-1 text-sm text-text-soft md:text-[15px]">
-                    Shaxsiy ma'lumotlar qabul komissiyasi tomonidan ko'rib chiqiladi va uchinchi tomonga berilmaydi.
+                    Shaxsiy ma&apos;lumotlar qabul komissiyasi tomonidan ko&apos;rib chiqiladi va uchinchi tomonga berilmaydi.
                   </p>
                 </div>
               </div>
@@ -100,7 +100,7 @@ export default function OnlineApplicationPage() {
                   3
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                  Telefon raqamlari va JSHSHIR to'liq kiritilishi
+                  Telefon raqamlari va JSHSHIR to&apos;liq kiritilishi
                 </div>
               </li>
 
@@ -109,7 +109,7 @@ export default function OnlineApplicationPage() {
                   4
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                  Yo'nalish tanlovi bo'yicha aniq ma'lumot
+                  Yo&apos;nalish tanlovi bo&apos;yicha aniq ma&apos;lumot
                 </div>
               </li>
 
@@ -118,7 +118,7 @@ export default function OnlineApplicationPage() {
                   !
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                     Ariza yuborishdan oldin kontrakt jadvali va hujjatlar ro'yxatini tekshirib chiqing.
+                     Ariza yuborishdan oldin kontrakt jadvali va hujjatlar ro&apos;yxatini tekshirib chiqing.
                 </div>
               </li>
             </ul>
