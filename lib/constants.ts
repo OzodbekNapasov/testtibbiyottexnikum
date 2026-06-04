@@ -274,9 +274,15 @@ export type Teacher = {
 export const teachers: Teacher[] = [
   {
     name: "Shaxboz Raxmonov",
-    position: "CEO",
+position: "CEO",
     photo: "/images/teachers/shaxboz-raxmonov.jpg",
     specialty: "Marketolog",
+  },
+  {
+    name: "Bahrom Eshnayev",
+    position: "O'quv ishlari bo'yicha direktor o'rinbosari",
+    photo: "/images/teachers/Bahrom-Eshnayev.png",
+    specialty: "Ta'lim nazariyasi",
     experience: "10 yillik tajriba",
     description: "Ta'lim marketingi va jamoa boshqaruvida strategik yondashuvni qo‘llaydi.",
   },

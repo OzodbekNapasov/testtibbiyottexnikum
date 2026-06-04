@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yangiliklar - Shahrisabz Tibbiyot Texnikumi</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/icon.png">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="/icon.png" alt="Logo" class="logo-img">
+        <span class="logo-text">Shahrisabz Tibbiyot Texnikumi</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Bosh sahifa</a>
+        <a href="news.html" class="nav-link active">Yangiliklar</a>
+        <a href="index.html#about" class="nav-link">Biz haqimizda</a>
+        <a href="index.html#contact" class="nav-link">Aloqa</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="nav-link">Bosh sahifa</a>
+      <a href="news.html" class="nav-link">Yangiliklar</a>
+      <a href="index.html#about" class="nav-link">Biz haqimizda</a>
+      <a href="index.html#contact" class="nav-link">Aloqa</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="news-hero">
+      <div class="container">
+        <h1 class="page-title">Yangiliklar</h1>
+        <p class="page-subtitle">Shahrisabz Tibbiyot Texnikumi yangiliklari va e'lonlari</p>
+      </div>
+    </section>
+
+    <section class="news-section">
+      <div class="container">
+        <div class="news-grid" id="newsGrid">
+          <!-- News items will be loaded via JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Shahrisabz Tibbiyot Texnikumi. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Load news data and render grid
+    document.addEventListener('DOMContentLoaded', function() {
+      loadNews();
+    });
+  </script>
+</body>
+</html>

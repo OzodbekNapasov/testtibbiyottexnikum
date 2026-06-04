@@ -42,13 +42,13 @@ export default function TeachersPage() {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
                 <GlassCard gradientBorder className="group h-full overflow-hidden">
-                  {/* Photo */}
-                  <div className="relative h-64 w-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent-green/20">
+{/* Photo - Square format with no rounded corners */}
+                  <div className="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent-green/20">
                     <Image
                       src={teacher.photo}
                       alt={teacher.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-none"
                       onError={(e) => {
                         // Fallback to placeholder if image doesn't exist
                         const target = e.target as HTMLImageElement;
