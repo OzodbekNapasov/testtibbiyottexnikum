@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ZoomIn } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PrimaryPillButton } from "@/components/ui/PrimaryPillButton";
 import { galleryItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -70,6 +71,12 @@ export function Gallery() {
               </ScrollReveal>
             );
           })}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <PrimaryPillButton href="/news" className="min-w-[220px]">
+            Yangiliklar
+          </PrimaryPillButton>
         </div>
       </div>
     </section>

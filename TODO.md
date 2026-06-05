@@ -1,5 +1,5 @@
-- [x] Redesign map section UI in components/sections/Contact.tsx with modern card layout
-- [x] Keep existing ContactMap functionality/source unchanged
-- [x] Add responsive info panel (address, phone, working hours, CTA)
-- [x] Ensure mobile stacked and desktop polished layout
-- [ ] Summarize modified files
+# TODO.md
+
+- [ ] Fix failing build: `newsItems` export missing in `lib/constants.ts` (used by `app/news/page.tsx` and `app/news/[slug]/page.tsx`).
+- [ ] Run `npm run lint` / `npm run build` to confirm.
+

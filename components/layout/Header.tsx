@@ -50,6 +50,7 @@ const menuSections: MenuSection[] = [
     icon: <ImageIcon className="w-5 h-5" />,
     items: [
       { label: "Galereya", href: "#galereya" },
+      { label: "Yangiliklar", href: "/news" },
     ],
   },
   {

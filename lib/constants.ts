@@ -23,7 +23,6 @@ export const navLinks = [
   { label: "Onlayn ariza topshirish", href: "/ariza" },
 ] as const;
 
-
 export const heroContent = {
   title: "Kelajagingizni tibbiyot bilan bog'lang",
   subtitle:
@@ -31,7 +30,6 @@ export const heroContent = {
   primaryCta: "Aloqa",
   secondaryCta: "Yo'nalishlarni ko'rish",
 } as const;
-
 
 export const aboutContent = {
   title: "Biz haqimizda",
@@ -75,7 +73,8 @@ export const programs: Program[] = [
   {
     title: "Hamshiralik ishi",
     duration: "2 yillik",
-    subtitle: "Tibbiyot, maktab va maktabgacha ta'lim tashkiloti hamda fizioterapevtik xonalar hamshirasi",
+    subtitle:
+      "Tibbiyot, maktab va maktabgacha ta'lim tashkiloti hamda fizioterapevtik xonalar hamshirasi",
     description:
       "Kamida umumiy o'rta ma'lumotga ega bo'lgan shaxslar hisobidan shakllantirilgan guruhlarda, tanlangan kvalifikatsiyalar sonidan kelib chiqib o'qish muddati 2 yil etib belgilanadi. Bu guruhlarda kasb doirasida tanlangan kvalifikatsiyalarni muvaffaqiyatli o'zlashtirgan shaxslarga belgilangan namunadagi diplom beriladi va mazkur diplom bilan shu kasb hamda tegishli kvalifikatsiyalar bo'yicha mehnat bozorida ishlash huquqiga ega bo'ladi. Egallanmagan kvalifikatsiyalarni qayta o'zlashtirishga ruxsat beriladi va mazkur kvalifikatsiyani muvaffaqiyatli o'zlashtirganlarga belgilangan tartibda diplom beriladi.",
     professionCode: "40910203 — Hamshiralik ishi",
@@ -262,10 +261,13 @@ export const contactContent = {
   cta: "Biz bilan bog'laning",
 } as const;
 
+export { newsItems } from "./constants.news-fixed";
+
 export type Teacher = {
   name: string;
   position: string;
   photo: string;
+
   specialty?: string;
   experience?: string;
   description?: string;
@@ -278,7 +280,8 @@ export const teachers: Teacher[] = [
     photo: "/images/teachers/shaxboz-raxmonov.jpg",
     specialty: "Marketolog",
     experience: "5 yillik tajriba",
-    description: "Strategik yo'nalishlarni belgilaydi, muhim qarorlar qabul qiladi va butun jamoaning samarali ishlashini ta'minlaydi.",
+    description:
+      "Strategik yo'nalishlarni belgilaydi, muhim qarorlar qabul qiladi va butun jamoaning samarali ishlashini ta'minlaydi.",
   },
   {
     name: "Bahrom Eshnayev",
@@ -286,7 +289,8 @@ export const teachers: Teacher[] = [
     photo: "/images/teachers/Bahrom-Eshnayev.png",
     specialty: "Ta'lim nazariyasi",
     experience: "24 yillik tajriba",
-    description: "Ta'lim muassasasida o'quv jarayonini tashkil etish, nazorat qilish va sifatini ta'minlashga mas'ul rahbar. ",
+    description:
+      "Ta'lim muassasasida o'quv jarayonini tashkil etish, nazorat qilish va sifatini ta'minlashga mas'ul rahbar. ",
   },
   {
     name: "Dilshod Karimov",
@@ -302,7 +306,8 @@ export const teachers: Teacher[] = [
     photo: "/images/teachers/teacher-2.jpg",
     specialty: "Biologiya va anatomiya",
     experience: "9 yillik tajriba",
-    description: "Nazariya va amaliyotni uyg‘unlashtirib interaktiv darslar olib boradi.",
+    description:
+      "Nazariya va amaliyotni uyg‘unlashtirib interaktiv darslar olib boradi.",
   },
   {
     name: "Jasur Ergashev",
@@ -326,7 +331,8 @@ export const teachers: Teacher[] = [
     photo: "/images/teachers/teacher-5.jpg",
     specialty: "Shoshilinch yordam",
     experience: "11 yillik tajriba",
-    description: "Amaliy ko‘nikmalarni real klinik holatlar asosida rivojlantiradi.",
+    description:
+      "Amaliy ko‘nikmalarni real klinik holatlar asosida rivojlantiradi.",
   },
   {
     name: "Gulnoza Raximova",
@@ -342,7 +348,8 @@ export const teachers: Teacher[] = [
     photo: "/images/teachers/teacher-7.jpg",
     specialty: "Inson anatomiyasi",
     experience: "10 yillik tajriba",
-    description: "Murakkab anatomik mavzularni vizual usullar bilan bayon etadi.",
+    description:
+      "Murakkab anatomik mavzularni vizual usullar bilan bayon etadi.",
   },
   {
     name: "Shahnoza Mamatqulova",
@@ -350,8 +357,8 @@ export const teachers: Teacher[] = [
     photo: "/images/teachers/teacher-8.jpg",
     specialty: "Fiziologiya",
     experience: "7 yillik tajriba",
-    description: "Organizm funksiyalarini klinik misollar bilan tushuntiradi.",
   },
+
   {
     name: "Azizbek Nurmatov",
     position: "Ichki kasalliklar o‘qituvchisi",

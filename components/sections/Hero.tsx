@@ -7,9 +7,9 @@ import { ArrowRight, HeartPulse, Activity, Plus } from "lucide-react";
 
 import { heroContent, statistics } from "@/lib/constants";
 import { siteConfig } from "@/lib/site-config";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { MouseGlow } from "@/components/effects/MouseGlow";
 import { FloatingIcons } from "@/components/effects/FloatingIcons";
+import { PrimaryPillButton } from "@/components/ui/PrimaryPillButton";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 function MedicalIllustration() {
@@ -244,9 +244,12 @@ export function Hero() {
                 </span>
               </motion.button>
 
-              <MagneticButton href="#yonalishlar" variant="secondary">
+              <PrimaryPillButton
+                href="#yonalishlar"
+                className="min-w-full sm:min-w-[220px]"
+              >
                 {heroContent.secondaryCta}
-              </MagneticButton>
+              </PrimaryPillButton>
               </div>
             </div>
           </motion.div>
