@@ -16,7 +16,7 @@ export function GlassCard({
 return (
     <div
       className={cn(
-        "glass p-6 rounded-none",
+        "glass p-6 rounded-xl",
         gradientBorder && "gradient-border",
         hover && "transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10",
         className,

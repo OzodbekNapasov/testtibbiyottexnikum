@@ -148,7 +148,7 @@ export function About() {
           </ScrollReveal>
         </div>
       </div>
-      <Lightbox
+<Lightbox
         open={lightboxOpen}
         close={() => {
           setLightboxOpen(false);
@@ -171,6 +171,9 @@ export function About() {
               <X className="h-5 w-5" />
             </button>
           ),
+          buttonZoom: () => null,
+          buttonNext: () => null,
+          buttonPrev: () => null,
         }}
         carousel={{ finite: true }}
         controller={{ closeOnBackdropClick: true }}
@@ -179,6 +182,14 @@ export function About() {
             backgroundColor: "rgba(15, 23, 42, 0.28)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+          slide: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           },
         }}
         zoom={{

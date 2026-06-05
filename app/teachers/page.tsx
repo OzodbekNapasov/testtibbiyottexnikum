@@ -41,14 +41,14 @@ export default function TeachersPage() {
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
-                <GlassCard gradientBorder className="group h-full overflow-hidden">
-{/* Photo - Square format with no rounded corners */}
-                  <div className="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent-green/20">
+<GlassCard gradientBorder className="group h-full overflow-hidden">
+                  {/* Photo - Square format with soft rounded corners */}
+                  <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-accent-green/20">
                     <Image
                       src={teacher.photo}
                       alt={teacher.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-none"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-xl"
                       onError={(e) => {
                         // Fallback to placeholder if image doesn't exist
                         const target = e.target as HTMLImageElement;
@@ -66,8 +66,8 @@ export default function TeachersPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   </div>
 
-                  {/* Info */}
-                  <div className="p-5">
+{/* Info */}
+                  <div className="p-6">
                     <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
                       {teacher.name}
                     </h3>
@@ -85,7 +85,7 @@ export default function TeachersPage() {
                       </p>
                     )}
                     {teacher.description && (
-                      <p className="mt-2 text-sm text-text-soft line-clamp-2">
+                      <p className="mt-2 text-sm text-text-soft">
                         {teacher.description}
                       </p>
                     )}

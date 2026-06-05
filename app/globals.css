@@ -15,6 +15,18 @@
   --font-ui: var(--font-manrope);
 }
 
+/* Global image rounded corners - soft and modern */
+img {
+  border-radius: 12px;
+}
+
+/* Image frame/container for additional styling */
+.image-frame {
+  border-radius: 12px;
+  padding: 8px;
+  background: white;
+}
+
 :root {
   --gradient-primary: linear-gradient(135deg, #081f5c 0%, #2563eb 50%, #10b981 100%);
   --gradient-mesh: radial-gradient(ellipse at 20% 20%, rgba(37, 99, 235, 0.25) 0%, transparent 50%),

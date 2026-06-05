@@ -28,7 +28,7 @@ export function Gallery() {
             const isPhoto = item.variant === "photo";
             return (
               <ScrollReveal key={item.src} delay={index * 0.05}>
-<div className="group relative block overflow-hidden rounded-none border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10">
+<div className="group relative block overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10">
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -38,7 +38,7 @@ export function Gallery() {
                     priority={index < 2}
                     unoptimized={false}
                     className={cn(
-                      "w-full transition-transform duration-700 group-hover:scale-[1.02] rounded-none",
+                      "w-full transition-transform duration-700 group-hover:scale-[1.02] rounded-xl",
                       isPhoto
                         ? "aspect-square object-cover object-center"
                         : "aspect-square bg-bg-deep object-contain p-4",
