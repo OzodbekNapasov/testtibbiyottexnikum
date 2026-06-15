@@ -73,11 +73,7 @@ export function Gallery() {
           })}
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <PrimaryPillButton href="/news" className="min-w-[220px]">
-            Yangiliklar
-          </PrimaryPillButton>
-        </div>
+        {/* news section removed */}
       </div>
     </section>
   );

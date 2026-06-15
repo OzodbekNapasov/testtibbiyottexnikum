@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRhArUo_ouPq5hHJf_TuBe8SiMid9LkYsQQBo4_iqf0ab-UGiBm4S32tFO3UdrZt6e/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqsJgHjs0pHx6_Du3l_NKnsKz8gqAbS7vEzCW5qDteJVr_LCLD4wM3BMhyQY1fny7cvg/exec';
 
 // Extend Window interface for modal functions
 declare global {

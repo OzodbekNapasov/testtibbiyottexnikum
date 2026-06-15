@@ -13,15 +13,17 @@ export default function TeachersPage() {
   return (
     <main className="min-h-screen bg-bg-dark pt-24 pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        {/* Back Button */}
+        {/* Back Button (framed) */}
         <ScrollReveal>
-          <Link
-            href="/"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-text-soft transition-colors hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Bosh sahifaga qaytish
-          </Link>
+          <div className="mb-8" data-page-back="true">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-2 py-1.5 text-sm font-medium text-text-soft transition-colors hover:text-white"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Bosh sahifaga qaytish
+            </Link>
+          </div>
         </ScrollReveal>
 
 

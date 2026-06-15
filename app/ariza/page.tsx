@@ -1,6 +1,7 @@
 "use client";
 
 import { ShieldCheck } from "lucide-react";
+import { GlassCard } from "@/components/ui/GlassCard";
 
 export default function OnlineApplicationPage() {
 
@@ -8,14 +9,16 @@ export default function OnlineApplicationPage() {
     <main className="min-h-screen bg-bg-dark pt-24 pb-16" id="main-content">
       <div className="mx-auto max-w-4xl px-5 lg:px-8">
         {/* Back button */}
-        <button
-          type="button"
-          onClick={() => window.location.assign("/")}
-          className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:text-white hover:bg-white/5"
-        >
-          <span aria-hidden>←</span>
-          Bosh sahifaga qaytish
-        </button>
+        <div className="mb-6" data-page-back="true">
+          <button
+            type="button"
+            onClick={() => window.location.assign("/")}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 px-2 py-1.5 text-sm font-semibold text-text-soft transition-colors hover:text-white"
+          >
+            <span aria-hidden>←</span>
+            Bosh sahifaga qaytish
+          </button>
+        </div>
 
         {/* Top banner */}
 
@@ -126,7 +129,7 @@ export default function OnlineApplicationPage() {
 
           <button
             type="button"
-            onClick={() => window.openModal?.()}
+            onClick={() => window.location.assign("/ariza/form")}
             className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-primary/50 md:w-auto"
           >
             Onlayn ariza formasi

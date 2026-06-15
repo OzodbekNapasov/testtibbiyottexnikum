@@ -10,6 +10,8 @@ export const siteConfig = {
   telegramHref: "https://t.me/shahrisabz_t_t_uz",
   instagram: "@shahrisabz_t_t_uz",
   instagramHref: "https://instagram.com/shahrisabz_t_t_uz",
+  facebook: "Shahrisabz Tibbiyot Texnikumi",
+  facebookHref: "https://www.facebook.com/share/1dWaDTpnKY/",
   address: "Shahrisabz shahri, Ipak Yuli ko'chasi, 36A-uy",
   mapsUrl: "https://maps.app.goo.gl/UzvQDQf1e9fVqMHbA",
   workingHours: "Dushanba-Juma 09:00-17:00",
@@ -22,5 +24,6 @@ export const siteConfig = {
   social: {
     telegram: "https://t.me/shahrisabz_t_t_uz",
     instagram: "https://instagram.com/shahrisabz_t_t_uz",
+    facebook: "https://www.facebook.com/share/1dWaDTpnKY/",
   },
 } as const;

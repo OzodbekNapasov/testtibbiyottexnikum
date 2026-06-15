@@ -260,9 +260,6 @@ export const contactContent = {
   title: "Biz bilan bog'laning",
   cta: "Biz bilan bog'laning",
 } as const;
-
-export { newsItems } from "./constants.news-fixed";
-
 export type Teacher = {
   name: string;
   position: string;
@@ -282,6 +279,15 @@ export const teachers: Teacher[] = [
     experience: "5 yillik tajriba",
     description:
       "Strategik yo'nalishlarni belgilaydi, muhim qarorlar qabul qiladi va butun jamoaning samarali ishlashini ta'minlaydi.",
+  },
+  {
+    name: "Asomiddin Asraliyev",
+    position: "Texnikum Direktori",
+    photo: "/images/teachers/Asomiddin Asraliyev.png",
+    specialty: "Direktor",
+    experience: "15 yillik tajriba",
+    description:
+      "Texnikum faoliyatini boshqaradi va ta'lim sifatini yuqori darajada ta'minlashga mas'ul.",
   },
   {
     name: "Bahrom Eshnayev",

@@ -150,7 +150,7 @@ export function Programs() {
         <ScrollReveal delay={0.3}>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <motion.button
-              onClick={() => window.openModal?.()}
+              onClick={() => window.location.assign("/ariza")}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-shadow duration-300 hover:shadow-xl hover:shadow-blue-500/50"

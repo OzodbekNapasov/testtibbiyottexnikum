@@ -50,7 +50,6 @@ const menuSections: MenuSection[] = [
     icon: <ImageIcon className="w-5 h-5" />,
     items: [
       { label: "Galereya", href: "#galereya" },
-      { label: "Yangiliklar", href: "/news" },
     ],
   },
   {
@@ -59,6 +58,7 @@ const menuSections: MenuSection[] = [
     icon: <MessageCircle className="w-5 h-5" />,
     items: [
       { label: "Biz bilan bog'lanish", href: "#aloqa" },
+      { label: "Eng ko'p beriladigan savollar", href: "/faq" },
     ],
   },
 ];
@@ -67,8 +67,10 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSections, setOpenSections] = useState<string[]>([]);
+  const [openDesktopSection, setOpenDesktopSection] = useState<string | null>(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const [showHeaderHome, setShowHeaderHome] = useState(true);
 
   // Check if a link is a hash link
   const isHashLink = (href: string) => href.startsWith("#");
@@ -82,7 +84,9 @@ export function Header() {
           element.scrollIntoView({ behavior: "smooth" });
         }
       } else {
-        window.location.href = href;
+        // If user is on another page, navigate to the homepage with the hash
+        // so the target section (which lives on the home page) can be found.
+        window.location.href = `/${href}`;
       }
     }
   }, [isHomePage]);
@@ -114,6 +118,37 @@ export function Header() {
   useEffect(() => {
     setMobileOpen(false);
     setOpenSections([]);
+    setOpenDesktopSection(null);
+    // Hide header-level home link if the current page provides its own back link
+    try {
+      const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
+      setShowHeaderHome(!hasPageBack);
+    } catch (e) {
+      setShowHeaderHome(true);
+    }
+
+    // Also observe DOM mutations in case page-level back link is added after header mounts
+    let timer: number | undefined;
+    try {
+      const observer = new MutationObserver(() => {
+        const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
+        setShowHeaderHome(!hasPageBack);
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Also re-check shortly after mount to catch components that render slightly later
+      timer = window.setTimeout(() => {
+        const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
+        setShowHeaderHome(!hasPageBack);
+      }, 120);
+
+      return () => {
+        observer.disconnect();
+        if (timer) clearTimeout(timer);
+      };
+    } catch (e) {
+      // ignore
+    }
   }, [pathname]);
 
   useEffect(() => {
@@ -147,13 +182,75 @@ export function Header() {
           </span>
         </Link>
 
-        <span className="hidden items-center gap-2 rounded-full border border-accent-green/30 bg-accent-green/10 px-3 py-1.5 text-xs font-medium text-accent-green lg:inline-flex">
+        <nav
+          className="hidden lg:flex items-center gap-2"
+          aria-label="Desktop navigatsiya"
+          onMouseLeave={() => setOpenDesktopSection(null)}
+        >
+          {/* Show a small 'Back to Home' link when not on homepage */}
+          {!isHomePage && showHeaderHome && (
+            <Link href="/" className="mr-4 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10">
+              Bosh sahifaga qaytish
+            </Link>
+          )}
+          {menuSections.map((section) => (
+            <div key={section.id} className="relative">
+              <button
+                type="button"
+                onMouseEnter={() => setOpenDesktopSection(section.id)}
+                onFocus={() => setOpenDesktopSection(section.id)}
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                aria-expanded={openDesktopSection === section.id}
+                aria-haspopup="true"
+              >
+                {section.title}
+              </button>
+
+              <AnimatePresence>
+                {openDesktopSection === section.id && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.16 }}
+                    className="absolute left-0 top-full z-[70] mt-2 w-64 overflow-hidden rounded-2xl border border-white/10 bg-bg-mid/95 p-2 shadow-2xl backdrop-blur-xl"
+                  >
+                    {section.items.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => {
+                          setOpenDesktopSection(null);
+                          handleNavigation(item.href);
+                        }}
+                        className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-text-soft transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        <span>{item.label}</span>
+                        <ChevronRight className="h-4 w-4 text-text-muted" />
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </nav>
+
+        <span className="hidden items-center gap-2 rounded-full border border-accent-green/30 bg-accent-green/10 px-3 py-1.5 text-xs font-medium text-accent-green xl:inline-flex">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-green" />
           {siteConfig.admissionStatus}
         </span>
 
+        {/* Mobile: show home link when not on homepage */}
+        {!isHomePage && showHeaderHome && (
+          <Link href="/" className="ml-3 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10 md:hidden">
+            Bosh sahifaga qaytish
+          </Link>
+        )}
+
         <a
           href="#aloqa"
+          onClick={() => handleNavigation("#aloqa")}
           className="hidden group relative rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 bg-gradient-to-r from-[#071a4d] via-[#1d4ed8] to-[#10b981] transition-all duration-300 hover:scale-[1.05] hover:shadow-xl md:inline-flex"
         >
           <span className="relative inline-flex items-center gap-2">
@@ -254,7 +351,7 @@ export function Header() {
                           className="flex w-full items-center justify-between px-4 py-4 text-left transition-colors hover:bg-white/5"
                         >
                           <div className="flex items-center gap-3">
-<span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                               {section.icon}
                             </span>
                             <span className="text-base font-semibold text-white">

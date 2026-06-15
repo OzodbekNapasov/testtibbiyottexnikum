@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Phone, Send, MapPin, Clock, ArrowRight, Instagram } from "lucide-react";
+import { Phone, Send, MapPin, Clock, ArrowRight, Instagram, Facebook } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -35,6 +35,12 @@ const contactItems = [
     label: "Instagram",
     value: siteConfig.instagram,
     href: siteConfig.instagramHref,
+  },
+  {
+    icon: Facebook,
+    label: "Facebook",
+    value: siteConfig.facebook,
+    href: siteConfig.facebookHref,
   },
   {
     icon: MapPin,
