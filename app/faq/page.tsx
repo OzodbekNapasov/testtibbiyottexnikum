@@ -13,7 +13,7 @@ export default function FaqPage() {
 
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-text-muted">
             <p className="text-base leading-relaxed">
-              FAQ bo'limi hozircha tayyorlanmoqda. Savollar va javoblar kelajakda shu yerda namoyish etiladi.
+              FAQ bo&apos;limi hozircha tayyorlanmoqda. Savollar va javoblar kelajakda shu yerda namoyish etiladi.
             </p>
           </div>
         </div>

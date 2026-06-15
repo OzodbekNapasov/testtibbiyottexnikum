@@ -41,15 +41,15 @@ export default function ArizaFormPage() {
 
   const validate = () => {
     if (!fish || !yosh || !jshshir || !yonalish || !tel1 || !attestat || !idkarta) {
-      setStatus({ type: "error", text: "Iltimos, barcha majburiy maydonlarni to'ldiring." });
+      setStatus({ type: "error", text: "Iltimos, barcha majburiy maydonlarni to&apos;ldiring." });
       return false;
     }
     if (jshshir.length !== 14 || !/^[0-9]+$/.test(jshshir)) {
-      setStatus({ type: "error", text: "JSHSHIR 14 ta raqamdan iborat bo'lishi kerak." });
+      setStatus({ type: "error", text: "JSHSHIR 14 ta raqamdan iborat bo&apos;lishi kerak." });
       return false;
     }
     if (!roziman) {
-      setStatus({ type: "error", text: "Shaxsiy ma'lumotlaringiz ko'rib chiqilishiga rozi bo'lishingiz kerak." });
+      setStatus({ type: "error", text: "Shaxsiy ma&apos;lumotlaringiz ko&apos;rib chiqilishiga rozi bo&apos;lishingiz kerak." });
       return false;
     }
     return true;
@@ -87,10 +87,10 @@ export default function ArizaFormPage() {
         if (err instanceof Error) throw err;
       }
 
-      setStatus({ type: "success", text: "Arizangiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog'lanamiz." });
+      setStatus({ type: "success", text: "Arizangiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog&apos;lanamiz." });
       setSubmitted(true);
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Noma'lum xatolik yuz berdi.";
+      const message = error instanceof Error ? error.message : "Noma&apos;lum xatolik yuz berdi.";
       setStatus({ type: "error", text: `Xatolik: ${message}` });
     } finally {
       setLoading(false);
@@ -107,7 +107,7 @@ export default function ArizaFormPage() {
             </div>
             <h1 className="text-3xl font-bold text-white md:text-4xl">Arizangiz qabul qilindi</h1>
             <p className="mt-4 text-base text-text-soft">
-              Sizning ma'lumotlaringiz qabul qilindi va qabul komissiyasi tez orada siz bilan bog'lanadi.
+              Sizning ma&apos;lumotlaringiz qabul qilindi va qabul komissiyasi tez orada siz bilan bog&apos;lanadi.
             </p>
             <div className="mt-8" data-page-back="true">
               <GlassCard gradientBorder className="inline-block">
@@ -143,7 +143,7 @@ export default function ArizaFormPage() {
               Onlayn ariza formasi
             </h1>
             <p className="mt-4 max-w-2xl text-base text-text-soft md:text-lg">
-              Iltimos, barcha majburiy maydonlarni to'liq to'ldiring va kerakli hujjatlarni yuklang.
+              Iltimos, barcha majburiy maydonlarni to&apos;liq to&apos;ldiring va kerakli hujjatlarni yuklang.
             </p>
           </div>
         </section>
@@ -186,7 +186,7 @@ export default function ArizaFormPage() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-white">Yo'nalish <span className="text-red-400">*</span></label>
+              <label className="mb-2 block text-sm font-medium text-white">Yo&apos;nalish <span className="text-red-400">*</span></label>
               <select
                 value={yonalish}
                 onChange={(e) => setYonalish(e.target.value)}
@@ -213,7 +213,7 @@ export default function ArizaFormPage() {
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">Qo'shimcha telefon</label>
+                <label className="mb-2 block text-sm font-medium text-white">Qo&apos;shimcha telefon</label>
                 <input
                   type="tel"
                   value={tel2}
@@ -270,14 +270,8 @@ export default function ArizaFormPage() {
                 onChange={(e) => setRoziman(e.target.checked)}
                 className="h-4 w-4 rounded border-white/10 bg-bg-mid text-primary focus:ring-primary"
               />
-              Shaxsiy ma'lumotlarim qabul komissiyasi tomonidan ko'rib chiqilishiga roziman.
+              <span>Shaxsiy ma&apos;lumotlarim qabul komissiyasi tomonidan ko&apos;rib chiqilishiga roziman.</span>
             </label>
-
-            {status && (
-              <div className={`rounded-2xl border p-4 ${status.type === "error" ? "border-red-500 bg-red-500/10 text-red-200" : status.type === "success" ? "border-emerald-500 bg-emerald-500/10 text-emerald-200" : "border-blue-500 bg-blue-500/10 text-blue-200"}`}>
-                {status.text}
-              </div>
-            )}
 
             <button
               type="submit"

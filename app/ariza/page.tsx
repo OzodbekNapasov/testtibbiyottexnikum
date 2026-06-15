@@ -1,7 +1,6 @@
 "use client";
 
 import { ShieldCheck } from "lucide-react";
-import { GlassCard } from "@/components/ui/GlassCard";
 
 export default function OnlineApplicationPage() {
 
