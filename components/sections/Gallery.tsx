@@ -1,14 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 import { ZoomIn } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PrimaryPillButton } from "@/components/ui/PrimaryPillButton";
 import { galleryItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function Gallery() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const slides = galleryItems.map((item) => ({ src: item.src, alt: item.alt }));
+
   return (
     <section
       id="galereya"
@@ -29,7 +36,15 @@ export function Gallery() {
             const isPhoto = item.variant === "photo";
             return (
               <ScrollReveal key={item.src} delay={index * 0.05}>
-<div className="group relative block overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLightboxIndex(index);
+                    setLightboxOpen(true);
+                  }}
+                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  aria-label={`${item.alt} — kattalashtirish`}
+                >
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -39,7 +54,7 @@ export function Gallery() {
                     priority={index < 2}
                     unoptimized={false}
                     className={cn(
-                      "w-full transition-transform duration-700 group-hover:scale-[1.02] rounded-xl",
+                      "w-full transition-transform duration-700 group-hover:scale-[1.12] rounded-xl",
                       isPhoto
                         ? "aspect-square object-cover object-center"
                         : "aspect-square bg-bg-deep object-contain p-4",
@@ -49,12 +64,6 @@ export function Gallery() {
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/95 via-bg-deep/20 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-95" />
-
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 backdrop-blur-sm ring-1 ring-white/10">
-                      <ZoomIn className="h-5 w-5 text-white" />
-                    </div>
-                  </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-blue-200">
@@ -67,11 +76,22 @@ export function Gallery() {
                       {item.alt}
                     </p>
                   </div>
-                </div>
+                </button>
               </ScrollReveal>
             );
           })}
         </div>
+
+        <Lightbox
+          open={lightboxOpen}
+          close={() => setLightboxOpen(false)}
+          slides={slides}
+          index={lightboxIndex}
+          plugins={[Zoom]}
+          carousel={{ finite: true }}
+          controller={{ closeOnBackdropClick: true }}
+          zoom={{ maxZoomPixelRatio: 3, zoomInMultiplier: 2, doubleClickDelay: 300 }}
+        />
 
         {/* news section removed */}
       </div>
