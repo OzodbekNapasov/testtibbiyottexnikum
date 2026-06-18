@@ -123,7 +123,7 @@ export function Header() {
     try {
       const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
       setShowHeaderHome(!hasPageBack);
-    } catch (e) {
+    } catch {
       setShowHeaderHome(true);
     }
 
@@ -146,7 +146,7 @@ export function Header() {
         observer.disconnect();
         if (timer) clearTimeout(timer);
       };
-    } catch (e) {
+    } catch {
       // ignore
     }
   }, [pathname]);
@@ -376,7 +376,7 @@ export function Header() {
                               className="overflow-hidden"
                             >
                               <div className="space-y-1 px-2 pb-3">
-                                {section.items.map((item, itemIndex) => (
+                                  {section.items.map((item) => (
                                   <a
                                     key={item.href}
                                     href={item.href}

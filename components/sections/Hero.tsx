@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import { ArrowRight, Phone, List, Sparkles } from "lucide-react";
+import { ArrowRight, Phone, List } from "lucide-react";
 
 import { heroContent } from "@/lib/constants";
 import { siteConfig } from "@/lib/site-config";
@@ -188,8 +188,8 @@ export function Hero() {
                 <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-blue-500 shadow-lg shadow-blue-500/20">
                   <List className="h-5 w-5 text-white" />
                 </div>
-                <span className="relative text-sm font-semibold text-white">Yo'nalishlar</span>
-                <span className="relative text-[10px] text-white/60">4 ta yo'nalish</span>
+                <span className="relative text-sm font-semibold text-white">Yo&rsquo;nalishlar</span>
+                <span className="relative text-[10px] text-white/60">4 ta yo&rsquo;nalish</span>
               </a>
             </motion.div>
           </motion.div>

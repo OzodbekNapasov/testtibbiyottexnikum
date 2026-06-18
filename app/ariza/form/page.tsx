@@ -35,7 +35,7 @@ export default function ArizaFormPage() {
   const [idkarta, setIdkarta] = useState<File | null>(null);
   const [idkartaName, setIdkartaName] = useState("Fayl tanlanmagan");
   const [roziman, setRoziman] = useState(false);
-  const [status, setStatus] = useState<{ type: "error" | "success" | "info"; text: string } | null>(null);
+  const [, setStatus] = useState<{ type: "error" | "success" | "info"; text: string } | null>(null);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
