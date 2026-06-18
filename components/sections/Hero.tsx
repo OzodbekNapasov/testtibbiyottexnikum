@@ -44,9 +44,9 @@ export function Hero() {
               className="h-full w-full object-cover object-center"
             />
           </motion.div>
-          {/* Dark gradient overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/30" />
+          {/* Stronger dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/40" />
         </div>
       </div>
 
@@ -101,12 +101,12 @@ export function Hero() {
             className="flex flex-col items-center text-center"
           >
             {/* Glowing green pill status badge */}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-      className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-white"
-            >
+    <motion.span
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="mb-6 inline-flex items-center gap-2 rounded-full bg-black/40 backdrop-blur-md px-4 py-2 text-xs font-semibold text-white shadow-lg"
+    >
               <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
               {siteConfig.admissionStatus}
             </motion.span>
@@ -116,7 +116,7 @@ export function Hero() {
               initial={{ opacity: 0, filter: "blur(12px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full text-center font-[family-name:var(--font-heading)] text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-5xl lg:text-6xl xl:text-7xl"
+              className="w-full text-center font-[family-name:var(--font-heading)] text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] md:text-5xl lg:text-6xl xl:text-7xl"
             >
               Shahrisabz Tibbiyot Texnikumi
             </motion.h1>
@@ -126,7 +126,7 @@ export function Hero() {
               initial={{ opacity: 0, filter: "blur(10px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 max-w-xl text-base leading-relaxed text-white/90 text-center drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)] md:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-white/95 text-center drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] md:text-lg"
             >
               {heroContent.subtitle}
             </motion.p>
