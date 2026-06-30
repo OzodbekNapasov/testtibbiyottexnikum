@@ -1,0 +1,100 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+
+import { ScrollReveal } from "@/components/effects/ScrollReveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { galleryItems } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+
+export function Gallery() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const slides = galleryItems.map((item) => ({ src: item.src, alt: item.alt }));
+
+  return (
+    <section
+      id="galereya"
+      className="section-anchor section-padding relative bg-bg-mid"
+      aria-labelledby="gallery-heading"
+    >
+      <div className="absolute inset-0 mesh-bg opacity-40" aria-hidden="true" />
+      <div className="relative mx-auto max-w-7xl">
+        <ScrollReveal>
+          <SectionHeading
+            title="Galereya"
+            subtitle="Zamonaviy auditoriyalar, laboratoriyalar va amaliyot jarayonlari"
+          />
+        </ScrollReveal>
+
+        <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2">
+          {galleryItems.map((item, index) => {
+            const isPhoto = item.variant === "photo";
+            return (
+              <ScrollReveal key={item.src} delay={index * 0.05}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLightboxIndex(index);
+                    setLightboxOpen(true);
+                  }}
+                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  aria-label={`${item.alt} — kattalashtirish`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={item.width}
+                    height={item.height}
+                    quality={100}
+                    priority={index < 2}
+                    unoptimized={false}
+                    className={cn(
+                      "w-full transition-transform duration-700 group-hover:scale-[1.12] rounded-xl",
+                      isPhoto
+                        ? "aspect-square object-cover object-center"
+                        : "aspect-square bg-bg-deep object-contain p-4",
+                    )}
+                    loading={index < 2 ? "eager" : "lazy"}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/95 via-bg-deep/20 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-95" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-blue-200">
+                      {item.category}
+                    </span>
+                    <p
+                      id={index === 0 ? "gallery-heading" : undefined}
+                      className="mt-2 text-left text-sm font-medium text-white drop-shadow-sm"
+                    >
+                      {item.alt}
+                    </p>
+                  </div>
+                </button>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+
+        <Lightbox
+          open={lightboxOpen}
+          close={() => setLightboxOpen(false)}
+          slides={slides}
+          index={lightboxIndex}
+          plugins={[Zoom]}
+          carousel={{ finite: true }}
+          controller={{ closeOnBackdropClick: true }}
+          zoom={{ maxZoomPixelRatio: 3, zoomInMultiplier: 2, doubleClickDelay: 300 }}
+        />
+
+        {/* news section removed */}
+      </div>
+    </section>
+  );
+}
