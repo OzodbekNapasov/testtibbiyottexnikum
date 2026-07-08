@@ -36,14 +36,15 @@ export default function TeachersPage() {
         </ScrollReveal>
 
         {/* Teachers Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
           {teachers.map((teacher, index) => (
-            <ScrollReveal key={teacher.name} delay={index * 0.05}>
+            <ScrollReveal key={teacher.name} delay={index * 0.05} className="h-full">
               <motion.div
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="h-full flex flex-col"
               >
-<GlassCard gradientBorder className="group h-full overflow-hidden">
+                <GlassCard gradientBorder className="group h-full overflow-hidden flex flex-col">
                   {/* Photo - Square format with soft rounded corners */}
                   <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-accent-green/20">
                     <Image
@@ -68,8 +69,8 @@ export default function TeachersPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   </div>
 
-{/* Info */}
-                  <div className="p-6">
+                  {/* Info */}
+                  <div className="p-6 flex-1 flex flex-col">
                     <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
                       {teacher.name}
                     </h3>
