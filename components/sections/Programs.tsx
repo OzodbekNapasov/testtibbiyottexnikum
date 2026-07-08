@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, Check, Award } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronDown, Check, Award } from "lucide-react";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";

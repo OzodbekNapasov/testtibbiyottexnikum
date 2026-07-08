@@ -111,7 +111,7 @@ export default function OnlineApplicationPage() {
                   4
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                  Yo'nalish tanlovi bo'yicha aniq ma'lumot
+                  Yo‘nalish tanlovi bo‘yicha aniq ma’lumot
                 </div>
               </li>
 
@@ -120,7 +120,7 @@ export default function OnlineApplicationPage() {
                   !
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                  Ariza yuborishdan oldin kontrakt jadvali va hujjatlar ro'yxatini tekshirib chiqing.
+                  Ariza yuborishdan oldin kontrakt jadvali va hujjatlar ro‘yxatini tekshirib chiqing.
                 </div>
               </li>
             </ul>

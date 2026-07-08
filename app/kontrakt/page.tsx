@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Check, Award, Clock, BookOpen, Layers, Globe, GraduationCap } from "lucide-react";
+import { ArrowLeft, Check, Award, Clock, BookOpen, Layers, GraduationCap } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
