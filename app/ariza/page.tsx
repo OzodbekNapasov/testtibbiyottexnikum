@@ -111,7 +111,7 @@ export default function OnlineApplicationPage() {
                   4
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                {"Yo&apos;nalish tanlovi bo&apos;yicha aniq ma&apos;lumot"}
+                  Yo'nalish tanlovi bo'yicha aniq ma'lumot
                 </div>
               </li>
 
@@ -120,19 +120,20 @@ export default function OnlineApplicationPage() {
                   !
                 </span>
                 <div className="text-sm leading-relaxed text-text-soft md:text-[15px]">
-                     Ariza yuborishdan oldin kontrakt jadvali va hujjatlar ro&apos;yxatini tekshirib chiqing.
+                  Ariza yuborishdan oldin kontrakt jadvali va hujjatlar ro'yxatini tekshirib chiqing.
                 </div>
               </li>
             </ul>
           </div>
 
-          <button
-            type="button"
-            onClick={() => window.location.assign("/ariza/form")}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-primary/50 md:w-auto"
+          <a
+            href="https://t.me/shtt_online_singup_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl hover:shadow-primary/50"
           >
-            Onlayn ariza formasi
-          </button>
+            Online ariza topshirish
+          </a>
         </section>
       </div>
     </main>

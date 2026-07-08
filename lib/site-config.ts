@@ -4,18 +4,8 @@ export const siteConfig = {
   description:
     "Zamonaviy bilim va amaliy ko'nikmalarni uyg'unlashtirgan xususiy tibbiyot ta'lim muassasasi.",
   url: "https://shahrisabz-tibbiyot.uz",
-  phones: [
-    "+998 (88) 260-20-73",
-    "+998 (97) 266-20-73",
-    "+998 (77) 088-20-73",
-  ] as const,
-  phoneHrefs: [
-    "tel:+998882602073",
-    "tel:+998972662073",
-    "tel:+998770882073",
-  ] as const,
-  phone: "+998 (88) 260-20-73",
-  phoneHref: "tel:+998882602073",
+  phone: "+998 97 587 46 57",
+  phoneHref: "tel:+998975874657",
   telegram: "@shahrisabz_t_t_uz",
   telegramHref: "https://t.me/shahrisabz_t_t_uz",
   instagram: "@shahrisabz_t_t_uz",

@@ -21,8 +21,8 @@ const contactItems = [
   {
     icon: Phone,
     label: "Telefon",
-    phones: siteConfig.phones,
-    phoneHrefs: siteConfig.phoneHrefs,
+    value: siteConfig.phone,
+    href: siteConfig.phoneHref,
   },
   {
     icon: Send,
@@ -73,33 +73,6 @@ export function Contact() {
             <div className="grid gap-4 sm:grid-cols-2">
               {contactItems.map((item, index) => {
                 const Icon = item.icon;
-                
-                // Special handling for phone numbers
-                if (item.label === "Telefon" && (item as any).phones) {
-                  const phones = (item as any).phones;
-                  const phoneHrefs = (item as any).phoneHrefs;
-                  
-                  return (
-                    <div key={item.label} className="glass group h-full rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:bg-white/5 hover:shadow-xl hover:shadow-black/20">
-                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20 ring-1 ring-white/10">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <p className="text-sm text-text-muted">{item.label}</p>
-                      <div id="contact-heading" className="mt-2 space-y-1">
-                        {phones.map((phone: string, phoneIndex: number) => (
-                          <a
-                            key={phoneIndex}
-                            href={phoneHrefs[phoneIndex]}
-                            className="block font-medium text-white drop-shadow-sm transition-colors hover:text-blue-400"
-                          >
-                            {phone}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-                
                 const content = (
                   <div className="glass group h-full rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:bg-white/5 hover:shadow-xl hover:shadow-black/20">
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20 ring-1 ring-white/10">
@@ -107,16 +80,17 @@ export function Contact() {
                     </div>
                     <p className="text-sm text-text-muted">{item.label}</p>
                     <p
+                      id={index === 0 ? "contact-heading" : undefined}
                       className="mt-1 font-medium text-white drop-shadow-sm"
                     >
-                      {(item as any).value}
+                      {item.value}
                     </p>
                   </div>
                 );
 
-                if ((item as any).href) {
+                if (item.href) {
                   return (
-                    <a key={item.label} href={(item as any).href} className="block">
+                    <a key={item.label} href={item.href} className="block">
                       {content}
                     </a>
                   );

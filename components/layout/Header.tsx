@@ -40,6 +40,7 @@ const menuSections: MenuSection[] = [
     icon: <GraduationCap className="w-5 h-5" />,
     items: [
       { label: "Yo'nalishlar", href: "#yonalishlar" },
+      { label: "Kontrakt narxlari", href: "/kontrakt" },
       { label: "Qabul", href: "#qabul" },
       { label: "Ariza topshirish", href: "/ariza" },
     ],

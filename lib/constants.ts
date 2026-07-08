@@ -15,6 +15,7 @@ import {
 export const navLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "Kontrakt narxlari", href: "/kontrakt" },
   { label: "Bizning jamoa", href: "/teachers" },
   { label: "Litsenziya", href: "#litsenziya" },
   { label: "Galereya", href: "#galereya" },
@@ -220,6 +221,7 @@ export const floatingIcons = [Stethoscope, HeartPulse, Syringe, Activity, Pill] 
 export const footerLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "Kontrakt narxlari", href: "/kontrakt" },
   { label: "Bizning jamoa", href: "/teachers" },
   { label: "Litsenziya", href: "#litsenziya" },
   { label: "Galereya", href: "#galereya" },

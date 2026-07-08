@@ -36,12 +36,11 @@ export function Hero() {
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src="/images/1-sahifa%20uchun.jpg"
+              src="/images/main building.jpg"
               alt="Shahrisabz Tibbiyot Texnikumi"
               fill
               priority
               sizes="100vw"
-              quality={100}
               className="h-full w-full object-cover object-center"
             />
           </motion.div>
@@ -94,12 +93,12 @@ export function Hero() {
       </div>
 
       <motion.div style={reducedMotion ? undefined : { y, opacity }} className="relative z-10 w-full">
-        <div className="mx-auto max-w-lg px-5 py-20 md:mx-0 md:ml-12 md:max-w-xl lg:ml-20 xl:ml-28">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:py-32 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center text-center md:items-start md:text-left"
+            className="flex flex-col items-start text-left max-w-2xl"
           >
             {/* Glowing green pill status badge */}
     <motion.span
@@ -117,7 +116,7 @@ export function Hero() {
               initial={{ opacity: 0, filter: "blur(12px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full text-center font-[family-name:var(--font-heading)] text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] md:text-left md:text-5xl lg:text-6xl xl:text-7xl"
+              className="w-full text-left font-[family-name:var(--font-heading)] text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] md:text-5xl lg:text-6xl xl:text-7xl"
             >
               Shahrisabz Tibbiyot Texnikumi
             </motion.h1>
@@ -127,7 +126,7 @@ export function Hero() {
               initial={{ opacity: 0, filter: "blur(10px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 max-w-xl text-base leading-relaxed text-white/95 text-center drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] md:text-left md:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-white/95 text-left drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] md:text-lg"
             >
               {heroContent.subtitle}
             </motion.p>
@@ -137,7 +136,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-10 w-full max-w-md md:max-w-sm"
+              className="mt-10 w-full max-w-md"
             >
               <button
                 onClick={() => window.location.assign("/ariza")}
@@ -164,7 +163,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="mt-6 flex w-full max-w-md gap-3 md:max-w-sm"
+              className="mt-6 flex w-full max-w-md gap-3"
             >
               {/* Left: Aloqa */}
               <a
