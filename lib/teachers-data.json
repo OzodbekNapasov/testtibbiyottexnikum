@@ -25,5 +25,14 @@
     "specialty": "Ta'lim nazariyasi",
     "experience": "24 yillik tajriba",
     "description": "Ta'lim muassasasida o'quv jarayonini tashkil etish, nazorat qilish va sifatini ta'minlashga mas'ul rahbar."
+  },
+  {
+    "id": "1783577970932",
+    "name": "Bekmurod Meyliyev",
+    "position": "O'qituvchi",
+    "photo": "/uploads/IMG_20260608_121532_102__2__1783577792425.png",
+    "specialty": "Anatomiya va Xirurgiya fanlarni o'qituvchisi",
+    "experience": "15 yillik tajriba",
+    "description": "Talabalarga inson organizmining fundamental tuzilishini hamda uning patologiyalarini jarrohlik yo‘li bilan davolash asoslarini chuqur o‘rgatuvchi yuqori malakali mutaxassis. U nazariy bilimlarni bevosita amaliy ko‘nikmalar (klinik fikrlash, jarrohlik texnikasi) bilan bog‘lay oladigan, bo‘lajak shifokorlarning kasbiy dunyoqarashi va mas’uliyatini shakllantiruvchi yetakchi pedagogdir."
   }
 ]
