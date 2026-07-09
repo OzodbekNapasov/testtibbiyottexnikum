@@ -34,5 +34,14 @@
     "specialty": "Anatomiya va Xirurgiya fanlarni o'qituvchisi",
     "experience": "15 yillik tajriba",
     "description": "Talabalarga inson organizmining fundamental tuzilishini hamda uning patologiyalarini jarrohlik yo‘li bilan davolash asoslarini chuqur o‘rgatuvchi yuqori malakali pedagogdir."
+  },
+  {
+    "id": "1783588189794",
+    "name": "Gulnora Shukurova",
+    "position": "O'qituvchi",
+    "photo": "https://raw.githubusercontent.com/OzodbekNapasov/testtibbiyottexnikum/main/public/uploads/e61fe215_e249_4fe3_95a2_d45109190055__2__1783587823473.png",
+    "specialty": "akusherlik va ginekologiya fani o'qituvchisi",
+    "experience": "46 yillik tajriba",
+    "description": "Tibbiyotning eng go‘zal va hayajonli dunyosiga yo‘l ko‘rsatuvchi ustoz. U o‘z darslarida faqat kasalliklarni davolashni emas, balki dunyodagi eng baxtli lahza — go‘dakning ilk yig‘isi va onaning tabassumi ortida turgan ulkan mehnatni o‘rgatadi."
   }
 ]
