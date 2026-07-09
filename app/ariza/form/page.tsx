@@ -110,11 +110,12 @@ export default function ArizaFormPage() {
               Sizning ma&apos;lumotlaringiz qabul qilindi va qabul komissiyasi tez orada siz bilan bog&apos;lanadi.
             </p>
             <div className="mt-8" data-page-back="true">
-              <GlassCard gradientBorder className="inline-block">
-                <Link href="/" className="flex px-4 py-2 text-sm font-semibold text-white bg-primary rounded-full hover:bg-blue-500">
-                  Bosh sahifaga qaytish
-                </Link>
-              </GlassCard>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500 hover:shadow-primary/50"
+              >
+                Bosh sahifaga qaytish
+              </Link>
             </div>
           </div>
         </div>
@@ -125,14 +126,12 @@ export default function ArizaFormPage() {
   return (
     <main className="min-h-screen bg-bg-dark pt-24 pb-16" id="main-content">
       <div className="mx-auto max-w-4xl px-5 lg:px-8">
-          <div className="mb-6 flex items-center gap-3 text-sm font-semibold text-text-soft" data-page-back="true">
-          <div>
-            <Link href="/ariza" className="inline-flex items-center gap-2 rounded-full border border-white/10 px-2 py-1.5 text-sm font-medium text-text-soft hover:text-white">
-                <ArrowLeft className="mr-2 inline-block h-4 w-4" />
-                Orqaga
-              </Link>
+          <div className="mb-6" data-page-back="true">
+            <Link href="/ariza" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:bg-white/10 hover:text-white">
+              <ArrowLeft className="h-4 w-4" />
+              Orqaga
+            </Link>
           </div>
-        </div>
 
         <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-blue-600/25 via-indigo-600/15 to-cyan-500/10 px-6 py-8 md:px-10 md:py-10">
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent" />

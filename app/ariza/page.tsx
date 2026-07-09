@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowLeft } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
 
 export default function OnlineApplicationPage() {
@@ -12,9 +13,9 @@ export default function OnlineApplicationPage() {
           <button
             type="button"
             onClick={() => window.location.assign("/")}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 px-2 py-1.5 text-sm font-semibold text-text-soft transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:bg-white/10 hover:text-white"
           >
-            <span aria-hidden>←</span>
+            <ArrowLeft className="h-4 w-4" />
             Bosh sahifaga qaytish
           </button>
         </div>

@@ -95,7 +95,7 @@ export default function KontraktPage() {
           <div className="mb-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-text-soft transition-all hover:bg-white/10 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-all hover:bg-white/10 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
               Bosh sahifaga qaytish

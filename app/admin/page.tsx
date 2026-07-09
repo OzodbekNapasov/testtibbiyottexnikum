@@ -801,7 +801,7 @@ export default function AdminPage() {
                               setCategory("Yangiliklar");
                               setSubmitError("");
                             }}
-                            className="text-xs text-text-muted hover:text-white transition-colors"
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-text-soft hover:bg-white/10 hover:text-white transition-colors"
                           >
                             Bekor qilish
                           </button>
@@ -1187,7 +1187,7 @@ export default function AdminPage() {
                               setTeacherImagePreview(null);
                               setSubmitError("");
                             }}
-                            className="text-xs text-text-muted hover:text-white transition-colors"
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-text-soft hover:bg-white/10 hover:text-white transition-colors"
                           >
                             Bekor qilish
                           </button>
