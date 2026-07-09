@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ClientEffects } from "@/components/layout/ClientEffects";
 import { ApplicationModal } from "@/components/application/ApplicationModal";
+import { TestModeBanner } from "@/components/layout/TestModeBanner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -92,6 +93,7 @@ export default function RootLayout({
           Asosiy kontentga o&apos;tish
         </a>
         <ClientEffects />
+        <TestModeBanner />
         <Header />
         {children}
         <Footer />
