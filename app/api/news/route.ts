@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { syncWithGithub } from "@/lib/git-sync";
 import { NewsItem } from "@/lib/constants";
+import { isGithubMode, getFileFromGithub, updateFileInGithub } from "@/lib/github-api";
 
 export const dynamic = "force-dynamic";
 
@@ -25,23 +26,50 @@ function slugify(text: string) {
     .replace(/-+$/, "");
 }
 
-async function readNewsFile(): Promise<NewsItem[]> {
+// Local filesystem fallback read
+async function readNewsFileLocal(): Promise<NewsItem[]> {
   try {
     const data = await fs.readFile(dataFilePath, "utf-8");
     return JSON.parse(data) as NewsItem[];
   } catch {
-    // If file doesn't exist, return empty array
     return [];
   }
 }
 
-async function writeNewsFile(data: NewsItem[]) {
+// Local filesystem fallback write
+async function writeNewsFileLocal(data: NewsItem[]) {
   await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), "utf-8");
+}
+
+// Hybrid getter
+async function getNewsData(): Promise<NewsItem[]> {
+  if (isGithubMode()) {
+    const { content } = await getFileFromGithub("lib/news-data.json");
+    if (!content) return [];
+    try {
+      return JSON.parse(content) as NewsItem[];
+    } catch {
+      return [];
+    }
+  } else {
+    return readNewsFileLocal();
+  }
+}
+
+// Hybrid setter
+async function saveNewsData(news: NewsItem[], commitMessage: string) {
+  if (isGithubMode()) {
+    await updateFileInGithub("lib/news-data.json", JSON.stringify(news, null, 2), commitMessage);
+    return { success: true };
+  } else {
+    await writeNewsFileLocal(news);
+    return await syncWithGithub(commitMessage);
+  }
 }
 
 export async function GET() {
   try {
-    const news = await readNewsFile();
+    const news = await getNewsData();
     return NextResponse.json(news);
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : "Xatolik yuz berdi";
@@ -58,7 +86,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Sarlavha va matn kiritilishi shart." }, { status: 400 });
     }
 
-    const news = await readNewsFile();
+    const news = await getNewsData();
 
     const newPost: NewsItem = {
       id: Date.now().toString(),
@@ -72,17 +100,13 @@ export async function POST(request: Request) {
       category: category || "Yangilik",
     };
 
-    // Add to the beginning of the list
     news.unshift(newPost);
-    await writeNewsFile(news);
-
-    // Sync with GitHub
-    const gitSyncResult = await syncWithGithub(`Yangilik qo'shildi: ${title}`);
+    const syncResult = await saveNewsData(news, `Yangilik qo'shildi: ${title}`);
 
     return NextResponse.json({
       success: true,
       post: newPost,
-      gitSync: gitSyncResult,
+      gitSync: syncResult,
     });
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : "Xatolik yuz berdi";
@@ -99,7 +123,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "ID ko'rsatilmagan." }, { status: 400 });
     }
 
-    const news = await readNewsFile();
+    const news = await getNewsData();
     const itemToDelete = news.find((n) => n.id === id);
 
     if (!itemToDelete) {
@@ -107,14 +131,11 @@ export async function DELETE(request: Request) {
     }
 
     const filteredNews = news.filter((n) => n.id !== id);
-    await writeNewsFile(filteredNews);
-
-    // Sync with GitHub
-    const gitSyncResult = await syncWithGithub(`Yangilik o'chirildi: ${itemToDelete.title}`);
+    const syncResult = await saveNewsData(filteredNews, `Yangilik o'chirildi: ${itemToDelete.title}`);
 
     return NextResponse.json({
       success: true,
-      gitSync: gitSyncResult,
+      gitSync: syncResult,
     });
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : "Xatolik yuz berdi";
@@ -131,14 +152,13 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: "ID, sarlavha va matn kiritilishi shart." }, { status: 400 });
     }
 
-    const news = await readNewsFile();
+    const news = await getNewsData();
     const index = news.findIndex((n) => n.id === id);
 
     if (index === -1) {
       return NextResponse.json({ error: "Yangilik topilmadi." }, { status: 404 });
     }
 
-    // Update fields
     const updatedPost: NewsItem = {
       ...news[index],
       title,
@@ -152,15 +172,12 @@ export async function PUT(request: Request) {
     };
 
     news[index] = updatedPost;
-    await writeNewsFile(news);
-
-    // Sync with GitHub
-    const gitSyncResult = await syncWithGithub(`Yangilik tahrirlandi: ${title}`);
+    const syncResult = await saveNewsData(news, `Yangilik tahrirlandi: ${title}`);
 
     return NextResponse.json({
       success: true,
       post: updatedPost,
-      gitSync: gitSyncResult,
+      gitSync: syncResult,
     });
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : "Xatolik yuz berdi";
