@@ -379,7 +379,14 @@ export default function AdminPage() {
         body: JSON.stringify(teacherData),
       });
 
-      if (!res.ok) throw new Error("Saqlashda xatolik yuz berdi");
+      if (!res.ok) {
+        let errMsg = "Saqlashda xatolik yuz berdi";
+        try {
+          const errData = await res.json();
+          if (errData.error) errMsg = errData.error;
+        } catch {}
+        throw new Error(errMsg);
+      }
 
       const data = await res.json();
 
@@ -498,7 +505,14 @@ export default function AdminPage() {
         body: JSON.stringify(postData),
       });
 
-      if (!res.ok) throw new Error("Saqlashda xatolik yuz berdi");
+      if (!res.ok) {
+        let errMsg = "Saqlashda xatolik yuz berdi";
+        try {
+          const errData = await res.json();
+          if (errData.error) errMsg = errData.error;
+        } catch {}
+        throw new Error(errMsg);
+      }
 
       const data = await res.json();
 
