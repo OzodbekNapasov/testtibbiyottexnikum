@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,25 +8,55 @@ import { ArrowLeft, User } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { teachers } from "@/lib/constants";
+
+type Teacher = {
+  id: string;
+  name: string;
+  position: string;
+  photo: string;
+  specialty?: string;
+  experience?: string;
+  description?: string;
+};
 
 export default function TeachersPage() {
+  const [teachersList, setTeachersList] = useState<Teacher[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const res = await fetch(`/api/teachers?t=${Date.now()}`, { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          setTeachersList(data);
+        }
+      } catch (error) {
+        console.error("Error fetching teachers:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeachers();
+  }, []);
+
   return (
     <main className="min-h-screen bg-bg-dark pt-24 pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        
         {/* Back Button (framed) */}
         <ScrollReveal>
           <div className="mb-8" data-page-back="true">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-2 py-1.5 text-sm font-medium text-text-soft transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-text-soft transition-all hover:text-white hover:bg-white/5 hover:border-white/20"
             >
               <ArrowLeft className="h-4 w-4" />
               Bosh sahifaga qaytish
             </Link>
           </div>
         </ScrollReveal>
-
 
         {/* Header */}
         <ScrollReveal>
@@ -35,75 +66,100 @@ export default function TeachersPage() {
           />
         </ScrollReveal>
 
-        {/* Teachers Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
-          {teachers.map((teacher, index) => (
-            <ScrollReveal key={teacher.name} delay={index * 0.05} className="h-full">
-              <motion.div
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full flex flex-col"
-              >
-                <GlassCard gradientBorder className="group h-full overflow-hidden flex flex-col">
-                  {/* Photo - Square format with soft rounded corners */}
-                  <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-accent-green/20">
-                    <Image
-                      src={teacher.photo}
-                      alt={teacher.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-xl"
-                      onError={(e) => {
-                        // Fallback to placeholder if image doesn't exist
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const parent = target.parentElement;
-                        if (parent) {
-                          const placeholder = document.createElement('div');
-                          placeholder.className = 'absolute inset-0 flex items-center justify-center';
-                          placeholder.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-white/50"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
-                          parent.appendChild(placeholder);
-                        }
-                      }}
-                    />
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
-                      {teacher.name}
-                    </h3>
-                    <p className="mt-2 text-sm font-semibold text-primary">
-                      {teacher.position}
-                    </p>
-                    {teacher.specialty && (
-                      <p className="mt-1 text-xs text-text-muted">
-                        {teacher.specialty}
-                      </p>
-                    )}
-                    {teacher.experience && (
-                      <p className="mt-1 text-xs text-text-muted">
-                        {teacher.experience}
-                      </p>
-                    )}
-                    {teacher.description && (
-                      <p className="mt-2 text-sm text-text-soft">
-                        {teacher.description}
-                      </p>
-                    )}
-                    {/* Fallback placeholder icon */}
-                    {!teacher.photo && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <User className="h-16 w-16 text-white/50" />
-                      </div>
-                    )}
+        {/* Loading State */}
+        {loading ? (
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="animate-pulse">
+                <GlassCard className="h-full overflow-hidden flex flex-col p-0">
+                  <div className="relative aspect-square w-full bg-white/5 rounded-t-2xl" />
+                  <div className="p-6 space-y-3">
+                    <div className="h-5 w-2/3 bg-white/10 rounded" />
+                    <div className="h-4 w-1/2 bg-white/5 rounded" />
+                    <div className="h-3 w-1/3 bg-white/5 rounded" />
+                    <div className="h-12 w-full bg-white/5 rounded mt-4" />
                   </div>
                 </GlassCard>
-              </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        ) : teachersList.length === 0 ? (
+          /* Empty State */
+          <div className="mt-12 text-center py-16 rounded-2xl border border-white/5 bg-white/5">
+            <User className="h-12 w-12 text-text-muted mx-auto mb-3" />
+            <p className="text-text-soft">Pedagoglar ro&apos;yxati bo&apos;sh.</p>
+          </div>
+        ) : (
+          /* Teachers Grid */
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
+            {teachersList.map((teacher, index) => (
+              <ScrollReveal key={teacher.id} delay={index * 0.05} className="h-full">
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="h-full flex flex-col"
+                >
+                  <GlassCard gradientBorder className="group h-full overflow-hidden flex flex-col">
+                    {/* Photo - Square format with soft rounded corners */}
+                    <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-accent-green/20">
+                      {teacher.photo ? (
+                        <Image
+                          src={teacher.photo}
+                          alt={teacher.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-xl"
+                          onError={(e) => {
+                            // Fallback to placeholder if image doesn't exist
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              const placeholder = document.createElement('div');
+                              placeholder.className = 'absolute inset-0 flex items-center justify-center';
+                              placeholder.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-white/50"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+                              parent.appendChild(placeholder);
+                            }
+                          }}
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <User className="h-16 w-16 text-white/30" />
+                        </div>
+                      )}
+                      {/* Overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </div>
+
+                    {/* Info */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
+                        {teacher.name}
+                      </h3>
+                      <p className="mt-2 text-sm font-semibold text-primary">
+                        {teacher.position}
+                      </p>
+                      {teacher.specialty && (
+                        <p className="mt-1 text-xs text-text-muted">
+                          Mutaxassisligi: <strong>{teacher.specialty}</strong>
+                        </p>
+                      )}
+                      {teacher.experience && (
+                        <p className="mt-1 text-xs text-text-muted">
+                          Ish staji: <strong>{teacher.experience}</strong>
+                        </p>
+                      )}
+                      {teacher.description && (
+                        <p className="mt-2 text-sm text-text-soft leading-relaxed">
+                          {teacher.description}
+                        </p>
+                      )}
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+        )}
 
         {/* CTA Section */}
         <ScrollReveal delay={0.3}>

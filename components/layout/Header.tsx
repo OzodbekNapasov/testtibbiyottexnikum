@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -50,6 +50,7 @@ const menuSections: MenuSection[] = [
     title: "Media",
     icon: <ImageIcon className="w-5 h-5" />,
     items: [
+      { label: "Yangiliklar", href: "/news" },
       { label: "Galereya", href: "#galereya" },
     ],
   },
@@ -72,6 +73,33 @@ export function Header() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [showHeaderHome, setShowHeaderHome] = useState(true);
+
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const openSectionWithDelay = (sectionId: string) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setOpenDesktopSection(sectionId);
+  };
+
+  const closeSectionWithDelay = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpenDesktopSection(null);
+    }, 1000); // 1-second delay
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Check if a link is a hash link
   const isHashLink = (href: string) => href.startsWith("#");
@@ -186,7 +214,13 @@ export function Header() {
         <nav
           className="hidden lg:flex items-center gap-2"
           aria-label="Desktop navigatsiya"
-          onMouseLeave={() => setOpenDesktopSection(null)}
+          onMouseEnter={() => {
+            if (closeTimeoutRef.current) {
+              clearTimeout(closeTimeoutRef.current);
+              closeTimeoutRef.current = null;
+            }
+          }}
+          onMouseLeave={closeSectionWithDelay}
         >
           {/* Show a small 'Back to Home' link when not on homepage */}
           {!isHomePage && showHeaderHome && (
@@ -198,8 +232,8 @@ export function Header() {
             <div key={section.id} className="relative">
               <button
                 type="button"
-                onMouseEnter={() => setOpenDesktopSection(section.id)}
-                onFocus={() => setOpenDesktopSection(section.id)}
+                onMouseEnter={() => openSectionWithDelay(section.id)}
+                onFocus={() => openSectionWithDelay(section.id)}
                 className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                 aria-expanded={openDesktopSection === section.id}
                 aria-haspopup="true"
@@ -216,6 +250,8 @@ export function Header() {
                     transition={{ duration: 0.16 }}
                     className="absolute left-0 top-full z-[70] mt-2 w-64 overflow-hidden rounded-2xl border border-white/10 bg-bg-mid/95 p-2 shadow-2xl backdrop-blur-xl"
                   >
+                    {/* Hover bridge to prevent menu from closing when moving cursor over the gap */}
+                    <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
                     {section.items.map((item) => (
                       <a
                         key={item.href}

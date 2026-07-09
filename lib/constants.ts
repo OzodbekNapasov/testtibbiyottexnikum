@@ -221,6 +221,7 @@ export const floatingIcons = [Stethoscope, HeartPulse, Syringe, Activity, Pill] 
 export const footerLinks = [
   { label: "Biz haqimizda", href: "#haqimizda" },
   { label: "Yo'nalishlar", href: "#yonalishlar" },
+  { label: "Yangiliklar", href: "/news" },
   { label: "Kontrakt narxlari", href: "/kontrakt" },
   { label: "Bizning jamoa", href: "/teachers" },
   { label: "Litsenziya", href: "#litsenziya" },
@@ -272,32 +273,18 @@ export type Teacher = {
   description?: string;
 };
 
-export const teachers: Teacher[] = [
-  {
-    name: "Shaxboz Raxmonov",
-    position: "CEO",
-    photo: "/images/teachers/shaxboz-raxmonov.jpg",
-    specialty: "Marketolog",
-    experience: "5 yillik tajriba",
-    description:
-      "Strategik yo'nalishlarni belgilaydi, muhim qarorlar qabul qiladi va butun jamoaning samarali ishlashini ta'minlaydi.",
-  },
-  {
-    name: "Asomiddin Asraliyev",
-    position: "Texnikum Direktori",
-    photo: "/images/teachers/Asomiddin Asraliyev.png",
-    specialty: "Direktor",
-    experience: "15 yillik tajriba",
-    description:
-      "Texnikum faoliyatini boshqaradi va ta'lim sifatini yuqori darajada ta'minlashga mas'ul.",
-  },
-  {
-    name: "Bahrom Eshnayev",
-    position: "O'quv ishlari bo'yicha direktor o'rinbosari",
-    photo: "/images/teachers/Bahrom-Eshnayev.png",
-    specialty: "Ta'lim nazariyasi",
-    experience: "24 yillik tajriba",
-    description:
-      "Ta'lim muassasasida o'quv jarayonini tashkil etish, nazorat qilish va sifatini ta'minlashga mas'ul rahbar. ",
-  },
-];
+export const teachers: Teacher[] = [];
+
+export type NewsItem = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  image?: string;
+  videoUrl?: string;
+  category?: string;
+};
+
+export const newsItems: NewsItem[] = [];
