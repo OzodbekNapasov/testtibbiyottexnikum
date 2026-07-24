@@ -43,5 +43,14 @@
     "specialty": "akusherlik va ginekologiya fani o'qituvchisi",
     "experience": "46 yillik tajriba",
     "description": "Tibbiyotning eng go‘zal va hayajonli dunyosiga yo‘l ko‘rsatuvchi ustoz. U o‘z darslarida faqat kasalliklarni davolashni emas, balki dunyodagi eng baxtli lahza — go‘dakning ilk yig‘isi va onaning tabassumi ortida turgan ulkan mehnatni o‘rgatadi."
+  },
+  {
+    "id": "1784887132591",
+    "name": "Dilshod Ochilov",
+    "position": "O'qituvchi",
+    "photo": "https://raw.githubusercontent.com/OzodbekNapasov/testtibbiyottexnikum/main/public/uploads/6904_1784886793840.png",
+    "specialty": "Farmatsevt",
+    "experience": "15 yillik tajriba",
+    "description": "Dori vositalarining xususiyatlari, tayyorlanish texnologiyasi va inson organizmiga ta'siri haqidagi chuqur ilmiy bilimlarni talabalarga o'rgatuvchi malakali pedagog-mutaxassis."
   }
 ]
