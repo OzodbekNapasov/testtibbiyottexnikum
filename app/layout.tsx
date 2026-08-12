@@ -25,6 +25,17 @@ export const metadata: Metadata = {
     "Shahrisabz",
   ],
   authors: [{ name: siteConfig.name }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "uz_UZ",
@@ -34,9 +45,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/images/building.png",
-        width: 1200,
-        height: 800,
+        url: "/logo.png",
+        width: 512,
+        height: 512,
         alt: siteConfig.name,
       },
     ],
@@ -45,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: ["/images/building.png"],
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
@@ -59,6 +70,8 @@ const jsonLd = {
   name: siteConfig.name,
   description: siteConfig.description,
   url: siteConfig.url,
+  logo: `${siteConfig.url}/logo.png`,
+  image: `${siteConfig.url}/logo.png`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Ipak Yuli ko'chasi, 36A-uy",
@@ -80,6 +93,10 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} ${spaceGrotesk.variable}`}
     >
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

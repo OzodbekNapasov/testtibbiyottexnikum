@@ -72,7 +72,6 @@ export function Header() {
   const [openDesktopSection, setOpenDesktopSection] = useState<string | null>(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const [showHeaderHome, setShowHeaderHome] = useState(true);
 
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -148,36 +147,7 @@ export function Header() {
     setMobileOpen(false);
     setOpenSections([]);
     setOpenDesktopSection(null);
-    // Hide header-level home link if the current page provides its own back link
-    try {
-      const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
-      setShowHeaderHome(!hasPageBack);
-    } catch {
-      setShowHeaderHome(true);
-    }
 
-    // Also observe DOM mutations in case page-level back link is added after header mounts
-    let timer: number | undefined;
-    try {
-      const observer = new MutationObserver(() => {
-        const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
-        setShowHeaderHome(!hasPageBack);
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-
-      // Also re-check shortly after mount to catch components that render slightly later
-      timer = window.setTimeout(() => {
-        const hasPageBack = Boolean(document.querySelector('[data-page-back]'));
-        setShowHeaderHome(!hasPageBack);
-      }, 120);
-
-      return () => {
-        observer.disconnect();
-        if (timer) clearTimeout(timer);
-      };
-    } catch {
-      // ignore
-    }
   }, [pathname]);
 
   useEffect(() => {
@@ -222,12 +192,6 @@ export function Header() {
           }}
           onMouseLeave={closeSectionWithDelay}
         >
-          {/* Show a small 'Back to Home' link when not on homepage */}
-          {!isHomePage && showHeaderHome && (
-            <Link href="/" className="mr-4 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10">
-              Bosh sahifaga qaytish
-            </Link>
-          )}
           {menuSections.map((section) => (
             <div key={section.id} className="relative">
               <button
@@ -278,23 +242,14 @@ export function Header() {
           {siteConfig.admissionStatus}
         </span>
 
-        {/* Mobile: show home link when not on homepage */}
-        {!isHomePage && showHeaderHome && (
-          <Link href="/" className="ml-3 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10 md:hidden">
-            Bosh sahifaga qaytish
-          </Link>
-        )}
 
-        <a
-          href="#aloqa"
-          onClick={() => handleNavigation("#aloqa")}
-          className="hidden group relative rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 bg-gradient-to-r from-[#071a4d] via-[#1d4ed8] to-[#10b981] transition-all duration-300 hover:scale-[1.05] hover:shadow-xl md:inline-flex"
+        <Link
+          href="/qabul"
+          className="hidden items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95 md:inline-flex"
         >
-          <span className="relative inline-flex items-center gap-2">
-            Aloqa
-            <span className="text-white transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </span>
-        </a>
+          <span>Qabul - 2026</span>
+          <span>→</span>
+        </Link>
 
         <button
           type="button"
