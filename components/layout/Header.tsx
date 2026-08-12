@@ -243,13 +243,13 @@ export function Header() {
         </span>
 
 
-        <Link
-          href="/qabul"
+        <a
+          href="https://qabul.shahrisabz-tibbiyot-texnikumi.uz/"
           className="hidden items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95 md:inline-flex"
         >
           <span>Qabul - 2026</span>
           <span>→</span>
-        </Link>
+        </a>
 
         <button
           type="button"

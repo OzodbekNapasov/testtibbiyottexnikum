@@ -4,8 +4,8 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const hostname = request.headers.get("host") || "";
 
-  // Subdomendan kelgan so'rov bo'lsa va ildiz (/) yo'lida bo'lsa, /qabul yo'liga rewrite qilamiz
-  if (hostname.startsWith("qabul.")) {
+  // Subdomendan kelgan so'rov bo'lsa (qabul. yoki www.qabul.) va ildiz (/) yo'lida bo'lsa, /qabul yo'liga rewrite qilamiz
+  if (hostname.startsWith("qabul.") || hostname.startsWith("www.qabul.") || hostname.includes("qabul.shahrisabz")) {
     const url = request.nextUrl.clone();
     if (url.pathname === "/") {
       url.pathname = "/qabul";
