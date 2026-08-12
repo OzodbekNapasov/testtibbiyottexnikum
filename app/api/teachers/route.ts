@@ -23,7 +23,7 @@ async function readTeachersFileLocal(): Promise<Teacher[]> {
   try {
     const data = await fs.readFile(dataFilePath, "utf-8");
     return JSON.parse(data);
-  } catch (error) {
+  } catch {
     return [];
   }
 }

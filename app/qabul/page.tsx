@@ -286,7 +286,7 @@ export default function QabulLandingPage() {
         <section className="mt-24">
           <ScrollReveal>
             <SectionHeading
-              title="⭐ Nega aynan biz?"
+              title="Nega aynan biz?"
               subtitle="Shahrisabz Tibbiyot Texnikumida ta'lim olishning 7 ta asosiy afzalligi"
             />
           </ScrollReveal>
@@ -423,7 +423,7 @@ export default function QabulLandingPage() {
             <ScrollReveal>
               <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
                 <h3 className="text-center font-[family-name:var(--font-heading)] text-lg sm:text-xl font-bold uppercase tracking-widest text-white mb-6">
-                  ASOSIY O'QUV KAMPUSI
+                  ASOSIY O&apos;QUV KAMPUSI
                 </h3>
 
                 {/* Campus Building Image */}
@@ -438,7 +438,7 @@ export default function QabulLandingPage() {
                     <p className="font-bold text-lg">Shahrisabz Tibbiyot Texnikumi</p>
                     <p className="text-xs text-text-soft flex items-center gap-1 mt-0.5">
                       <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      Shahrisabz shahri, Ipak Yuli ko'chasi, 36A-uy
+                      Shahrisabz shahri, Ipak Yuli ko&apos;chasi, 36A-uy
                     </p>
                   </div>
                 </div>
@@ -545,7 +545,7 @@ export default function QabulLandingPage() {
               {/* Qabul Komissiyasi Telefon Nomerlari */}
               <div className="relative z-10 mt-8 pt-8 border-t border-white/20">
                 <p className="text-sm font-semibold text-blue-100 uppercase tracking-wider mb-4">
-                  📞 Qabul komissiyasi aloqa raqamlari:
+                  Qabul komissiyasi aloqa raqamlari:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
                   {siteConfig.admissionPhones.map((p, idx) => (

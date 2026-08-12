@@ -251,7 +251,7 @@ export function ApplicationModal() {
             <div className="field">
               <label>Attestat <span className="req">*</span></label>
               <label className="upload-box" htmlFor="attestat" id="attBox">
-                <span className="upload-icon">🎓</span>
+                <span className="upload-icon">📄</span>
                 <div>
                   <div className="upload-text">Attestatni yuklang (JPG, PNG, PDF)</div>
                   <div className="upload-name" id="attName">Fayl tanlanmagan</div>
@@ -262,7 +262,7 @@ export function ApplicationModal() {
             <div className="field">
               <label>ID karta <span className="req">*</span></label>
               <label className="upload-box" htmlFor="idkarta" id="idBox">
-                <span className="upload-icon">🪪</span>
+                <span className="upload-icon">📄</span>
                 <div>
                   <div className="upload-text">ID kartani yuklang (JPG, PNG, PDF)</div>
                   <div className="upload-name" id="idName">Fayl tanlanmagan</div>
@@ -274,14 +274,14 @@ export function ApplicationModal() {
               <input type="checkbox" id="roziman" />
               <span>Shaxsiy ma&apos;lumotlarim qabul komissiyasi tomonidan ko&apos;rib chiqilishiga roziman.</span>
             </label>
-            <button className="submit-btn" id="submitBtn" onClick={() => window.submitForm?.()}>✅ Ariza yuborish</button>
+            <button className="submit-btn" id="submitBtn" onClick={() => window.submitForm?.()}>Ariza yuborish</button>
             <div className="progress-bar" id="progressBar">
               <div className="progress-fill" id="progressFill"></div>
             </div>
             <div className="status" id="status"></div>
           </div>
           <div className="success-screen" id="successScreen">
-            <div className="big">🎉</div>
+            <div className="big font-mono font-bold text-emerald-400">✓</div>
             <h3>Ariza muvaffaqiyatli yuborildi!</h3>
             <p>Qabul komissiyasi siz bilan tez orada bog&apos;lanadi.</p>
             <button onClick={() => window.closeModal?.()}>Yopish</button>

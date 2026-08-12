@@ -276,7 +276,7 @@ export default function ArizaFormPage() {
               disabled={loading}
               className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Yuborilmoqda..." : "✅ Ariza yuborish"}
+              {loading ? "Yuborilmoqda..." : "Ariza yuborish"}
             </button>
           </div>
         </form>

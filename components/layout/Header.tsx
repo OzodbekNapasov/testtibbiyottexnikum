@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -426,7 +425,8 @@ export function Header() {
                   className="group relative flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-500 px-6 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl active:scale-98"
                 >
                   <span className="relative flex items-center gap-2">
-                    🎓 Qabul - 2026
+                    <GraduationCap className="h-5 w-5 text-emerald-300 shrink-0" />
+                    Qabul - 2026
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </motion.a>
