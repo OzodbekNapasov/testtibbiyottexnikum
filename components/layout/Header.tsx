@@ -245,7 +245,7 @@ export function Header() {
 
         <a
           href="https://qabul.shahrisabz-tibbiyot-texnikumi.uz/"
-          className="hidden items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95 md:inline-flex"
+          className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95"
         >
           <span>Qabul - 2026</span>
           <span>→</span>
@@ -394,16 +394,16 @@ export function Header() {
               {/* Footer CTA */}
               <div className="border-t border-white/5 px-5 py-6">
                 <motion.a
-                  href="/ariza"
-                  onClick={() => closeMenuAndNavigate("/ariza")}
+                  href="https://qabul.shahrisabz-tibbiyot-texnikumi.uz/"
+                  onClick={() => closeMenuAndNavigate("https://qabul.shahrisabz-tibbiyot-texnikumi.uz/")}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="group relative flex w-full items-center justify-center gap-3 rounded-3xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 px-6 py-4.5 text-base font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:scale-[1.02]"
+                  className="group relative flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-500 px-6 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl active:scale-98"
                 >
                   <span className="relative flex items-center gap-2">
-                    <span className="text-lg">🎓</span>
-                    Qabulga ariza topshirish
+                    🎓 Qabul - 2026
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </motion.a>
 
