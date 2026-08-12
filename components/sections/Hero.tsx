@@ -85,12 +85,6 @@ export function Hero() {
         </svg>
       </div>
 
-      {/* Corner emblem */}
-      <div className="pointer-events-none absolute bottom-6 right-6 z-10 opacity-[0.08]">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-emerald-500 shadow-lg">
-          <span className="text-2xl font-black tracking-tighter text-white">STT</span>
-        </div>
-      </div>
 
       <motion.div style={reducedMotion ? undefined : { y, opacity }} className="relative z-10 w-full">
         <div className="mx-auto max-w-7xl px-5 py-24 md:py-32 w-full">
