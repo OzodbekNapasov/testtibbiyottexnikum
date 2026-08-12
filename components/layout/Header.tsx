@@ -201,18 +201,13 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
         <a href={logoHref} className="flex items-center gap-3" aria-label={siteConfig.name}>
           <Image
-            src="/logo.png"
+            src="/Logo+name.png"
             alt={siteConfig.name}
-            width={44}
-            height={44}
-            className="h-11 w-11 rounded-full object-cover"
+            width={200}
+            height={50}
+            className="h-10 sm:h-12 w-auto object-contain"
             priority
           />
-          <span className="font-[family-name:var(--font-heading)] text-sm font-bold leading-tight text-white">
-            Shahrisabz
-            <br />
-            <span className="text-xs font-medium text-text-muted">Tibbiyot Texnikumi</span>
-          </span>
         </a>
 
         <nav
@@ -319,20 +314,15 @@ export function Header() {
             >
               {/* Header */}
               <div className="flex items-center justify-between border-b border-white/5 px-5 py-5">
-                <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+                <a href={logoHref} onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
                   <Image
-                    src="/logo.png"
+                    src="/Logo+name.png"
                     alt={siteConfig.name}
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 rounded-full object-cover"
+                    width={180}
+                    height={44}
+                    className="h-9 w-auto object-contain"
                   />
-                  <span className="font-[family-name:var(--font-heading)] text-sm font-bold text-white">
-                    Shahrisabz
-                    <br />
-                    <span className="text-xs font-medium text-text-muted">Tibbiyot Texnikumi</span>
-                  </span>
-                </Link>
+                </a>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
