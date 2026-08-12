@@ -25,6 +25,7 @@ import {
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CampusSection } from "@/components/sections/CampusSection";
 import { siteConfig } from "@/lib/site-config";
 
 interface Specialty {
@@ -410,69 +411,8 @@ export default function QabulLandingPage() {
           </ScrollReveal>
         </section>
 
-        {/* Campus & Map Section (XIU Style) */}
-        <section id="kampus" className="mt-24">
-          <ScrollReveal>
-            <SectionHeading
-              title="O'quv Binosi va Kampus Manzili"
-              subtitle="Shahrisabz Tibbiyot Texnikumi zamonaviy o'quv korpusi va joylashuv xaritasi"
-            />
-          </ScrollReveal>
-
-          <div className="mt-12 max-w-4xl mx-auto">
-            <ScrollReveal>
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
-                <h3 className="text-center font-[family-name:var(--font-heading)] text-lg sm:text-xl font-bold uppercase tracking-widest text-white mb-6">
-                  ASOSIY O&apos;QUV KAMPUSI
-                </h3>
-
-                {/* Campus Building Image */}
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-lg group">
-                  <img
-                    src="/images/main building.jpg"
-                    alt="Shahrisabz Tibbiyot Texnikumi Asosiy O'quv Kampusi"
-                    className="w-full h-[280px] sm:h-[380px] object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <p className="font-bold text-lg">Shahrisabz Tibbiyot Texnikumi</p>
-                    <p className="text-xs text-text-soft flex items-center gap-1 mt-0.5">
-                      <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                      Shahrisabz shahri, Ipak Yuli ko&apos;chasi, 36A-uy
-                    </p>
-                  </div>
-                </div>
-
-                {/* Map Embed directly below photo */}
-                <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 shadow-lg h-[240px] sm:h-[280px] relative">
-                  <iframe
-                    title="Shahrisabz Tibbiyot Texnikumi Joylashuv Xaritasi"
-                    src="https://maps.google.com/maps?q=39.08578,66.839256&z=16&output=embed"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0, filter: "contrast(1.05) saturate(1.1)" }}
-                    allowFullScreen={false}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
-
-                {/* Batafsil Button */}
-                <div className="mt-6 text-center">
-                  <a
-                    href="https://maps.app.goo.gl/UzvQDQf1e9fVqMHbA"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 hover:from-purple-800 hover:to-blue-700 px-8 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
-                  >
-                    <span>Batafsil xaritada ochish</span>
-                    <ChevronDown className="h-4 w-4 -rotate-90" />
-                  </a>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
+        {/* Campus & Map Section */}
+        <CampusSection />
 
         {/* FAQ Section */}
         <section className="mt-24">

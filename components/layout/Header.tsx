@@ -193,101 +193,162 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        isScrolled ? "glass-strong py-3 shadow-lg shadow-black/20" : "bg-transparent py-5",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 py-3 sm:py-4 px-4 sm:px-6 lg:px-8",
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
-        <a href={logoHref} className="flex items-center gap-3" aria-label={siteConfig.name}>
-          <Image
-            src="/Logo+name.png"
-            alt={siteConfig.name}
-            width={200}
-            height={50}
-            className="h-10 sm:h-12 w-auto object-contain"
-            priority
-          />
-        </a>
+      <div className="mx-auto max-w-7xl relative">
+        {/* Main Floating Bar */}
+        <div className="relative flex items-center justify-between rounded-2xl sm:rounded-3xl border border-white/20 bg-white/95 text-gray-900 shadow-2xl backdrop-blur-xl px-5 py-3.5 sm:px-8">
+          
+          {/* LEFT NAVIGATION LINKS (Desktop) */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-3" aria-label="Chap navigatsiya">
+            {menuSections.slice(0, 3).map((section) => (
+              <div key={section.id} className="relative">
+                <button
+                  type="button"
+                  onMouseEnter={() => openSectionWithDelay(section.id)}
+                  onFocus={() => openSectionWithDelay(section.id)}
+                  className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs xl:text-sm font-extrabold uppercase tracking-wide text-gray-800 transition-colors hover:bg-gray-100 hover:text-blue-600"
+                  aria-expanded={openDesktopSection === section.id}
+                  aria-haspopup="true"
+                >
+                  {section.title}
+                </button>
 
-        <nav
-          className="hidden lg:flex items-center gap-2"
-          aria-label="Desktop navigatsiya"
-          onMouseEnter={() => {
-            if (closeTimeoutRef.current) {
-              clearTimeout(closeTimeoutRef.current);
-              closeTimeoutRef.current = null;
-            }
-          }}
-          onMouseLeave={closeSectionWithDelay}
-        >
-          {menuSections.map((section) => (
-            <div key={section.id} className="relative">
-              <button
-                type="button"
-                onMouseEnter={() => openSectionWithDelay(section.id)}
-                onFocus={() => openSectionWithDelay(section.id)}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                aria-expanded={openDesktopSection === section.id}
-                aria-haspopup="true"
-              >
-                {section.title}
-              </button>
+                <AnimatePresence>
+                  {openDesktopSection === section.id && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.16 }}
+                      className="absolute left-0 top-full z-[70] mt-3 w-64 overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-2xl"
+                    >
+                      <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
+                      {section.items.map((item) => (
+                        <a
+                          key={item.href}
+                          href={getLinkHref(item.href)}
+                          onClick={(e) => {
+                            setOpenDesktopSection(null);
+                            handleNavigation(item.href, e);
+                          }}
+                          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                        >
+                          <span>{item.label}</span>
+                          <ChevronRight className="h-4 w-4 text-gray-400" />
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </nav>
 
-              <AnimatePresence>
-                {openDesktopSection === section.id && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.16 }}
-                    className="absolute left-0 top-full z-[70] mt-2 w-64 overflow-hidden rounded-2xl border border-white/10 bg-bg-mid/95 p-2 shadow-2xl backdrop-blur-xl"
-                  >
-                    {/* Hover bridge to prevent menu from closing when moving cursor over the gap */}
-                    <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
-                    {section.items.map((item) => (
-                      <a
-                        key={item.href}
-                        href={getLinkHref(item.href)}
-                        onClick={(e) => {
-                          setOpenDesktopSection(null);
-                          handleNavigation(item.href, e);
-                        }}
-                        className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-text-soft transition-colors hover:bg-white/10 hover:text-white"
-                      >
-                        <span>{item.label}</span>
-                        <ChevronRight className="h-4 w-4 text-text-muted" />
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </nav>
+          {/* CENTERED LOGO BADGE (Desktop) */}
+          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+            <a
+              href={logoHref}
+              className="flex items-center justify-center bg-white border border-gray-200 shadow-2xl rounded-2xl px-5 py-2.5 transition-transform hover:scale-105 active:scale-95"
+              aria-label={siteConfig.name}
+            >
+              <Image
+                src="/Logo+name.png"
+                alt={siteConfig.name}
+                width={170}
+                height={48}
+                className="h-9 xl:h-11 w-auto object-contain"
+                priority
+              />
+            </a>
+          </div>
 
-        <span className="hidden items-center gap-2 rounded-full border border-accent-green/30 bg-accent-green/10 px-3 py-1.5 text-xs font-medium text-accent-green xl:inline-flex">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-green" />
-          {siteConfig.admissionStatus}
-        </span>
+          {/* MOBILE LOGO */}
+          <a href={logoHref} className="flex lg:hidden items-center gap-2" aria-label={siteConfig.name}>
+            <Image
+              src="/Logo+name.png"
+              alt={siteConfig.name}
+              width={160}
+              height={44}
+              className="h-8 sm:h-10 w-auto object-contain"
+              priority
+            />
+          </a>
 
+          {/* RIGHT NAVIGATION LINKS & CTA (Desktop) */}
+          <div className="hidden lg:flex items-center gap-2 xl:gap-4">
+            {/* Aloqa Dropdown */}
+            {menuSections.slice(3).map((section) => (
+              <div key={section.id} className="relative">
+                <button
+                  type="button"
+                  onMouseEnter={() => openSectionWithDelay(section.id)}
+                  onFocus={() => openSectionWithDelay(section.id)}
+                  className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs xl:text-sm font-extrabold uppercase tracking-wide text-gray-800 transition-colors hover:bg-gray-100 hover:text-blue-600"
+                >
+                  {section.title}
+                </button>
+                <AnimatePresence>
+                  {openDesktopSection === section.id && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.16 }}
+                      className="absolute right-0 top-full z-[70] mt-3 w-64 overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-2xl"
+                    >
+                      <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
+                      {section.items.map((item) => (
+                        <a
+                          key={item.href}
+                          href={getLinkHref(item.href)}
+                          onClick={(e) => {
+                            setOpenDesktopSection(null);
+                            handleNavigation(item.href, e);
+                          }}
+                          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                        >
+                          <span>{item.label}</span>
+                          <ChevronRight className="h-4 w-4 text-gray-400" />
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
 
-        <a
-          href="https://qabul.shahrisabz-tibbiyot-texnikumi.uz/"
-          className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95"
-        >
-          <span>Qabul - 2026</span>
-          <span>→</span>
-        </a>
+            {/* Direct Kampus Link */}
+            <a
+              href={getLinkHref("#kampus")}
+              onClick={(e) => handleNavigation("#kampus", e)}
+              className="rounded-full px-3.5 py-2 text-xs xl:text-sm font-extrabold uppercase tracking-wide text-gray-800 hover:text-blue-600 transition-colors"
+            >
+              KAMPUS
+            </a>
 
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-xl glass lg:hidden relative z-[60]"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Menyuni yopish" : "Menyuni ochish"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+            {/* Qabul CTA Button */}
+            <a
+              href="https://qabul.shahrisabz-tibbiyot-texnikumi.uz/"
+              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-5 py-2.5 text-xs xl:text-sm font-extrabold uppercase tracking-wider text-white shadow-md shadow-blue-600/30 transition-all hover:scale-105 active:scale-95"
+            >
+              <span>QABUL - 2026</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-800 lg:hidden relative z-[60]"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Menyuni yopish" : "Menyuni ochish"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>

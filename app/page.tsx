@@ -7,6 +7,7 @@ import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Mission } from "@/components/sections/Mission";
 import { Gallery } from "@/components/sections/Gallery";
 import { Admission } from "@/components/sections/Admission";
+import { CampusSection } from "@/components/sections/CampusSection";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <WhyChooseUs />
       <Mission />
       <Gallery />
+      <CampusSection />
       <Admission />
       <Contact />
     </main>
