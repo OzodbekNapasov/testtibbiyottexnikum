@@ -88,7 +88,7 @@ export function Header() {
     }
     closeTimeoutRef.current = setTimeout(() => {
       setOpenDesktopSection(null);
-    }, 1000); // 1-second delay
+    }, 500); // 0.5-second delay
   };
 
   useEffect(() => {
@@ -193,22 +193,48 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500 py-3 sm:py-4 px-4 sm:px-6 lg:px-8",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 pt-3 sm:pt-4 pb-3 px-4 sm:px-6 lg:px-8",
       )}
     >
       <div className="mx-auto max-w-7xl relative">
-        {/* Main Floating Bar */}
-        <div className="relative flex items-center justify-between rounded-2xl sm:rounded-3xl border border-white/20 bg-white/95 text-gray-900 shadow-2xl backdrop-blur-xl px-5 py-3.5 sm:px-8">
-          
-          {/* LEFT NAVIGATION LINKS (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-3" aria-label="Chap navigatsiya">
-            {menuSections.slice(0, 3).map((section) => (
+        {/* Main Floating Dark Glass Bar */}
+        <div
+          className="relative flex items-center rounded-2xl border border-white/15 bg-bg-dark/90 text-white shadow-2xl backdrop-blur-xl px-4 py-2.5 sm:px-5"
+          onMouseLeave={closeSectionWithDelay}
+        >
+
+          {/* LEFT: Logo + Institution Name (Desktop) */}
+          <a
+            href={logoHref}
+            className="hidden lg:flex items-center gap-3 flex-shrink-0 group"
+            aria-label={siteConfig.name}
+          >
+            <Image
+                src="/Logo+name.png"
+                alt={siteConfig.name}
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain drop-shadow-[0_0_12px_rgba(59,130,246,0.6)] group-hover:drop-shadow-[0_0_18px_rgba(96,165,250,0.8)] transition-all duration-300"
+                priority
+              />
+            <div className="flex flex-col leading-tight">
+              <span className="text-white font-extrabold text-sm tracking-wide uppercase">Shahrisabz</span>
+              <span className="text-blue-300 text-xs font-medium">Tibbiyot Texnikumi</span>
+            </div>
+          </a>
+
+          {/* Separator (Desktop) */}
+          <div className="hidden lg:block h-8 w-px bg-white/15 mx-4 flex-shrink-0" />
+
+          {/* CENTER: All Nav Links (Desktop) */}
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-0.5" aria-label="Asosiy navigatsiya">
+            {menuSections.map((section) => (
               <div key={section.id} className="relative">
                 <button
                   type="button"
                   onMouseEnter={() => openSectionWithDelay(section.id)}
                   onFocus={() => openSectionWithDelay(section.id)}
-                  className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs xl:text-sm font-extrabold uppercase tracking-wide text-gray-800 transition-colors hover:bg-gray-100 hover:text-blue-600"
+                  className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs xl:text-sm font-bold uppercase tracking-wider text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                   aria-expanded={openDesktopSection === section.id}
                   aria-haspopup="true"
                 >
@@ -222,9 +248,9 @@ export function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.16 }}
-                      className="absolute left-0 top-full z-[70] mt-3 w-64 overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-2xl"
+                      className="absolute left-0 top-full z-[70] mt-6 w-64 overflow-hidden rounded-2xl border border-white/15 bg-bg-dark/90 p-2 shadow-2xl backdrop-blur-xl"
                     >
-                      <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
+                      <div className="absolute -top-5 left-0 right-0 h-5 bg-transparent" />
                       {section.items.map((item) => (
                         <a
                           key={item.href}
@@ -233,10 +259,10 @@ export function Header() {
                             setOpenDesktopSection(null);
                             handleNavigation(item.href, e);
                           }}
-                          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-text-soft transition-colors hover:bg-white/10 hover:text-white"
                         >
                           <span>{item.label}</span>
-                          <ChevronRight className="h-4 w-4 text-gray-400" />
+                          <ChevronRight className="h-4 w-4 text-text-muted" />
                         </a>
                       ))}
                     </motion.div>
@@ -244,111 +270,53 @@ export function Header() {
                 </AnimatePresence>
               </div>
             ))}
+
+            {/* Direct Manzil Link */}
+            <a
+              href={getLinkHref("#kampus")}
+              onClick={(e) => handleNavigation("#kampus", e)}
+              className="rounded-full px-4 py-2 text-xs xl:text-sm font-bold uppercase tracking-wider text-white/90 hover:bg-white/10 hover:text-white transition-colors"
+            >
+              MANZIL
+            </a>
           </nav>
 
-          {/* CENTERED LOGO BADGE (Desktop) */}
-          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-            <a
-              href={logoHref}
-              className="flex items-center justify-center bg-white border border-gray-200 shadow-2xl rounded-2xl px-5 py-2.5 transition-transform hover:scale-105 active:scale-95"
-              aria-label={siteConfig.name}
-            >
-              <Image
-                src="/Logo+name.png"
-                alt={siteConfig.name}
-                width={170}
-                height={48}
-                className="h-9 xl:h-11 w-auto object-contain"
-                priority
-              />
-            </a>
-          </div>
-
           {/* MOBILE LOGO */}
-          <a href={logoHref} className="flex lg:hidden items-center gap-2" aria-label={siteConfig.name}>
+          <a href={logoHref} className="flex lg:hidden items-center" aria-label={siteConfig.name}>
             <Image
               src="/Logo+name.png"
               alt={siteConfig.name}
-              width={160}
-              height={44}
-              className="h-8 sm:h-10 w-auto object-contain"
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
               priority
             />
           </a>
 
-          {/* RIGHT NAVIGATION LINKS & CTA (Desktop) */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-4">
-            {/* Aloqa Dropdown */}
-            {menuSections.slice(3).map((section) => (
-              <div key={section.id} className="relative">
-                <button
-                  type="button"
-                  onMouseEnter={() => openSectionWithDelay(section.id)}
-                  onFocus={() => openSectionWithDelay(section.id)}
-                  className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs xl:text-sm font-extrabold uppercase tracking-wide text-gray-800 transition-colors hover:bg-gray-100 hover:text-blue-600"
-                >
-                  {section.title}
-                </button>
-                <AnimatePresence>
-                  {openDesktopSection === section.id && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.16 }}
-                      className="absolute right-0 top-full z-[70] mt-3 w-64 overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-2xl"
-                    >
-                      <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
-                      {section.items.map((item) => (
-                        <a
-                          key={item.href}
-                          href={getLinkHref(item.href)}
-                          onClick={(e) => {
-                            setOpenDesktopSection(null);
-                            handleNavigation(item.href, e);
-                          }}
-                          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          <span>{item.label}</span>
-                          <ChevronRight className="h-4 w-4 text-gray-400" />
-                        </a>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-
-            {/* Direct Kampus Link */}
-            <a
-              href={getLinkHref("#kampus")}
-              onClick={(e) => handleNavigation("#kampus", e)}
-              className="rounded-full px-3.5 py-2 text-xs xl:text-sm font-extrabold uppercase tracking-wide text-gray-800 hover:text-blue-600 transition-colors"
-            >
-              KAMPUS
-            </a>
-
-            {/* Qabul CTA Button */}
+          {/* RIGHT: QABUL CTA + Mobile Toggle */}
+          <div className="flex items-center gap-3 flex-shrink-0 ml-auto lg:ml-4">
+            {/* QABUL CTA Button (Desktop) */}
             <a
               href="https://qabul.shahrisabz-tibbiyot-texnikumi.uz/"
-              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-5 py-2.5 text-xs xl:text-sm font-extrabold uppercase tracking-wider text-white shadow-md shadow-blue-600/30 transition-all hover:scale-105 active:scale-95"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs xl:text-sm font-bold uppercase tracking-wider text-white/90 hover:bg-white/10 hover:text-white transition-colors"
             >
-              <span>QABUL - 2026</span>
-              <span>→</span>
+              QABUL - 2026
             </a>
-          </div>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-800 lg:hidden relative z-[60]"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Menyuni yopish" : "Menyuni ochish"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              className="flex h-10 w-10 items-center justify-center rounded-xl glass text-white lg:hidden relative z-[60]"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Menyuni yopish" : "Menyuni ochish"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+
+
       </div>
 
       <AnimatePresence>
