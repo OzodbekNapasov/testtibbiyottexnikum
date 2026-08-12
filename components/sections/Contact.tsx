@@ -20,9 +20,12 @@ const ContactMap = dynamic(() => import("@/components/sections/ContactMap").then
 const contactItems = [
   {
     icon: Phone,
-    label: "Telefon",
-    value: siteConfig.phone,
-    href: siteConfig.phoneHref,
+    label: "Qabul komissiyasi",
+    subValues: [
+      { text: "+998 88 260 20 73", href: "tel:+998882602073" },
+      { text: "+998 77 088 20 73", href: "tel:+998770882073" },
+      { text: "+998 97 266 20 73", href: "tel:+998972662073" },
+    ],
   },
   {
     icon: Send,
@@ -79,12 +82,26 @@ export function Contact() {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <p className="text-sm text-text-muted">{item.label}</p>
-                    <p
-                      id={index === 0 ? "contact-heading" : undefined}
-                      className="mt-1 font-medium text-white drop-shadow-sm"
-                    >
-                      {item.value}
-                    </p>
+                    {"subValues" in item && item.subValues ? (
+                      <div className="mt-2 space-y-1">
+                        {item.subValues.map((sub, sIdx) => (
+                          <a
+                            key={sIdx}
+                            href={sub.href}
+                            className="block font-medium text-white hover:text-cyan-300 transition-colors"
+                          >
+                            {sub.text}
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <p
+                        id={index === 0 ? "contact-heading" : undefined}
+                        className="mt-1 font-medium text-white drop-shadow-sm"
+                      >
+                        {item.value}
+                      </p>
+                    )}
                   </div>
                 );
 

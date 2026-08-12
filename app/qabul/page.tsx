@@ -24,6 +24,7 @@ import {
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { siteConfig } from "@/lib/site-config";
 
 interface Specialty {
   code: string;
@@ -474,14 +475,25 @@ export default function QabulLandingPage() {
                   Qabulga ariza topshirish
                   <ArrowRight className="h-5 w-5" />
                 </Link>
+              </div>
 
-                <a
-                  href="tel:+998781200000"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/30 bg-black/20 hover:bg-black/30 px-8 py-4 text-base font-bold text-white transition-all"
-                >
-                  <PhoneCall className="h-5 w-5" />
-                  Qabul komissiyasiga qo&apos;ng&apos;iroq
-                </a>
+              {/* Qabul Komissiyasi Telefon Nomerlari */}
+              <div className="relative z-10 mt-8 pt-8 border-t border-white/20">
+                <p className="text-sm font-semibold text-blue-100 uppercase tracking-wider mb-4">
+                  📞 Qabul komissiyasi aloqa raqamlari:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
+                  {siteConfig.admissionPhones.map((p, idx) => (
+                    <a
+                      key={idx}
+                      href={p.href}
+                      className="flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-black/20 hover:bg-white/20 px-4 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-md"
+                    >
+                      <PhoneCall className="h-4 w-4 text-emerald-300 shrink-0" />
+                      <span>{p.display}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </ScrollReveal>
