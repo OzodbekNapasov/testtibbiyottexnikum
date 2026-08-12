@@ -100,22 +100,55 @@ export function Header() {
     };
   }, []);
 
+  const MAIN_SITE_URL = "https://shahrisabz-tibbiyot-texnikumi.uz";
+
   // Check if a link is a hash link
   const isHashLink = (href: string) => href.startsWith("#");
 
-  // Handle navigation
-  const handleNavigation = useCallback((href: string) => {
+  // Dynamically resolve link href depending on domain and current page elements
+  const getLinkHref = (href: string) => {
+    if (typeof window === "undefined") return href;
+    const isSubdomain = window.location.hostname.startsWith("qabul.") || window.location.hostname.startsWith("www.qabul.");
+
     if (isHashLink(href)) {
-      if (isHomePage) {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        // If user is on another page, navigate to the homepage with the hash
-        // so the target section (which lives on the home page) can be found.
-        window.location.href = `/${href}`;
+      const element = document.querySelector(href);
+      if (element) return href;
+      return isSubdomain ? `${MAIN_SITE_URL}/${href}` : `/${href}`;
+    }
+
+    if (href.startsWith("/")) {
+      return isSubdomain ? `${MAIN_SITE_URL}${href}` : href;
+    }
+
+    return href;
+  };
+
+  // Handle navigation click
+  const handleNavigation = useCallback((href: string, e?: React.MouseEvent) => {
+    if (typeof window === "undefined") return;
+    const isSubdomain = window.location.hostname.startsWith("qabul.") || window.location.hostname.startsWith("www.qabul.");
+
+    if (isHashLink(href)) {
+      const element = document.querySelector(href);
+      if (element) {
+        if (e) e.preventDefault();
+        element.scrollIntoView({ behavior: "smooth" });
+        return;
       }
+    }
+
+    if (isSubdomain) {
+      if (e) e.preventDefault();
+      if (href.startsWith("#")) {
+        window.location.href = `${MAIN_SITE_URL}/${href}`;
+      } else if (href.startsWith("/")) {
+        window.location.href = `${MAIN_SITE_URL}${href}`;
+      } else {
+        window.location.href = href;
+      }
+    } else if (isHashLink(href) && !isHomePage) {
+      if (e) e.preventDefault();
+      window.location.href = `/${href}`;
     }
   }, [isHomePage]);
 
@@ -129,12 +162,10 @@ export function Header() {
   };
 
   // Close menu and navigate
-  const closeMenuAndNavigate = useCallback((href: string) => {
+  const closeMenuAndNavigate = useCallback((href: string, e?: React.MouseEvent) => {
     setMobileOpen(false);
     setOpenSections([]);
-    setTimeout(() => {
-      handleNavigation(href);
-    }, 150);
+    handleNavigation(href, e);
   }, [handleNavigation]);
 
   useEffect(() => {
@@ -147,7 +178,6 @@ export function Header() {
     setMobileOpen(false);
     setOpenSections([]);
     setOpenDesktopSection(null);
-
   }, [pathname]);
 
   useEffect(() => {
@@ -157,6 +187,10 @@ export function Header() {
     };
   }, [mobileOpen]);
 
+  const logoHref = typeof window !== "undefined" && (window.location.hostname.startsWith("qabul.") || window.location.hostname.startsWith("www.qabul."))
+    ? MAIN_SITE_URL
+    : "/";
+
   return (
     <header
       className={cn(
@@ -165,7 +199,7 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label={siteConfig.name}>
+        <a href={logoHref} className="flex items-center gap-3" aria-label={siteConfig.name}>
           <Image
             src="/logo.png"
             alt={siteConfig.name}
@@ -179,7 +213,7 @@ export function Header() {
             <br />
             <span className="text-xs font-medium text-text-muted">Tibbiyot Texnikumi</span>
           </span>
-        </Link>
+        </a>
 
         <nav
           className="hidden lg:flex items-center gap-2"
@@ -219,10 +253,10 @@ export function Header() {
                     {section.items.map((item) => (
                       <a
                         key={item.href}
-                        href={item.href}
-                        onClick={() => {
+                        href={getLinkHref(item.href)}
+                        onClick={(e) => {
                           setOpenDesktopSection(null);
-                          handleNavigation(item.href);
+                          handleNavigation(item.href, e);
                         }}
                         className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-text-soft transition-colors hover:bg-white/10 hover:text-white"
                       >
@@ -371,8 +405,8 @@ export function Header() {
                                   {section.items.map((item) => (
                                   <a
                                     key={item.href}
-                                    href={item.href}
-                                    onClick={() => closeMenuAndNavigate(item.href)}
+                                    href={getLinkHref(item.href)}
+                                    onClick={(e) => closeMenuAndNavigate(item.href, e)}
                                     className="group flex items-center justify-between rounded-xl px-4 py-3.5 transition-all hover:bg-white/5"
                                   >
                                     <span className="text-sm font-medium text-text-soft group-hover:text-white">
