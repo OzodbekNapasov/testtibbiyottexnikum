@@ -282,15 +282,19 @@ export function Header() {
           </nav>
 
           {/* MOBILE LOGO */}
-          <a href={logoHref} className="flex lg:hidden items-center" aria-label={siteConfig.name}>
+          <a href={logoHref} className="flex lg:hidden items-center gap-2.5" aria-label={siteConfig.name}>
             <Image
               src="/Logo+name.png"
               alt={siteConfig.name}
-              width={36}
-              height={36}
-              className="h-9 w-9 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
               priority
             />
+            <div className="flex flex-col leading-tight">
+              <span className="text-white font-extrabold text-sm tracking-wide uppercase">Shahrisabz</span>
+              <span className="text-blue-300 text-[11px] font-medium">Tibbiyot Texnikumi</span>
+            </div>
           </a>
 
           {/* RIGHT: QABUL CTA + Mobile Toggle */}
@@ -342,14 +346,18 @@ export function Header() {
             >
               {/* Header */}
               <div className="flex items-center justify-between border-b border-white/5 px-5 py-5">
-                <a href={logoHref} onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+                <a href={logoHref} onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
                   <Image
                     src="/Logo+name.png"
                     alt={siteConfig.name}
-                    width={180}
+                    width={44}
                     height={44}
-                    className="h-9 w-auto object-contain"
+                    className="h-11 w-11 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                   />
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-white font-extrabold text-sm tracking-wide uppercase">Shahrisabz</span>
+                    <span className="text-blue-300 text-[11px] font-medium">Tibbiyot Texnikumi</span>
+                  </div>
                 </a>
                 <button
                   type="button"
