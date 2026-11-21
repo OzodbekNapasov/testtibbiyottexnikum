@@ -237,13 +237,13 @@ export function Header() {
       )}
     >
       <div ref={headerRef} className="mx-auto max-w-7xl relative">
-        {/* Main Floating Dark Glass Bar */}
+        {/* Main Floating Frosted Glass Bar */}
         <div
           className={cn(
-            "relative flex items-center rounded-2xl border text-white backdrop-blur-xl px-4 py-2.5 sm:px-5 transition-all duration-300",
+            "relative flex items-center rounded-lg border text-white backdrop-blur-xl px-4 py-2.5 sm:px-5 transition-all duration-300",
             isScrolled
-              ? "border-white/20 bg-bg-dark/95 shadow-[0_12px_40px_rgba(0,0,0,0.6)]"
-              : "border-white/15 bg-bg-dark/85 shadow-2xl",
+              ? "border-white/20 bg-bg-dark/35 shadow-[0_12px_36px_rgba(0,0,0,0.45)]"
+              : "border-white/15 bg-white/[0.04] shadow-2xl",
           )}
           onMouseLeave={closeSectionWithDelay}
         >
@@ -320,7 +320,7 @@ export function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 6 }}
                         transition={{ duration: 0.16 }}
-                        className="absolute left-0 top-full z-[70] mt-3 w-64 rounded-2xl border border-white/15 bg-bg-dark/95 p-2 shadow-2xl backdrop-blur-xl"
+                        className="absolute left-0 top-full z-[70] mt-3 w-64 rounded-lg border border-white/15 bg-bg-dark/55 p-1.5 shadow-2xl backdrop-blur-2xl"
                       >
                         {/* Seamless hover bridge */}
                         <div className="absolute -top-3 left-0 right-0 h-3 bg-transparent" />
@@ -332,7 +332,7 @@ export function Header() {
                               setOpenDesktopSection(null);
                               handleNavigation(item.href, e);
                             }}
-                            className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-text-soft transition-colors hover:bg-white/10 hover:text-white"
+                            className="flex items-center justify-between rounded-md px-3.5 py-2.5 text-sm font-medium text-text-soft transition-colors hover:bg-white/10 hover:text-white"
                           >
                             <span>{item.label}</span>
                             <ChevronRight className="h-4 w-4 text-text-muted" />
@@ -397,7 +397,7 @@ export function Header() {
             {/* Mobile menu button */}
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-xl glass text-white lg:hidden relative z-[60] cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center rounded-lg glass text-white lg:hidden relative z-[60] cursor-pointer"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Menyuni yopish" : "Menyuni ochish"}
               aria-expanded={mobileOpen}
