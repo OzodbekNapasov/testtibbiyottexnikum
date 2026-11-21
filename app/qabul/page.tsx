@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import {
   ArrowRight,
   GraduationCap,
@@ -19,7 +18,6 @@ import {
   PhoneCall,
   UserCheck,
   Building2,
-  MapPin,
   Check,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
@@ -112,7 +110,7 @@ const admissionSteps = [
 const faqs = [
   {
     q: "Qabul jarayoni qachongacha davom etadi?",
-    a: "2026/2027 o'quv yili uchun qabul kampaniyasi belgilangan kvotalar to'lgunga qadar davom etadi. O'rinlar chegaralanganligi sababli arizani ertaroq topshirish tavsiya etiladi.",
+    a: "2026/2027 o'quv yili uchun hujjatlar qabuli yakunlandi (yopilgan). Keyingi o'quv yili qabuli boshlanish sanasi haqida rasmiy Telegram kanalimiz (@shahrisabz_t_t_uz) va veb-saytimizda e'lon qilinadi.",
   },
   {
     q: "O'qishga kirish uchun imtihon topshiriladimi?",
@@ -148,9 +146,9 @@ export default function QabulLandingPage() {
           
           {/* Top Status Pill */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wider text-amber-300 uppercase">
-              <span className="h-2 w-2 rounded-sm bg-amber-400" />
-              QABUL 2026 — 2027 OCHIQ
+            <div className="inline-flex items-center gap-2 rounded-full border border-rose-500/40 bg-rose-500/15 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wider text-rose-300 uppercase">
+              <span className="h-2 w-2 rounded-full bg-rose-400" />
+              QABUL 2026 — 2027 YOPILDI
             </div>
           </div>
 
@@ -164,18 +162,18 @@ export default function QabulLandingPage() {
 
           {/* Subtitle */}
           <p className="mt-6 text-center text-base sm:text-lg text-text-soft leading-relaxed max-w-2xl mx-auto">
-            Hamshiralik, Farmatsiya va Feldsherlik yo&apos;nalishlari. 11-sinf attestati yoki kollej/litsey diplomi negizida suhbat asosida qabul.
+            2026/2027 o&apos;quv yili uchun hujjatlar qabuli yakunlandi. Yo&apos;nalishlar bilan tanishib chiqishingiz va keyingi qabul haqida qabul komissiyasidan ma&apos;lumot olishingiz mumkin.
           </p>
 
           {/* Action Pill Buttons */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/ariza"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50 hover:scale-[1.02] active:scale-98"
+            <a
+              href="#qabul-aloqa"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50 hover:scale-[1.02] active:scale-[0.98]"
             >
-              Ariza qoldirish
+              Qabul komissiyasi bilan aloqa
               <ArrowRight className="h-5 w-5" />
-            </Link>
+            </a>
 
             <a
               href="#yonalishlar"
@@ -267,15 +265,11 @@ export default function QabulLandingPage() {
                     </div>
                   </div>
 
-                  {/* Full width centered CTA Button */}
-                  <div className="mt-8 pt-6 border-t border-white/10 mt-auto">
-                    <Link
-                      href="/ariza"
-                      className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-blue-500/20 transition-all hover:shadow-blue-500/35 active:scale-98"
-                    >
-                      Qabulga ariza topshirish
-                      <ArrowRight className="h-5 w-5" />
-                    </Link>
+                  {/* Full width centered status badge */}
+                  <div className="mt-auto pt-6 border-t border-white/10">
+                    <div className="mt-6 w-full flex items-center justify-center gap-2 rounded-2xl border border-rose-500/30 bg-rose-500/10 px-6 py-3.5 text-sm font-bold text-rose-300">
+                      Qabul yopilgan (2026/2027)
+                    </div>
                   </div>
                 </GlassCard>
               </ScrollReveal>
@@ -399,13 +393,12 @@ export default function QabulLandingPage() {
               </ul>
 
               <div className="mt-8 pt-6 border-t border-white/10">
-                <Link
-                  href="/ariza"
-                  className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 py-4 text-base font-bold text-white transition-all shadow-lg shadow-blue-600/20"
+                <a
+                  href="#qabul-aloqa"
+                  className="w-full flex items-center justify-center gap-2 rounded-2xl border border-rose-500/30 bg-rose-500/10 py-4 text-sm sm:text-base font-bold text-rose-200 transition-all hover:bg-rose-500/15"
                 >
-                  Qabulga ariza topshirish
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
+                  2026/2027 qabuli yakunlangan — Batafsil ma&apos;lumot uchun aloqa
+                </a>
               </div>
             </GlassCard>
           </ScrollReveal>
@@ -430,26 +423,30 @@ export default function QabulLandingPage() {
                 <ScrollReveal key={idx} delay={idx * 0.05}>
                   <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden transition-all">
                     <button
+                      type="button"
+                      aria-expanded={isOpen}
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full flex items-center justify-between p-5 text-left text-base font-semibold text-white hover:bg-white/5 transition-colors"
+                      className="w-full flex items-center justify-between gap-3 p-5 text-left text-base font-semibold text-white hover:bg-white/5 transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-3">
                         <HelpCircle className="h-5 w-5 text-blue-400 shrink-0" />
                         {faq.q}
                       </span>
-                      <ChevronDown className={`h-5 w-5 text-text-muted transition-transform ${isOpen ? "rotate-180 text-white" : ""}`} />
+                      <ChevronDown className={`h-5 w-5 shrink-0 text-text-muted transition-transform duration-200 ${isOpen ? "rotate-180 text-white" : ""}`} />
                     </button>
 
-                    <AnimatePresence>
+                    <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="px-5 pb-5 pt-1 text-sm text-text-soft leading-relaxed border-t border-white/5"
+                          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
                         >
-                          {faq.a}
+                          <div className="px-5 pb-5 pt-3 text-sm text-text-soft leading-relaxed border-t border-white/5">
+                            {faq.a}
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -461,25 +458,31 @@ export default function QabulLandingPage() {
         </section>
 
         {/* Bottom CTA Card */}
-        <section className="mt-24">
+        <section id="qabul-aloqa" className="section-anchor mt-24">
           <ScrollReveal>
             <div className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-8 sm:p-14 text-center shadow-2xl">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent)]" />
+              <div className="relative z-10 mb-4 inline-flex items-center gap-2 rounded-full border border-rose-300/40 bg-rose-950/40 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-rose-100">
+                <span className="h-2 w-2 rounded-full bg-rose-400" />
+                2026/2027 Qabuli Yopilgan
+              </div>
               <h2 className="relative z-10 font-[family-name:var(--font-heading)] text-2xl sm:text-4xl font-extrabold text-white">
-                Kelajagingizni Shahrisabz Tibbiyot Texnikumi Bilan Quring!
+                Savollaringiz bormi? Biz bilan bog&apos;laning!
               </h2>
               <p className="relative z-10 mt-4 text-blue-100 max-w-xl mx-auto text-sm sm:text-base">
-                Onlayn arizani hoziroq yuboring. Qabul komissiyasi siz bilan tez fursatda bog&apos;lanadi.
+                2026/2027 o&apos;quv yili uchun qabul yakunlandi. Keyingi qabul muddati va yangiliklardan xabardor bo&apos;lish uchun Telegram kanalimizga obuna bo&apos;ling yoki qabul komissiyasiga murojaat qiling.
               </p>
 
               <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/ariza"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-bold text-blue-900 shadow-xl hover:bg-blue-50 transition-all active:scale-98"
+                <a
+                  href={siteConfig.telegramHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-bold text-blue-900 shadow-xl hover:bg-blue-50 transition-all active:scale-[0.98]"
                 >
-                  Qabulga ariza topshirish
+                  Telegram kanalimizga o&apos;tish
                   <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </div>
 
               {/* Qabul Komissiyasi Telefon Nomerlari */}

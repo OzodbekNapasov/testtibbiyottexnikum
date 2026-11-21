@@ -3,9 +3,6 @@ import { inter, manrope, spaceGrotesk } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site-config";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { ClientEffects } from "@/components/layout/ClientEffects";
-import { ApplicationModal } from "@/components/application/ApplicationModal";
-import { TestModeBanner } from "@/components/layout/TestModeBanner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -74,7 +71,7 @@ const jsonLd = {
   image: `${siteConfig.url}/logo.png`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Ipak Yuli ko'chasi, 36A-uy",
+    streetAddress: "Ipak Yo'li ko'chasi, 36A-uy",
     addressLocality: "Shahrisabz",
     addressCountry: "UZ",
   },
@@ -109,12 +106,9 @@ export default function RootLayout({
         >
           Asosiy kontentga o&apos;tish
         </a>
-        <ClientEffects />
-        <TestModeBanner />
         <Header />
         {children}
         <Footer />
-        <ApplicationModal />
       </body>
     </html>
   );

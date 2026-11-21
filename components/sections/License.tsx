@@ -72,6 +72,7 @@ export function License() {
           willChange: "transform, opacity",
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={slide.src}
           alt={slide.alt ?? "License preview"}
@@ -93,6 +94,7 @@ export function License() {
       <div className="relative mx-auto max-w-7xl">
         <ScrollReveal>
           <SectionHeading
+            id="license-heading"
             title="Litsenziya"
             subtitle="Ta'lim faoliyatini amalga oshirish uchun berilgan rasmiy litsenziya"
           />
@@ -130,10 +132,7 @@ export function License() {
                     <FileCheck className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p
-                      id={index === 0 ? "license-heading" : undefined}
-                      className="font-[family-name:var(--font-heading)] font-semibold text-white"
-                    >
+                    <p className="font-[family-name:var(--font-heading)] font-semibold text-white">
                       {item.title}
                     </p>
                     <p className="mt-1 text-sm text-text-muted">{item.caption}</p>

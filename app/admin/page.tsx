@@ -47,6 +47,8 @@ type TeacherItem = {
 export default function AdminPage() {
   // Authentication State
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authChecking, setAuthChecking] = useState(true);
+  const [loggingIn, setLoggingIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -107,12 +109,26 @@ export default function AdminPage() {
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Check login on load
+  // Check server-side session on load
   useEffect(() => {
-    const loggedIn = sessionStorage.getItem("is_admin_logged_in") === "true";
-    if (loggedIn) {
-      setIsAuthenticated(true);
-    }
+    let active = true;
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/auth/me", { cache: "no-store" });
+        if (res.ok && active) {
+          const data = await res.json();
+          setIsAuthenticated(Boolean(data.authenticated));
+        }
+      } catch {
+        if (active) setIsAuthenticated(false);
+      } finally {
+        if (active) setAuthChecking(false);
+      }
+    };
+    checkAuth();
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Fetch news list when switching to news view
@@ -159,20 +175,37 @@ export default function AdminPage() {
     }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "Ozodbek" && password === "Eua5gd007") {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("is_admin_logged_in", "true");
-      setLoginError("");
-    } else {
-      setLoginError("Login yoki parol noto'g'ri kiritildi.");
+    setLoginError("");
+    setLoggingIn(true);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        setIsAuthenticated(true);
+        setPassword("");
+      } else {
+        setLoginError(data.error || "Login yoki parol noto'g'ri kiritildi.");
+      }
+    } catch {
+      setLoginError("Serverga ulanishda xatolik yuz berdi.");
+    } finally {
+      setLoggingIn(false);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {
+      // Ignore network errors on logout
+    }
     setIsAuthenticated(false);
-    sessionStorage.removeItem("is_admin_logged_in");
     setCurrentView("dashboard");
   };
 
@@ -599,11 +632,19 @@ export default function AdminPage() {
   };
 
   return (
-    <main className="min-h-screen bg-bg-dark pt-24 pb-16 text-white">
+    <main className="min-h-screen bg-bg-dark pt-28 pb-16 text-white" id="main-content">
       <div className="mx-auto max-w-5xl px-5 lg:px-8">
         
+        {/* AUTH LOADING SCREEN */}
+        {authChecking && (
+          <div className="flex flex-col items-center justify-center py-24">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <p className="mt-3 text-sm text-text-muted">Sessiya tekshirilmoqda...</p>
+          </div>
+        )}
+
         {/* LOGIN SCREEN */}
-        {!isAuthenticated && (
+        {!authChecking && !isAuthenticated && (
           <div className="mx-auto max-w-md mt-12">
             <ScrollReveal>
               <GlassCard gradientBorder hover={false} className="p-8">
@@ -665,9 +706,17 @@ export default function AdminPage() {
 
                   <button
                     type="submit"
-                    className="w-full rounded-xl bg-primary py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-primary/50"
+                    disabled={loggingIn}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-primary/50 disabled:opacity-60 cursor-pointer"
                   >
-                    Kirish
+                    {loggingIn ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Tekshirilmoqda...
+                      </>
+                    ) : (
+                      "Kirish"
+                    )}
                   </button>
                 </form>
               </GlassCard>

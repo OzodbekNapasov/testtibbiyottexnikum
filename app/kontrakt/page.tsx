@@ -116,13 +116,14 @@ export default function KontraktPage() {
           {directions.map((dir, index) => (
             <ScrollReveal key={dir.code} delay={index * 0.1}>
               <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.25 }}
                 className="h-full"
               >
                 <GlassCard
                   gradientBorder
-                  className="group relative flex h-full flex-col overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02]"
+                  hover={false}
+                  className="group relative flex h-full flex-col overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02] transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10"
                 >
                   
                   {/* Decorative glowing card accent */}
@@ -204,11 +205,10 @@ export default function KontraktPage() {
                     </div>
 
                     <Link
-                      href="/ariza"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition-all hover:shadow-blue-500/35 active:scale-98"
+                      href="/#aloqa"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/15 px-5 py-3 text-sm font-bold text-rose-200 transition-all active:scale-[0.98]"
                     >
-                      Ro&apos;yxatdan o&apos;tish
-                      <Check className="h-4 w-4" />
+                      Qabul yopilgan — Aloqa
                     </Link>
                   </div>
 
@@ -221,15 +221,15 @@ export default function KontraktPage() {
         {/* Payment Installments Section */}
         <ScrollReveal delay={0.3}>
           <div className="mt-16 max-w-3xl mx-auto">
-            <GlassCard gradientBorder className="p-6 md:p-8 bg-gradient-to-br from-white/5 to-white/[0.02]">
+            <GlassCard gradientBorder hover={false} className="p-6 md:p-8 bg-gradient-to-br from-white/5 to-white/[0.02]">
               <h3 className="font-[family-name:var(--font-heading)] text-lg md:text-xl font-bold text-white leading-relaxed">
                 To&apos;lovni 1 kurs davomida 5 ta qismga bo&apos;lib to&apos;lash imkoniyati mavjud.
               </h3>
               
               <div className="mt-6">
                 <p className="text-sm font-semibold text-text-muted mb-4 uppercase tracking-wider">Namuna:</p>
-                <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-                  <table className="w-full text-left border-collapse text-sm">
+                <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/20">
+                  <table className="w-full min-w-[360px] text-left border-collapse text-sm">
                     <thead>
                       <tr className="border-b border-white/10 bg-white/5 text-xs uppercase font-bold text-text-muted">
                         <th className="px-6 py-4">To&apos;lov miqdori (so&apos;m)</th>

@@ -168,9 +168,49 @@ export type GalleryItem = {
 
 export const galleryItems: GalleryItem[] = [
   {
+    src: "/images/main building.jpg",
+    alt: "Shahrisabz Tibbiyot Texnikumi bosh binosi",
+    category: "Kampus",
+    width: 1200,
+    height: 800,
+    variant: "photo",
+  },
+  {
     src: "/images/building.png",
-    alt: "Shahrisabz Tibbiyot Texnikumi binosi",
+    alt: "Zamonaviy o'quv binosi ko'rinishi",
     category: "Texnikum",
+    width: 1200,
+    height: 800,
+    variant: "photo",
+  },
+  {
+    src: "/images/student-practice.png",
+    alt: "Amaliy mashg'ulotlar jarayoni",
+    category: "Amaliyot",
+    width: 1200,
+    height: 800,
+    variant: "photo",
+  },
+  {
+    src: "/images/students-class.png",
+    alt: "Zamonaviy auditoriyada dars jarayoni",
+    category: "Ta'lim",
+    width: 1200,
+    height: 800,
+    variant: "photo",
+  },
+  {
+    src: "/images/students-lesson.png",
+    alt: "Tibbiy ko'nikmalarni o'zlashtirish darsi",
+    category: "Laboratoriya",
+    width: 1200,
+    height: 800,
+    variant: "photo",
+  },
+  {
+    src: "/images/students-oath.png",
+    alt: "Talabalarning tantanali qasamyod marosimi",
+    category: "Tadbirlar",
     width: 1200,
     height: 800,
     variant: "photo",
@@ -253,10 +293,10 @@ export const licenseItems: LicenseItem[] = [
 ];
 
 export const admissionContent = {
-  title: "Qabul ochiq",
+  title: "Qabul yopilgan",
   description:
-    "Kelajak kasbingizni tanlang va zamonaviy tibbiyot ta'limiga birinchi qadamni qo'ying.",
-  cta: "Qabulga ariza topshirish",
+    "2026/2027 o'quv yili uchun hujjatlar qabuli yakunlandi. Keyingi qabul muddati va qo'shimcha ma'lumotlar uchun qabul komissiyasi bilan bog'laning.",
+  cta: "Qabul komissiyasi bilan bog'lanish",
 } as const;
 
 export const contactContent = {

@@ -8,48 +8,54 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { siteConfig } from "@/lib/site-config";
 import { contactContent } from "@/lib/constants";
 
-const ContactMap = dynamic(() => import("@/components/sections/ContactMap").then((m) => m.ContactMap), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-[400px] items-center justify-center rounded-2xl glass">
-      <p className="text-sm text-text-muted">Xarita yuklanmoqda...</p>
-    </div>
-  ),
-});
+const ContactMap = dynamic(
+  () => import("@/components/sections/ContactMap").then((m) => m.ContactMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-[400px] items-center justify-center rounded-2xl glass">
+        <p className="text-sm text-text-muted">Xarita yuklanmoqda...</p>
+      </div>
+    ),
+  },
+);
 
 const contactItems = [
   {
     icon: Phone,
     label: "Qabul komissiyasi",
-    subValues: [
-      { text: "+998 88 260 20 73", href: "tel:+998882602073" },
-      { text: "+998 77 088 20 73", href: "tel:+998770882073" },
-      { text: "+998 97 266 20 73", href: "tel:+998972662073" },
-    ],
+    subValues: siteConfig.admissionPhones.map((p) => ({
+      text: p.display,
+      href: p.href,
+    })),
   },
   {
     icon: Send,
     label: "Telegram",
     value: siteConfig.telegram,
     href: siteConfig.telegramHref,
+    external: true,
   },
   {
     icon: Instagram,
     label: "Instagram",
     value: siteConfig.instagram,
     href: siteConfig.instagramHref,
+    external: true,
   },
   {
     icon: Facebook,
     label: "Facebook",
     value: siteConfig.facebook,
     href: siteConfig.facebookHref,
+    external: true,
   },
   {
     icon: MapPin,
     label: "Manzil",
     value: siteConfig.address,
     href: siteConfig.mapsUrl,
+    external: true,
   },
   {
     icon: Clock,
@@ -68,16 +74,20 @@ export function Contact() {
       <div className="absolute inset-0 mesh-bg opacity-30" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl">
         <ScrollReveal>
-          <SectionHeading title="Aloqa" subtitle="Savollaringiz bormi? Biz bilan bog'laning" />
+          <SectionHeading
+            id="contact-heading"
+            title="Aloqa"
+            subtitle="Savollaringiz bormi? Biz bilan bog'laning"
+          />
         </ScrollReveal>
 
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <ScrollReveal delay={0.1}>
             <div className="grid gap-4 sm:grid-cols-2">
-              {contactItems.map((item, index) => {
+              {contactItems.map((item) => {
                 const Icon = item.icon;
                 const content = (
-                  <div className="glass group h-full rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:bg-white/5 hover:shadow-xl hover:shadow-black/20">
+                  <div className="glass group h-full rounded-2xl border border-white/10 p-6 transition-all duration-300 hover:bg-white/5 hover:border-white/20 hover:shadow-xl hover:shadow-black/20">
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20 ring-1 ring-white/10">
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
@@ -95,30 +105,42 @@ export function Contact() {
                         ))}
                       </div>
                     ) : (
-                      <p
-                        id={index === 0 ? "contact-heading" : undefined}
-                        className="mt-1 font-medium text-white drop-shadow-sm"
-                      >
+                      <p className="mt-1 font-medium text-white drop-shadow-sm break-words">
                         {item.value}
                       </p>
                     )}
                   </div>
                 );
 
-                if (item.href) {
+                if ("href" in item && item.href) {
                   return (
-                    <a key={item.label} href={item.href} className="block">
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="block h-full"
+                    >
                       {content}
                     </a>
                   );
                 }
 
-                return <div key={item.label}>{content}</div>;
+                return (
+                  <div key={item.label} className="h-full">
+                    {content}
+                  </div>
+                );
               })}
             </div>
 
             <div className="mt-8">
-              <MagneticButton href={siteConfig.telegramHref} variant="primary">
+              <MagneticButton
+                href={siteConfig.telegramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="primary"
+              >
                 {contactContent.cta}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </MagneticButton>

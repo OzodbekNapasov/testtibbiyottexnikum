@@ -26,12 +26,20 @@ export function Gallery() {
       <div className="relative mx-auto max-w-7xl">
         <ScrollReveal>
           <SectionHeading
+            id="gallery-heading"
             title="Galereya"
             subtitle="Zamonaviy auditoriyalar, laboratoriyalar va amaliyot jarayonlari"
           />
         </ScrollReveal>
 
-        <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2">
+        <div
+          className={cn(
+            "mx-auto grid gap-5",
+            galleryItems.length === 1
+              ? "max-w-xl grid-cols-1"
+              : "max-w-6xl sm:grid-cols-2 lg:grid-cols-3",
+          )}
+        >
           {galleryItems.map((item, index) => {
             const isPhoto = item.variant === "photo";
             return (
@@ -42,37 +50,32 @@ export function Gallery() {
                     setLightboxIndex(index);
                     setLightboxOpen(true);
                   }}
-                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="group relative block w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl shadow-black/20 transition-all duration-300 hover:border-primary/30 hover:shadow-primary/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 cursor-zoom-in"
                   aria-label={`${item.alt} — kattalashtirish`}
                 >
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={item.width}
-                    height={item.height}
-                    quality={100}
-                    priority={index < 2}
-                    unoptimized={false}
-                    className={cn(
-                      "w-full transition-transform duration-700 group-hover:scale-[1.12] rounded-xl",
-                      isPhoto
-                        ? "aspect-square object-cover object-center"
-                        : "aspect-square bg-bg-deep object-contain p-4",
-                    )}
-                    loading={index < 2 ? "eager" : "lazy"}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                  />
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      quality={85}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={cn(
+                        "transition-transform duration-700 group-hover:scale-[1.08]",
+                        isPhoto
+                          ? "object-cover object-center"
+                          : "bg-bg-deep object-contain p-4",
+                      )}
+                    />
+                  </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/95 via-bg-deep/20 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-95" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/90 via-bg-deep/20 to-transparent opacity-75 transition-opacity duration-300 group-hover:opacity-95" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-blue-200">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                    <span className="inline-block rounded-full bg-primary/25 border border-primary/30 px-3 py-1 text-xs font-medium text-blue-200 backdrop-blur-sm">
                       {item.category}
                     </span>
-                    <p
-                      id={index === 0 ? "gallery-heading" : undefined}
-                      className="mt-2 text-left text-sm font-medium text-white drop-shadow-sm"
-                    >
+                    <p className="mt-2 text-sm font-medium text-white drop-shadow-sm">
                       {item.alt}
                     </p>
                   </div>
@@ -92,8 +95,6 @@ export function Gallery() {
           controller={{ closeOnBackdropClick: true }}
           zoom={{ maxZoomPixelRatio: 3, zoomInMultiplier: 2, doubleClickDelay: 300 }}
         />
-
-        {/* news section removed */}
       </div>
     </section>
   );

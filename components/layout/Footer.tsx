@@ -8,7 +8,6 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-bg-deep text-white py-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
-          
           {/* Left Column: Qabul Komissiyasi & Manzillarimiz */}
           <div className="space-y-4">
             <h3 className="text-lg font-extrabold uppercase tracking-wider text-white">
@@ -20,18 +19,18 @@ export function Footer() {
                 MANZILLARIMIZ:
               </p>
               <p className="mt-2 text-sm sm:text-base text-text-soft leading-relaxed">
-                <strong className="text-white">1-KAMPUS:</strong> Qashqadaryo viloyati, Shahrisabz sh., Ipak Yuli ko&apos;chasi, 36A-uy.
+                <strong className="text-white">1-KAMPUS:</strong> {siteConfig.address}.
               </p>
             </div>
 
-            {/* Social Icons (Purple Pill Buttons) */}
+            {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
               <a
                 href={siteConfig.social.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Telegram"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-indigo-600 hover:scale-110 transition-all text-white shadow-lg"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-indigo-600 hover:scale-110 transition-transform text-white shadow-lg"
               >
                 <Send className="h-5 w-5" />
               </a>
@@ -40,7 +39,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-pink-600 hover:scale-110 transition-all text-white shadow-lg"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-pink-600 hover:scale-110 transition-transform text-white shadow-lg"
               >
                 <Instagram className="h-5 w-5" />
               </a>
@@ -49,16 +48,16 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-blue-600 hover:scale-110 transition-all text-white shadow-lg"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-blue-600 hover:scale-110 transition-transform text-white shadow-lg"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://www.youtube.com/@ShahrisabzTibbiyotTexnikumi"
+                href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-red-600 hover:scale-110 transition-all text-white shadow-lg"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-red-600 hover:scale-110 transition-transform text-white shadow-lg"
               >
                 <Youtube className="h-5 w-5" />
               </a>
@@ -72,7 +71,7 @@ export function Footer() {
                 ISH VAQTI:
               </h3>
               <p className="mt-2 text-sm sm:text-base text-text-soft">
-                Dush – Shan: 09:00 – 18:00
+                {siteConfig.workingHours}
               </p>
             </div>
 
@@ -93,7 +92,6 @@ export function Footer() {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Bottom copyright line */}

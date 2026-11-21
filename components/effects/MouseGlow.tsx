@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type MouseGlowProps = {
@@ -9,36 +8,64 @@ type MouseGlowProps = {
 };
 
 export function MouseGlow({ className }: MouseGlowProps) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (reducedMotion) return;
 
+    const container = containerRef.current;
+    const glow = glowRef.current;
+    if (!container || !glow) return;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      const rect = container.getBoundingClientRect();
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!inside) {
+        glow.style.opacity = "0";
+        return;
+      }
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      glow.style.opacity = "0.35";
+      glow.style.transform = `translate3d(${x - 250}px, ${y - 250}px, 0)`;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const handleMouseLeave = () => {
+      glow.style.opacity = "0";
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, [reducedMotion]);
 
   if (reducedMotion) return null;
 
   return (
-    <motion.div
+    <div
+      ref={containerRef}
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className ?? ""}`}
       aria-hidden="true"
     >
       <div
-        className="absolute h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl transition-transform duration-100 ease-out"
+        ref={glowRef}
+        className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full opacity-0 blur-3xl transition-opacity duration-300 will-change-transform"
         style={{
-          left: position.x,
-          top: position.y,
           background:
-            "radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, rgba(16, 185, 129, 0.15) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, rgba(16, 185, 129, 0.18) 40%, transparent 70%)",
         }}
       />
-    </motion.div>
+    </div>
   );
 }

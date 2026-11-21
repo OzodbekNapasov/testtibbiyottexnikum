@@ -3,7 +3,8 @@ export const siteConfig = {
   shortName: "STT",
   description:
     "Zamonaviy bilim va amaliy ko'nikmalarni uyg'unlashtirgan xususiy tibbiyot ta'lim muassasasi.",
-  url: "https://shahrisabz-tibbiyot.uz",
+  url: "https://shahrisabz-tibbiyot-texnikumi.uz",
+  qabulUrl: "https://qabul.shahrisabz-tibbiyot-texnikumi.uz/",
   phone: "+998 88 260 20 73",
   phoneHref: "tel:+998882602073",
   admissionPhones: [
@@ -13,14 +14,17 @@ export const siteConfig = {
   ],
   telegram: "@shahrisabz_t_t_uz",
   telegramHref: "https://t.me/shahrisabz_t_t_uz",
+  telegramBotHref: "https://t.me/shtt_online_singup_bot",
   instagram: "@shahrisabz_t_t_uz",
   instagramHref: "https://instagram.com/shahrisabz_t_t_uz",
   facebook: "Shahrisabz Tibbiyot Texnikumi",
   facebookHref: "https://www.facebook.com/share/1dWaDTpnKY/",
-  address: "Shahrisabz shahri, Ipak Yuli ko'chasi, 36A-uy",
+  youtubeHref: "https://www.youtube.com/@ShahrisabzTibbiyotTexnikumi",
+  address: "Qashqadaryo viloyati, Shahrisabz shahri, Ipak Yo'li ko'chasi, 36A-uy",
   mapsUrl: "https://maps.app.goo.gl/UzvQDQf1e9fVqMHbA",
-  workingHours: "Dushanba-Juma 09:00-17:00",
-  admissionStatus: "2026/2027 o'quv yili qabuli ochiq",
+  workingHours: "Dushanba – Shanba: 09:00 – 18:00",
+  admissionOpen: false,
+  admissionStatus: "2026/2027 o'quv yili qabuli yopildi",
   map: {
     lat: 39.08578,
     lng: 66.839256,
@@ -30,5 +34,6 @@ export const siteConfig = {
     telegram: "https://t.me/shahrisabz_t_t_uz",
     instagram: "https://instagram.com/shahrisabz_t_t_uz",
     facebook: "https://www.facebook.com/share/1dWaDTpnKY/",
+    youtube: "https://www.youtube.com/@ShahrisabzTibbiyotTexnikumi",
   },
 } as const;

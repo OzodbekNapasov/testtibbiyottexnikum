@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { syncWithGithub } from "@/lib/git-sync";
 import { isGithubMode, getFileFromGithub, updateFileInGithub } from "@/lib/github-api";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -71,6 +72,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Ruxsat berilmadi." }, { status: 401 });
+    }
     const body = await request.json();
     const { name, position, photo, specialty, experience, description } = body;
 
@@ -106,6 +110,9 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Ruxsat berilmadi." }, { status: 401 });
+    }
     const body = await request.json();
     const { id, name, position, photo, specialty, experience, description } = body;
 
@@ -146,6 +153,9 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Ruxsat berilmadi." }, { status: 401 });
+    }
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
 

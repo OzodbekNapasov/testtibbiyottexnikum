@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
+  id?: string;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
@@ -8,6 +9,7 @@ type SectionHeadingProps = {
 };
 
 export function SectionHeading({
+  id,
   title,
   subtitle,
   align = "center",
@@ -22,7 +24,7 @@ export function SectionHeading({
       )}
     >
       <h2
-        id={title.toLowerCase().replace(/\s+/g, "-")}
+        id={id ?? title.toLowerCase().replace(/\s+/g, "-")}
         className="font-[family-name:var(--font-heading)] text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
       >
         {title}

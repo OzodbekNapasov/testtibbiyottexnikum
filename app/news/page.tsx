@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,6 +36,29 @@ export default function NewsPage() {
   const [newsList, setNewsList] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // Lock body scroll and handle Escape key while modal is open
+  useEffect(() => {
+    if (!selectedNews) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedNews(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedNews]);
+
+  const getReadingMinutes = (text: string) => {
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.ceil(words / 180));
+  };
   
   // Search and Filter State
   const [searchQuery, setSearchQuery] = useState("");
@@ -117,7 +140,7 @@ export default function NewsPage() {
   }, [selectedNews, newsList]);
 
   return (
-    <main className="min-h-screen bg-bg-dark pt-24 pb-16 text-white selection:bg-primary selection:text-white">
+    <main className="min-h-screen bg-bg-dark pt-28 pb-16 text-white selection:bg-primary selection:text-white" id="main-content">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         
         {/* Back Button */}
@@ -327,7 +350,8 @@ export default function NewsPage() {
                       >
                         <GlassCard 
                           gradientBorder 
-                          className="group h-full overflow-hidden flex flex-col hover:border-primary/20 bg-white/5"
+                          hover={false}
+                          className="group h-full overflow-hidden flex flex-col hover:border-primary/20 hover:shadow-xl hover:shadow-primary/10 transition-all bg-white/5"
                         >
                           {item.image ? (
                             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-accent-green/20">
@@ -335,6 +359,7 @@ export default function NewsPage() {
                                 src={item.image}
                                 alt={item.title}
                                 fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 className="object-cover transition-transform duration-500 group-hover:scale-105 rounded-xl"
                               />
                               {hasVideo && (
@@ -398,12 +423,24 @@ export default function NewsPage() {
         {/* DETAILS MODAL (Fully immersive details page simulation) */}
         <AnimatePresence>
           {selectedNews && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-dark/85 backdrop-blur-md overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setSelectedNews(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-dark/85 backdrop-blur-md overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedNews.title}
+            >
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 30 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                ref={modalRef}
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 24, scale: 0.98 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                onClick={(e) => e.stopPropagation()}
                 className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 bg-bg-mid shadow-2xl flex flex-col"
               >
                 
@@ -444,7 +481,7 @@ export default function NewsPage() {
                     )}
                     <div className="flex items-center gap-1.5">
                       <Clock className="h-4 w-4 text-primary" />
-                      <span>O&apos;qish vaqti: <strong>2 daqiqa</strong></span>
+                      <span>O&apos;qish vaqti: <strong>{getReadingMinutes(selectedNews.content)} daqiqa</strong></span>
                     </div>
                   </div>
 
@@ -507,9 +544,7 @@ export default function NewsPage() {
                             key={post.id}
                             onClick={() => {
                               setSelectedNews(post);
-                              // Scroll details modal container to top
-                              const container = document.querySelector(".max-h-\\[90vh\\]");
-                              if (container) container.scrollTo({ top: 0, behavior: "smooth" });
+                              modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
                             }}
                             className="group p-4 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/20 transition-all cursor-pointer space-y-3"
                           >
@@ -542,7 +577,7 @@ export default function NewsPage() {
 
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
           )}
         </AnimatePresence>
 
