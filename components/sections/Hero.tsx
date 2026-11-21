@@ -9,6 +9,7 @@ import { ArrowRight, Phone, List } from "lucide-react";
 import { heroContent } from "@/lib/constants";
 import { siteConfig } from "@/lib/site-config";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { buttonVariants } from "@/components/ui/Button";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -124,60 +125,35 @@ export function Hero() {
               {heroContent.subtitle}
             </motion.p>
 
-            {/* Primary CTA */}
+            {/* Primary & Secondary Unified Action Buttons */}
             <motion.div
               initial={reducedMotion ? undefined : { opacity: 0, y: 16 }}
               animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.2 }}
-              className="mt-9 w-full max-w-md"
+              className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap"
             >
               <Link
                 href="/ariza"
-                className="group relative block w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/30 via-cyan-400/20 to-blue-600/30 backdrop-blur-xl shadow-2xl shadow-blue-500/25 ring-1 ring-white/25 transition-all duration-300 hover:shadow-blue-500/40 hover:from-blue-500/35 hover:via-cyan-400/25 hover:to-blue-600/35 hover:-translate-y-0.5"
+                className={buttonVariants({ variant: "primary", size: "lg", className: "group" })}
               >
-                <div className="pointer-events-none absolute -inset-1 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_top_left,rgba(6,182,212,0.3),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(59,130,246,0.25),transparent_50%),radial-gradient(ellipse_at_center,rgba(16,185,129,0.15),transparent_50%)]" />
-                </div>
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/30 via-blue-500/25 to-cyan-300/30 opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-
-                <div className="relative flex items-center justify-center gap-3 px-6 py-4.5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 text-white shadow-lg shadow-cyan-500/30 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:scale-105">
-                    <ArrowRight className="h-4 w-4" />
-                  </span>
-                  <span className="text-base font-semibold text-white transition-colors group-hover:text-cyan-100">
-                    Qabul haqida ma&apos;lumot
-                  </span>
-                </div>
+                <span>Qabul haqida ma&apos;lumot</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-            </motion.div>
-
-            {/* Quick Action Cards */}
-            <motion.div
-              initial={reducedMotion ? undefined : { opacity: 0, y: 16 }}
-              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.3 }}
-              className="mt-5 flex w-full max-w-md gap-3"
-            >
-              <a
-                href="#aloqa"
-                className="group relative flex flex-1 flex-col items-center gap-2 rounded-2xl bg-gradient-to-br from-blue-500/20 via-cyan-400/15 to-blue-600/20 backdrop-blur-xl px-4 py-4.5 shadow-lg shadow-blue-500/15 ring-1 ring-white/20 transition-all duration-300 hover:from-blue-500/25 hover:via-cyan-400/20 hover:to-blue-600/25 hover:shadow-blue-500/25 hover:-translate-y-0.5"
-              >
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 shadow-lg shadow-blue-500/20">
-                  <Phone className="h-5 w-5 text-white" />
-                </div>
-                <span className="relative text-sm font-semibold text-white">Aloqa</span>
-                <span className="relative text-[11px] text-white/75">{siteConfig.phone}</span>
-              </a>
 
               <a
                 href="#yonalishlar"
-                className="group relative flex flex-1 flex-col items-center gap-2 rounded-2xl bg-gradient-to-br from-blue-500/20 via-cyan-400/15 to-blue-600/20 backdrop-blur-xl px-4 py-4.5 shadow-lg shadow-blue-500/15 ring-1 ring-white/20 transition-all duration-300 hover:from-blue-500/25 hover:via-cyan-400/20 hover:to-blue-600/25 hover:shadow-blue-500/25 hover:-translate-y-0.5"
+                className={buttonVariants({ variant: "secondary", size: "lg" })}
               >
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-blue-500 shadow-lg shadow-blue-500/20">
-                  <List className="h-5 w-5 text-white" />
-                </div>
-                <span className="relative text-sm font-semibold text-white">Yo&rsquo;nalishlar</span>
-                <span className="relative text-[11px] text-white/75">4 ta yo&rsquo;nalish</span>
+                <List className="h-4 w-4 text-cyan-300" />
+                <span>Yo&rsquo;nalishlar</span>
+              </a>
+
+              <a
+                href="#aloqa"
+                className={buttonVariants({ variant: "secondary", size: "lg" })}
+              >
+                <Phone className="h-4 w-4 text-emerald-400" />
+                <span>Aloqa</span>
               </a>
             </motion.div>
           </motion.div>

@@ -5,6 +5,7 @@ import { MapPin, ExternalLink, Building2 } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/lib/site-config";
+import { buttonVariants } from "@/components/ui/Button";
 
 export function CampusSection() {
   const { lat, lng, zoom } = siteConfig.map;
@@ -78,7 +79,7 @@ export function CampusSection() {
                   href={siteConfig.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 hover:from-purple-800 hover:to-blue-700 px-8 py-3.5 text-sm sm:text-base font-bold text-white shadow-xl shadow-purple-900/30 transition-all hover:scale-105 active:scale-95"
+                  className={buttonVariants({ variant: "primary", size: "lg" })}
                 >
                   <span>Batafsil xaritada ochish</span>
                   <ExternalLink className="h-4 w-4" />

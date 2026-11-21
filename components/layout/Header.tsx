@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/Button";
 
 type MenuItem = {
   label: string;
@@ -383,7 +384,11 @@ export function Header() {
             {/* QABUL CTA Button (Desktop) */}
             <a
               href={siteConfig.qabulUrl}
-              className="hidden lg:inline-flex items-center gap-2 rounded-full border border-rose-400/35 bg-rose-500/15 hover:bg-rose-500/25 px-4 py-2 text-xs xl:text-sm font-bold uppercase tracking-wider text-rose-200 transition-all"
+              className={buttonVariants({
+                variant: "closed",
+                size: "sm",
+                className: "hidden lg:inline-flex uppercase tracking-wider font-bold text-xs",
+              })}
             >
               <span className="h-2 w-2 rounded-full bg-rose-400" />
               QABUL YOPILDI
@@ -566,13 +571,15 @@ export function Header() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="group relative flex w-full items-center justify-center gap-2 rounded-2xl border border-rose-400/35 bg-rose-500/15 hover:bg-rose-500/25 px-6 py-4 text-base font-bold text-rose-200 transition-all active:scale-[0.98]"
+                  className={buttonVariants({
+                    variant: "closed",
+                    size: "lg",
+                    className: "group w-full",
+                  })}
                 >
-                  <span className="relative flex items-center gap-2">
-                    <GraduationCap className="h-5 w-5 text-rose-300 shrink-0" />
-                    Qabul - 2026 (Yopilgan)
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </span>
+                  <GraduationCap className="h-5 w-5 text-rose-300 shrink-0" />
+                  <span>Qabul - 2026 (Yopilgan)</span>
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
                 </motion.a>
 
                 <motion.p

@@ -7,6 +7,7 @@ import { ArrowLeft, ChevronDown, HelpCircle, PhoneCall, ArrowRight } from "lucid
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/lib/site-config";
+import { buttonVariants } from "@/components/ui/Button";
 
 const faqList = [
   {
@@ -53,7 +54,7 @@ export default function FaqPage() {
           <div className="mb-8" data-page-back="true">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:bg-white/10 hover:text-white"
+              className={buttonVariants({ variant: "back", size: "sm" })}
             >
               <ArrowLeft className="h-4 w-4" />
               Bosh sahifaga qaytish
@@ -126,14 +127,14 @@ export default function FaqPage() {
                 href={siteConfig.telegramHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500"
+                className={buttonVariants({ variant: "primary", size: "md" })}
               >
                 <span>Telegram kanalimiz</span>
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href={siteConfig.phoneHref}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                className={buttonVariants({ variant: "secondary", size: "md" })}
               >
                 <PhoneCall className="h-4 w-4 text-emerald-400" />
                 <span>{siteConfig.phone}</span>

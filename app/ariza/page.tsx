@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, AlertTriangle, Send, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { buttonVariants } from "@/components/ui/Button";
 
 export default function OnlineApplicationPage() {
   return (
@@ -10,7 +11,7 @@ export default function OnlineApplicationPage() {
         <div className="mb-6" data-page-back="true">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:bg-white/10 hover:text-white"
+            className={buttonVariants({ variant: "back", size: "sm" })}
           >
             <ArrowLeft className="h-4 w-4" />
             Bosh sahifaga qaytish
@@ -122,7 +123,7 @@ export default function OnlineApplicationPage() {
               href={siteConfig.telegramHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:from-blue-600 hover:to-indigo-700 active:scale-[0.98]"
+              className={buttonVariants({ variant: "primary", size: "lg", className: "w-full" })}
             >
               <Send className="h-4 w-4" />
               <span>Telegram kanalimizni kuzatish</span>
@@ -130,7 +131,7 @@ export default function OnlineApplicationPage() {
 
             <a
               href={siteConfig.phoneHref}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-sm font-bold text-white transition-all hover:bg-white/10 hover:border-white/25 active:scale-[0.98]"
+              className={buttonVariants({ variant: "secondary", size: "lg", className: "w-full" })}
             >
               <PhoneCall className="h-4 w-4 text-emerald-400" />
               <span>{siteConfig.phone}</span>

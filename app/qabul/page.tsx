@@ -25,6 +25,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CampusSection } from "@/components/sections/CampusSection";
 import { siteConfig } from "@/lib/site-config";
+import { buttonVariants } from "@/components/ui/Button";
 
 interface Specialty {
   code: string;
@@ -169,7 +170,7 @@ export default function QabulLandingPage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#qabul-aloqa"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50 hover:scale-[1.02] active:scale-[0.98]"
+              className={buttonVariants({ variant: "primary", size: "lg" })}
             >
               Qabul komissiyasi bilan aloqa
               <ArrowRight className="h-5 w-5" />
@@ -177,7 +178,7 @@ export default function QabulLandingPage() {
 
             <a
               href="#yonalishlar"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 px-8 py-3.5 text-base font-semibold text-white transition-all hover:scale-[1.02]"
+              className={buttonVariants({ variant: "secondary", size: "lg" })}
             >
               Yo&apos;nalishlar
             </a>
@@ -267,7 +268,7 @@ export default function QabulLandingPage() {
 
                   {/* Full width centered status badge */}
                   <div className="mt-auto pt-6 border-t border-white/10">
-                    <div className="mt-6 w-full flex items-center justify-center gap-2 rounded-2xl border border-rose-500/30 bg-rose-500/10 px-6 py-3.5 text-sm font-bold text-rose-300">
+                    <div className={buttonVariants({ variant: "closed", size: "md", className: "mt-6 w-full pointer-events-none" })}>
                       Qabul yopilgan (2026/2027)
                     </div>
                   </div>
@@ -395,9 +396,9 @@ export default function QabulLandingPage() {
               <div className="mt-8 pt-6 border-t border-white/10">
                 <a
                   href="#qabul-aloqa"
-                  className="w-full flex items-center justify-center gap-2 rounded-2xl border border-rose-500/30 bg-rose-500/10 py-4 text-sm sm:text-base font-bold text-rose-200 transition-all hover:bg-rose-500/15"
+                  className={buttonVariants({ variant: "closed", size: "lg", className: "w-full" })}
                 >
-                  2026/2027 qabuli yakunlangan — Batafsil ma&apos;lumot uchun aloqa
+                  2026/2027 qabuli yakunlangan — Aloqa uchun o&apos;tish
                 </a>
               </div>
             </GlassCard>
@@ -478,7 +479,11 @@ export default function QabulLandingPage() {
                   href={siteConfig.telegramHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-bold text-blue-900 shadow-xl hover:bg-blue-50 transition-all active:scale-[0.98]"
+                  className={buttonVariants({
+                    variant: "secondary",
+                    size: "lg",
+                    className: "bg-white text-blue-900 border-white hover:bg-blue-50 hover:border-blue-100 shadow-xl",
+                  })}
                 >
                   Telegram kanalimizga o&apos;tish
                   <ArrowRight className="h-5 w-5" />
@@ -495,7 +500,11 @@ export default function QabulLandingPage() {
                     <a
                       key={idx}
                       href={p.href}
-                      className="flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-black/20 hover:bg-white/20 px-4 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-md"
+                      className={buttonVariants({
+                        variant: "secondary",
+                        size: "md",
+                        className: "w-full border-white/25 bg-black/20 hover:bg-white/20",
+                      })}
                     >
                       <PhoneCall className="h-4 w-4 text-emerald-300 shrink-0" />
                       <span>{p.display}</span>

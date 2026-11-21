@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck, AlertCircle, CheckCircle2, Loader2, Lock, Send, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { buttonVariants } from "@/components/ui/Button";
 
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwqsJgHjs0pHx6_Du3l_NKnsKz8gqAbS7vEzCW5qDteJVr_LCLD4wM3BMhyQY1fny7cvg/exec";
@@ -144,7 +145,7 @@ export default function ArizaFormPage() {
           <div className="mb-6" data-page-back="true">
             <Link
               href="/ariza"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-colors hover:bg-white/10 hover:text-white"
+              className={buttonVariants({ variant: "back", size: "sm" })}
             >
               <ArrowLeft className="h-4 w-4" />
               Orqaga
@@ -172,14 +173,14 @@ export default function ArizaFormPage() {
                 href={siteConfig.telegramHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500"
+                className={buttonVariants({ variant: "primary", size: "md" })}
               >
                 <Send className="h-4 w-4" />
                 Telegram kanalimiz
               </a>
               <a
                 href={siteConfig.phoneHref}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                className={buttonVariants({ variant: "secondary", size: "md" })}
               >
                 <PhoneCall className="h-4 w-4 text-emerald-400" />
                 {siteConfig.phone}
@@ -207,7 +208,7 @@ export default function ArizaFormPage() {
             <div className="mt-8" data-page-back="true">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-500 hover:shadow-primary/50"
+                className={buttonVariants({ variant: "primary", size: "md" })}
               >
                 Bosh sahifaga qaytish
               </Link>
@@ -437,7 +438,7 @@ export default function ArizaFormPage() {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
+              className={buttonVariants({ variant: "primary", size: "lg", className: "w-full" })}
             >
               {loading && <Loader2 className="h-4 w-4 animate-spin" />}
               <span>{loading ? "Yuborilmoqda..." : "Ariza yuborish"}</span>

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { buttonVariants } from "@/components/ui/Button";
 
 type NewsItem = {
   id: string;
@@ -148,7 +149,7 @@ export default function NewsPage() {
           <div className="mb-8" data-page-back="true">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-all hover:text-white hover:bg-white/10 hover:border-white/20"
+              className={buttonVariants({ variant: "back", size: "sm" })}
             >
               <ArrowLeft className="h-4 w-4" />
               Bosh sahifaga qaytish
@@ -185,12 +186,12 @@ export default function NewsPage() {
                   {categories.map((cat) => (
                     <button
                       key={cat}
+                      type="button"
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border transition-all cursor-pointer ${
-                        selectedCategory === cat
-                          ? "bg-primary border-primary text-white shadow-md shadow-primary/20"
-                          : "bg-white/5 border-white/10 text-text-soft hover:bg-white/10 hover:text-white"
-                      }`}
+                      className={buttonVariants({
+                        variant: selectedCategory === cat ? "primary" : "secondary",
+                        size: "sm",
+                      })}
                     >
                       {cat}
                     </button>
@@ -248,11 +249,12 @@ export default function NewsPage() {
                 </p>
                 {searchQuery && (
                   <button
+                    type="button"
                     onClick={() => {
                       setSearchQuery("");
                       setSelectedCategory("Barchasi");
                     }}
-                    className="mt-6 rounded-full bg-primary px-5 py-2 text-xs font-bold text-white transition-all hover:bg-blue-500"
+                    className={buttonVariants({ variant: "primary", size: "sm", className: "mt-6" })}
                   >
                     Barchasini ko&apos;rish
                   </button>

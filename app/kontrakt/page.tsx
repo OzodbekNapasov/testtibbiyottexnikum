@@ -6,6 +6,7 @@ import { ArrowLeft, Check, Award, Clock, BookOpen, Layers, GraduationCap } from 
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { buttonVariants } from "@/components/ui/Button";
 
 interface Direction {
   code: string;
@@ -95,7 +96,7 @@ export default function KontraktPage() {
           <div className="mb-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-text-soft transition-all hover:bg-white/10 hover:text-white"
+              className={buttonVariants({ variant: "back", size: "sm" })}
             >
               <ArrowLeft className="h-4 w-4" />
               Bosh sahifaga qaytish
@@ -206,7 +207,7 @@ export default function KontraktPage() {
 
                     <Link
                       href="/#aloqa"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/15 px-5 py-3 text-sm font-bold text-rose-200 transition-all active:scale-[0.98]"
+                      className={buttonVariants({ variant: "closed", size: "md" })}
                     >
                       Qabul yopilgan — Aloqa
                     </Link>

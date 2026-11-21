@@ -30,7 +30,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Telegram"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-indigo-600 hover:scale-110 transition-transform text-white shadow-lg"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white backdrop-blur-md shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25"
               >
                 <Send className="h-5 w-5" />
               </a>
@@ -39,7 +39,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-pink-600 hover:scale-110 transition-transform text-white shadow-lg"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white backdrop-blur-md shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25"
               >
                 <Instagram className="h-5 w-5" />
               </a>
@@ -48,7 +48,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-blue-600 hover:scale-110 transition-transform text-white shadow-lg"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white backdrop-blur-md shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25"
               >
                 <Facebook className="h-5 w-5" />
               </a>
@@ -57,7 +57,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-red-600 hover:scale-110 transition-transform text-white shadow-lg"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white backdrop-blur-md shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25"
               >
                 <Youtube className="h-5 w-5" />
               </a>

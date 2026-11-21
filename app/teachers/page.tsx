@@ -8,6 +8,7 @@ import { ArrowLeft, User } from "lucide-react";
 import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { buttonVariants } from "@/components/ui/Button";
 
 type Teacher = {
   id: string;
@@ -50,7 +51,7 @@ export default function TeachersPage() {
           <div className="mb-8" data-page-back="true">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-text-soft transition-all hover:text-white hover:bg-white/5 hover:border-white/20"
+              className={buttonVariants({ variant: "back", size: "sm" })}
             >
               <ArrowLeft className="h-4 w-4" />
               Bosh sahifaga qaytish
@@ -174,13 +175,13 @@ export default function TeachersPage() {
                 <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
                     href="/#qabul"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-rose-500/35 bg-rose-500/15 px-8 py-4 text-sm font-semibold text-rose-200 transition-all hover:bg-rose-500/20"
+                    className={buttonVariants({ variant: "closed", size: "lg" })}
                   >
                     Qabul holati (Yopilgan)
                   </Link>
                   <Link
                     href="/#aloqa"
-                    className="inline-flex items-center justify-center gap-2 rounded-full glass border border-white/10 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                    className={buttonVariants({ variant: "secondary", size: "lg" })}
                   >
                     Biz bilan bog&apos;laning
                   </Link>

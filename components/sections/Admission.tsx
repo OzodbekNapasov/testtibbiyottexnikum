@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { admissionContent } from "@/lib/constants";
 import { siteConfig } from "@/lib/site-config";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { buttonVariants } from "@/components/ui/Button";
 
 export function Admission() {
   const reducedMotion = useReducedMotion();
@@ -67,13 +68,10 @@ export function Admission() {
               <div className="mt-10">
                 <Link
                   href="/#aloqa"
-                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/50 active:scale-[0.98]"
+                  className={buttonVariants({ variant: "primary", size: "lg", className: "group" })}
                 >
-                  <span className="absolute inset-0 bg-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <span className="relative flex items-center gap-2">
-                    {admissionContent.cta}
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
+                  <span>{admissionContent.cta}</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>

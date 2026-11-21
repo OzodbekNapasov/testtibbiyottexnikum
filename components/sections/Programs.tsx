@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { programs } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/Button";
 
 interface ProgramType {
   title: string;
@@ -98,22 +99,19 @@ function ProgramCard({ program, index }: { program: ProgramType; index: number }
                 type="button"
                 aria-expanded={isExpanded}
                 onClick={() => setIsExpanded(!isExpanded)}
-                className={cn(
-                  "group/btn mt-5 flex w-full items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition-all duration-300 border backdrop-blur-md shadow-md cursor-pointer",
-                  isExpanded
-                    ? "bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border-rose-500/30 hover:border-rose-500/50 shadow-rose-500/5"
-                    : "bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/30 hover:border-emerald-500/50 shadow-emerald-500/5",
-                )}
+                className={buttonVariants({
+                  variant: isExpanded ? "closed" : "secondary",
+                  size: "md",
+                  className: "group/btn mt-5 w-full",
+                })}
               >
                 <span>{isExpanded ? "Yopish" : "Batafsil ma'lumot"}</span>
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover/btn:scale-110">
-                  <ChevronDown
-                    className={cn(
-                      "h-3.5 w-3.5 transition-transform duration-300",
-                      isExpanded ? "rotate-180 text-rose-400" : "text-emerald-400",
-                    )}
-                  />
-                </div>
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform duration-300",
+                    isExpanded ? "rotate-180 text-rose-300" : "text-cyan-300",
+                  )}
+                />
               </button>
 
               {/* Collapsible Area */}
@@ -208,7 +206,7 @@ function ProgramCard({ program, index }: { program: ProgramType; index: number }
                     </div>
                     <Link
                       href="/#aloqa"
-                      className="inline-flex items-center justify-center rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-2.5 text-xs font-bold text-rose-200 transition-colors hover:bg-rose-500/15"
+                      className={buttonVariants({ variant: "closed", size: "sm" })}
                     >
                       Qabul yopilgan
                     </Link>
